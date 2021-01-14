@@ -13,6 +13,7 @@ import {
     setAuthorizationToken,
     refreshAuthorizationToken
 } from "./redux/auth/actions";
+import '../css/app.css';
 
 const store = createStore(
     reducer,
