@@ -3337,10 +3337,10 @@ var InfoSection = function InfoSection(_ref) {
 
 var GalleryModal = function GalleryModal(_ref2) {
   var handleClose = _ref2.handleClose;
-  var url = "https://scontent.ffnc1-1.fna.fbcdn.net/v/t31.0-8/19055700_1694675440838712_7343062838530535246_o.jpg?_nc_cat=105&ccb=2&_nc_sid=cdbe9c&_nc_eui2=AeHxCGNYBdWm8sKkSMxY6N9m2c6sXa6qHmrZzqxdrqoeauhK3psh_L4RaymIbVvUPpI&_nc_ohc=IHOArQymnsoAX_A2JE6&_nc_ht=scontent.ffnc1-1.fna&oh=d737344cd5cd85ed387ebf778e31868d&oe=60245A7B";
-  var banco = "https://scontent.ffnc1-1.fna.fbcdn.net/v/t1.0-9/97181186_2320266701612913_1028492728628936704_o.jpg?_nc_cat=100&ccb=2&_nc_sid=8bfeb9&_nc_eui2=AeEZNJcdQSKC5TDUMuQpZ9L-kxiQ9pcam1eTGJD2lxqbV8UVbCYLWS_bGP7M6y6EC04&_nc_ohc=cik1JtjR3eEAX8akyD1&_nc_ht=scontent.ffnc1-1.fna&oh=8a1142aa3f6374907cbf0346a44f329b&oe=60264377";
+  var url = "https://hipercentrodomovel.pt/wp-content/uploads/2018/10/CANmuse.jpg";
+  var banco = "https://cdn.vente-unique.com/thumbnails/rs/930/310/310803/0/sofa_310803.jpg";
   var sofa = "https://ireland.apollo.olxcdn.com/v1/files/zjy4jsplqma12-PT/image;s=1000x700";
-  var sofa2 = "https://scontent.ffnc1-1.fna.fbcdn.net/v/t1.0-0/p180x540/100827474_2332859940353589_4516845499784888320_o.jpg?_nc_cat=104&ccb=2&_nc_sid=8bfeb9&_nc_eui2=AeERus85KUPHZ-KKk2Ka-zxjQlfydTsQpkVCV_J1OxCmRdMGQgP-qf_us5iMy30CnF4&_nc_ohc=k9RcIlaLWNsAX82x7Hg&_nc_ht=scontent.ffnc1-1.fna&tp=6&oh=4afba5e57a6583b4aadb29f085c0ed40&oe=6022F40D";
+  var sofa2 = "https://lh3.googleusercontent.com/proxy/rS91dQY2So0pDIHxbXZCLArY-UoKvei53x1e-SdalX3X6-15hBJj929zsWEdnV1TNRQlhX1CbAUbsx8xBW9SgDldmJsdJMA3IpeTOkxZgQOufKUY_YB_3gVsfR4DnciauIxXOfoUlvzNKfr38YNWTxQaSscWQcPjkQ";
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_styled__WEBPACK_IMPORTED_MODULE_2__.Row, {
       type: "flex",
@@ -3564,10 +3564,10 @@ var Home = /*#__PURE__*/function (_Component) {
         });
       };
 
-      var url = "https://scontent.ffnc1-1.fna.fbcdn.net/v/t31.0-8/19055700_1694675440838712_7343062838530535246_o.jpg?_nc_cat=105&ccb=2&_nc_sid=cdbe9c&_nc_eui2=AeHxCGNYBdWm8sKkSMxY6N9m2c6sXa6qHmrZzqxdrqoeauhK3psh_L4RaymIbVvUPpI&_nc_ohc=IHOArQymnsoAX_A2JE6&_nc_ht=scontent.ffnc1-1.fna&oh=d737344cd5cd85ed387ebf778e31868d&oe=60245A7B";
-      var banco = "https://scontent.ffnc1-1.fna.fbcdn.net/v/t1.0-9/97181186_2320266701612913_1028492728628936704_o.jpg?_nc_cat=100&ccb=2&_nc_sid=8bfeb9&_nc_eui2=AeEZNJcdQSKC5TDUMuQpZ9L-kxiQ9pcam1eTGJD2lxqbV8UVbCYLWS_bGP7M6y6EC04&_nc_ohc=cik1JtjR3eEAX8akyD1&_nc_ht=scontent.ffnc1-1.fna&oh=8a1142aa3f6374907cbf0346a44f329b&oe=60264377";
+      var url = "https://hipercentrodomovel.pt/wp-content/uploads/2018/10/CANmuse.jpg";
+      var banco = "https://cdn.vente-unique.com/thumbnails/rs/930/310/310803/0/sofa_310803.jpg";
       var sofa = "https://ireland.apollo.olxcdn.com/v1/files/zjy4jsplqma12-PT/image;s=1000x700";
-      var sofa2 = "https://scontent.ffnc1-1.fna.fbcdn.net/v/t1.0-0/p180x540/100827474_2332859940353589_4516845499784888320_o.jpg?_nc_cat=104&ccb=2&_nc_sid=8bfeb9&_nc_eui2=AeERus85KUPHZ-KKk2Ka-zxjQlfydTsQpkVCV_J1OxCmRdMGQgP-qf_us5iMy30CnF4&_nc_ohc=k9RcIlaLWNsAX82x7Hg&_nc_ht=scontent.ffnc1-1.fna&tp=6&oh=4afba5e57a6583b4aadb29f085c0ed40&oe=6022F40D";
+      var sofa2 = "https://media-eu.camilyo.software/media-eu/static/0737/341.jpg";
       var filters = ["todos", "cortinados", "estores", "sofás", "outros"];
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_styled__WEBPACK_IMPORTED_MODULE_4__.Title, {
@@ -3877,28 +3877,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_animations__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-animations */ "./node_modules/react-animations/lib/index.js");
 
 
-function _templateObject5() {
-  var data = _taggedTemplateLiteral(["\n    z-index: 999;\n    width: 60%;\n    max-width: 1000px;\n    margin: 0 auto;\n    padding: 28px;\n    background: rgb(255, 255, 255);\n    display: block;\n    border-radius: 4px;\n    position: absolute;\n    top: 100px;\n    bottom: 100px;\n    left: 100px;\n    right: 100px;\n\n    @media (max-width: ", ") {\n        width: 80%;\n    }\n\n    @media (max-width: ", ") {\n        width: 96%;\n    }\n"]);
-
-  _templateObject5 = function _templateObject5() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject4() {
-  var data = _taggedTemplateLiteral(["\n    display: ", ";\n"]);
-
-  _templateObject4 = function _templateObject4() {
-    return data;
-  };
-
-  return data;
-}
-
 function _templateObject3() {
-  var data = _taggedTemplateLiteral(["\n    z-index: ", ";\n    animation: 0.6s\n        ", ";\n    opacity: ", ";\n    position: fixed;\n    transition: opacity 0.6s, z-index 1s;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100vh;\n    background: rgba(255, 255, 255);\n    display: block;\n"]);
+  var data = _taggedTemplateLiteral(["\n    width: 60%;\n    max-width: 1000px;\n    margin: 0 auto;\n    padding: 28px;\n    background: rgb(255, 255, 255);\n    display: block;\n\n    @media (max-width: ", ") {\n        width: 80%;\n    }\n\n    @media (max-width: ", ") {\n        width: 96%;\n    }\n"]);
 
   _templateObject3 = function _templateObject3() {
     return data;
@@ -3908,7 +3888,7 @@ function _templateObject3() {
 }
 
 function _templateObject2() {
-  var data = _taggedTemplateLiteral(["", ""]);
+  var data = _taggedTemplateLiteral(["\n    z-index: 99;\n    animation: 0.6s ", ";\n    display: ", ";\n    position: fixed;\n    transition: opacity 0.6s, z-index 1s;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100vh;\n    background: rgba(255, 255, 255);\n"]);
 
   _templateObject2 = function _templateObject2() {
     return data;
@@ -3934,29 +3914,18 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 
 
 var openAnimation = (0,styled_components__WEBPACK_IMPORTED_MODULE_4__.keyframes)(_templateObject(), react_animations__WEBPACK_IMPORTED_MODULE_3__.fadeInUp);
-var closeAnimation = (0,styled_components__WEBPACK_IMPORTED_MODULE_4__.keyframes)(_templateObject2(), react_animations__WEBPACK_IMPORTED_MODULE_3__.fadeOutDown);
-var Container = styled_components__WEBPACK_IMPORTED_MODULE_4__.default.div(_templateObject3(), function (props) {
-  return props.visible ? 99 : -1;
-}, function (props) {
-  return props.visible ? openAnimation : closeAnimation;
-}, function (props) {
-  return props.visible ? 1 : 0;
-});
-var AnimationHelper = styled_components__WEBPACK_IMPORTED_MODULE_4__.default.div(_templateObject4(), function (props) {
+var Container = styled_components__WEBPACK_IMPORTED_MODULE_4__.default.div(_templateObject2(), openAnimation, function (props) {
   return props.visible ? "block" : "none";
 });
-var Content = styled_components__WEBPACK_IMPORTED_MODULE_4__.default.div(_templateObject5(), _variables__WEBPACK_IMPORTED_MODULE_2__.dimensions.md, _variables__WEBPACK_IMPORTED_MODULE_2__.dimensions.sm);
+var Content = styled_components__WEBPACK_IMPORTED_MODULE_4__.default.div(_templateObject3(), _variables__WEBPACK_IMPORTED_MODULE_2__.dimensions.md, _variables__WEBPACK_IMPORTED_MODULE_2__.dimensions.sm);
 
 var Modal = function Modal(_ref) {
   var children = _ref.children,
       visible = _ref.visible;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Container, {
     visible: visible,
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(AnimationHelper, {
-      visible: visible,
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Content, {
-        children: children
-      })
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Content, {
+      children: children
     })
   });
 };
@@ -3985,7 +3954,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function _templateObject2() {
-  var data = _taggedTemplateLiteral(["\n    width: 100%;\n\n    a {\n        text-decoration: none;\n    }\n\n    img {\n        height: 25px;\n        margin-right: 5px;\n\n        @media (max-width: ", ") {\n            height: 18px;\n        }\n    }\n"]);
+  var data = _taggedTemplateLiteral(["\n    width: 100%;\n\n    a {\n        text-decoration: none;\n    }\n\n    img {\n        height: 28px;\n        margin-right: 5px;\n\n        @media (max-width: ", ") {\n            height: 20px;\n        }\n    }\n"]);
 
   _templateObject2 = function _templateObject2() {
     return data;
@@ -4021,7 +3990,7 @@ var NameAndLogo = function NameAndLogo(_ref) {
       type: "flex",
       align: "center",
       children: [!logo && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("img", {
-        src: "/logo.svg",
+        src: "/logo.png",
         alt: "logo"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Name, {
         children: "Marco Abreu"

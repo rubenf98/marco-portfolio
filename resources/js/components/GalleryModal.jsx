@@ -119,13 +119,13 @@ const InfoSection = ({ title, description, larger }) => {
 
 let GalleryModal = ({ handleClose }) => {
     const url =
-        "https://scontent.ffnc1-1.fna.fbcdn.net/v/t31.0-8/19055700_1694675440838712_7343062838530535246_o.jpg?_nc_cat=105&ccb=2&_nc_sid=cdbe9c&_nc_eui2=AeHxCGNYBdWm8sKkSMxY6N9m2c6sXa6qHmrZzqxdrqoeauhK3psh_L4RaymIbVvUPpI&_nc_ohc=IHOArQymnsoAX_A2JE6&_nc_ht=scontent.ffnc1-1.fna&oh=d737344cd5cd85ed387ebf778e31868d&oe=60245A7B";
+        "https://hipercentrodomovel.pt/wp-content/uploads/2018/10/CANmuse.jpg";
     const banco =
-        "https://scontent.ffnc1-1.fna.fbcdn.net/v/t1.0-9/97181186_2320266701612913_1028492728628936704_o.jpg?_nc_cat=100&ccb=2&_nc_sid=8bfeb9&_nc_eui2=AeEZNJcdQSKC5TDUMuQpZ9L-kxiQ9pcam1eTGJD2lxqbV8UVbCYLWS_bGP7M6y6EC04&_nc_ohc=cik1JtjR3eEAX8akyD1&_nc_ht=scontent.ffnc1-1.fna&oh=8a1142aa3f6374907cbf0346a44f329b&oe=60264377";
+        "https://cdn.vente-unique.com/thumbnails/rs/930/310/310803/0/sofa_310803.jpg";
     const sofa =
         "https://ireland.apollo.olxcdn.com/v1/files/zjy4jsplqma12-PT/image;s=1000x700";
     const sofa2 =
-        "https://scontent.ffnc1-1.fna.fbcdn.net/v/t1.0-0/p180x540/100827474_2332859940353589_4516845499784888320_o.jpg?_nc_cat=104&ccb=2&_nc_sid=8bfeb9&_nc_eui2=AeERus85KUPHZ-KKk2Ka-zxjQlfydTsQpkVCV_J1OxCmRdMGQgP-qf_us5iMy30CnF4&_nc_ohc=k9RcIlaLWNsAX82x7Hg&_nc_ht=scontent.ffnc1-1.fna&tp=6&oh=4afba5e57a6583b4aadb29f085c0ed40&oe=6022F40D";
+        "https://lh3.googleusercontent.com/proxy/rS91dQY2So0pDIHxbXZCLArY-UoKvei53x1e-SdalX3X6-15hBJj929zsWEdnV1TNRQlhX1CbAUbsx8xBW9SgDldmJsdJMA3IpeTOkxZgQOufKUY_YB_3gVsfR4DnciauIxXOfoUlvzNKfr38YNWTxQaSscWQcPjkQ";
 
     return (
         <div>
