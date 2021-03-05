@@ -30,3 +30,7 @@ Route::group([
     Route::post('refresh', 'AuthController@refresh');
     Route::post('me', 'AuthController@me');
 });
+
+
+Route::apiResource('category', 'App\Http\Controllers\CategoryController');
+Route::apiResource('post', 'App\Http\Controllers\PostController');

@@ -4,6 +4,9 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { Row, CustomLink, Title } from "../styled";
 import { dimensions } from "../variables";
+import { fetchCategories } from "../redux/category/actions";
+import { fetchPosts } from "../redux/post/actions";
+import { connect } from "react-redux";
 
 const FilterList = styled.ul`
     text-align: center;
@@ -137,107 +140,144 @@ const ImageContainer = styled.div`
 
 class Home extends Component {
     state = {
-        active: 0,
+        loadingPosts: true,
+        postsRange: [],
+        postsPerColumn: 0,
+        activeCategory: 0,
         visible: false,
+        openPost: false,
     };
 
+    componentDidMount() {
+        this.props.fetchCategories();
+        this.props.fetchPosts().then(() => {
+            let { posts } = this.props;
+            let postsPerColumn = Math.floor(this.props.posts.length / 4);
+
+            this.setState({
+                loadingPosts: false,
+                postsPerColumn: postsPerColumn,
+                postsRange: [
+                    [0, postsPerColumn],
+                    [postsPerColumn, postsPerColumn + postsPerColumn],
+                    [
+                        postsPerColumn + postsPerColumn,
+                        posts.length - postsPerColumn,
+                    ],
+                    [posts.length - postsPerColumn, posts.length],
+                ],
+            });
+        });
+    }
+
     handleFilterClick = (e) => {
-        this.setState({ active: parseInt(e.target.id) });
+        this.setState({ activeCategory: parseInt(e.target.id) });
     };
 
     handleModalClose = () => {
         this.setState({ visible: false });
     };
-    handleModalOpen = () => {
-        this.setState({ visible: true });
+    handleModalOpen = (post) => {
+        this.setState({ visible: true, openPost: post });
     };
 
     render() {
-        console.log(this.state.visible);
-        const ImageSection = ({ url }) => {
+        var { postsRange, loadingPosts, openPost } = this.state;
+        var { posts } = this.props;
+
+        const ImageSection = ({ post }) => {
             return (
                 <ImageContainer
                     className="container"
-                    onClick={this.handleModalOpen}
+                    onClick={() => this.handleModalOpen(post)}
                 >
-                    <img src={url} />
+                    <img
+                        src={`${window.location.origin}/images/${post.cover.url}`}
+                    />
                     <div className="overlay">
-                        <div className="category">CORTINADOS</div>
-                        <div className="product">Cortinas romanas</div>
+                        <div className="category">
+                            {post.item.category.name}
+                        </div>
+                        <div className="product">{post.item.name}</div>
                     </div>
                 </ImageContainer>
             );
         };
-        const url =
-            "https://hipercentrodomovel.pt/wp-content/uploads/2018/10/CANmuse.jpg";
-        const banco =
-            "https://cdn.vente-unique.com/thumbnails/rs/930/310/310803/0/sofa_310803.jpg";
-        const sofa =
-            "https://ireland.apollo.olxcdn.com/v1/files/zjy4jsplqma12-PT/image;s=1000x700";
-        const sofa2 =
-            "https://media-eu.camilyo.software/media-eu/static/0737/341.jpg";
 
-        const filters = ["todos", "cortinados", "estores", "sofás", "outros"];
         return (
             <div>
                 <Title>
                     Lorem, ipsum dolor sit amet consectetur adipisicing elit.
                 </Title>
                 <FilterList>
-                    {filters.map((filter, index) => (
-                        <li key={index}>
+                    <li>
+                        <LinkWithSeparator
+                            onClick={this.handleFilterClick}
+                            as="div"
+                            id={0}
+                            active={this.state.activeCategory == 0 && true}
+                        >
+                            todos
+                        </LinkWithSeparator>
+                    </li>
+                    {Object.values(this.props.categories).map((category) => (
+                        <li key={category.id}>
                             <LinkWithSeparator
                                 onClick={this.handleFilterClick}
                                 as="div"
-                                id={index}
-                                active={this.state.active == index && true}
+                                id={category.id}
+                                active={
+                                    this.state.activeCategory == category.id &&
+                                    true
+                                }
                             >
-                                {filter}
+                                {category.name}
                             </LinkWithSeparator>
                         </li>
                     ))}
                 </FilterList>
 
                 <Modal visible={this.state.visible}>
-                    <GalleryModal handleClose={this.handleModalClose} />
+                    <GalleryModal
+                        post={openPost}
+                        handleClose={this.handleModalClose}
+                    />
                 </Modal>
-                <Row type="flex">
-                    <Col>
-                        <ImageSection url={url} />
-                        <ImageSection url={banco} />
-                        <ImageSection url={sofa2} />
-                        <ImageSection url={url} />
-                        <ImageSection url={sofa} />
-                        <ImageSection url={banco} />
-                    </Col>
-                    <Col>
-                        <ImageSection url={sofa} />
-                        <ImageSection url={url} />
-                        <ImageSection url={banco} />
-                        <ImageSection url={url} />
-                        <ImageSection url={sofa} />
-                        <ImageSection url={sofa2} />
-                    </Col>
-                    <Col>
-                        <ImageSection url={url} />
-                        <ImageSection url={banco} />
-                        <ImageSection url={sofa2} />
-                        <ImageSection url={url} />
-                        <ImageSection url={sofa} />
-                        <ImageSection url={banco} />
-                    </Col>
-                    <Col>
-                        <ImageSection url={sofa} />
-                        <ImageSection url={url} />
-                        <ImageSection url={banco} />
-                        <ImageSection url={url} />
-                        <ImageSection url={sofa} />
-                        <ImageSection url={sofa2} />
-                    </Col>
-                </Row>
+                {!loadingPosts && (
+                    <Row type="flex">
+                        {[0, 1, 2, 3].map((index) => (
+                            <Col key={index}>
+                                {Object.values(
+                                    posts.slice(
+                                        postsRange[index][0],
+                                        postsRange[index][1]
+                                    )
+                                ).map((post) => (
+                                    <ImageSection key={post.id} post={post} />
+                                ))}
+                            </Col>
+                        ))}
+                    </Row>
+                )}
             </div>
         );
     }
 }
 
-export default Home;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fetchCategories: () => dispatch(fetchCategories()),
+        fetchPosts: () => dispatch(fetchPosts()),
+    };
+};
+
+const mapStateToProps = (state) => {
+    return {
+        loadingPosts: state.post.loading,
+        posts: state.post.data,
+        categories: state.category.data,
+        loadingCategories: state.category.loading,
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

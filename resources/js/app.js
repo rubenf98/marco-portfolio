@@ -26,15 +26,15 @@ const store = createStore(
 )
 
 if (localStorage.token) {
-    const token = jwtDecode(localStorage.token);
-    const tokenExp = token.exp < Date.now() / 1000;
+    // const token = jwtDecode(localStorage.token);
+    // const tokenExp = token.exp < Date.now() / 1000;
 
-    if (tokenExp) {
-        store.dispatch(refreshAuthorizationToken(localStorage.token));
-    } else {
-        setAuthorizationToken(localStorage.token);
-        store.dispatch(me(localStorage.token));
-    }
+    // if (tokenExp) {
+    //     store.dispatch(refreshAuthorizationToken(localStorage.token));
+    // } else {
+    //     setAuthorizationToken(localStorage.token);
+    //     store.dispatch(me(localStorage.token));
+    // }
 }
 
 render(

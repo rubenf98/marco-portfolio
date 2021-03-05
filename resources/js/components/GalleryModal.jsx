@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Row } from "../styled";
 import styled from "styled-components";
 import { dimensions, customColors } from "../variables";
@@ -46,6 +46,7 @@ const Info = styled.div`
         margin: 0px;
         margin-bottom: 30px;
         color: ${customColors.gray};
+        text-transform: capitalize;
 
         span {
             display: block;
@@ -54,8 +55,13 @@ const Info = styled.div`
 `;
 
 const CloseIcon = styled.img`
-    height: 25px;
+    height: 20px;
     cursor: pointer;
+    transition: 0.3s ease-out;
+
+    &:hover {
+        transform: rotate(90deg);
+    }
 
     @media (max-width: ${dimensions.sm}) {
         height: 18px;
@@ -108,7 +114,7 @@ const GalleryImage = styled.img`
     display: block;
 `;
 
-const InfoSection = ({ title, description, larger }) => {
+const InfoSection = ({ title, description }) => {
     return (
         <Info>
             <h3>{title}</h3>
@@ -117,53 +123,64 @@ const InfoSection = ({ title, description, larger }) => {
     );
 };
 
-let GalleryModal = ({ handleClose }) => {
-    const url =
-        "https://hipercentrodomovel.pt/wp-content/uploads/2018/10/CANmuse.jpg";
-    const banco =
-        "https://cdn.vente-unique.com/thumbnails/rs/930/310/310803/0/sofa_310803.jpg";
-    const sofa =
-        "https://ireland.apollo.olxcdn.com/v1/files/zjy4jsplqma12-PT/image;s=1000x700";
-    const sofa2 =
-        "https://lh3.googleusercontent.com/proxy/rS91dQY2So0pDIHxbXZCLArY-UoKvei53x1e-SdalX3X6-15hBJj929zsWEdnV1TNRQlhX1CbAUbsx8xBW9SgDldmJsdJMA3IpeTOkxZgQOufKUY_YB_3gVsfR4DnciauIxXOfoUlvzNKfr38YNWTxQaSscWQcPjkQ";
-
+let GalleryModal = ({ handleClose, post }) => {
     return (
         <div>
-            <Row type="flex" justify="space-between" width="90%">
-                <LogoContainer>
-                    <NameAndLogo logo />
-                </LogoContainer>
-                <LogoContainer>
-                    <CloseIcon
-                        src="/icon/close.svg"
-                        alt="close"
-                        onClick={handleClose}
-                    />
-                </LogoContainer>
-            </Row>
-            <Gallery>
-                <div>
-                    <GalleryImage src={url} />
-                </div>
-                <div>
-                    <GalleryImage src={banco} />
-                </div>
-                <div>
-                    <GalleryImage src={sofa} />
-                </div>
-                <div>
-                    <GalleryImage src={sofa2} />
-                </div>
-            </Gallery>
-            <Row type="flex" justify="space-around" align="center">
-                <InfoSection
-                    title="Data de Projeto"
-                    description="09 Janeiro, 2021"
-                />
-                <InfoSection title="Cliente" description="lorem" />
-                <InfoSection title="Categoria" description="Sofa" />
-                <InfoSection title="Produto" description="Sofa em L" />
-            </Row>
+            {post && (
+                <Fragment>
+                    <Row type="flex" justify="space-between" width="90%">
+                        <LogoContainer>
+                            <NameAndLogo />
+                        </LogoContainer>
+                        <LogoContainer>
+                            <CloseIcon
+                                src="/icon/close.svg"
+                                alt="close"
+                                onClick={handleClose}
+                            />
+                        </LogoContainer>
+                    </Row>
+
+                    <Gallery
+                        infiniteLoop={true}
+                        autoPlay={true}
+                        stopOnHover={true}
+                        selectedItem={0}
+                    >
+                        <div>
+                            <GalleryImage
+                                src={`${window.location.origin}/images/${post.cover.url}`}
+                            />
+                        </div>
+                        {Object.values(post.images).map((image) => (
+                            <div>
+                                <GalleryImage
+                                    src={`${window.location.origin}/images/${image.url}`}
+                                />
+                            </div>
+                        ))}
+                    </Gallery>
+
+                    <Row type="flex" justify="space-around" align="center">
+                        <InfoSection
+                            title="Data de Projeto"
+                            description="09 Janeiro, 2021"
+                        />
+                        <InfoSection
+                            title="Cliente"
+                            description={post.client ? post.client : "------"}
+                        />
+                        <InfoSection
+                            title="Categoria"
+                            description={post.item.category.name}
+                        />
+                        <InfoSection
+                            title="Produto"
+                            description={post.item.name}
+                        />
+                    </Row>
+                </Fragment>
+            )}
         </div>
     );
 };

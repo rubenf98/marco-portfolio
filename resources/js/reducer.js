@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux'
 
-import example from './redux/example'
+import category from './redux/category'
+import post from './redux/post'
 
 const reducer = combineReducers({
-    example,
+    category,
+    post
 })
 
 export default reducer

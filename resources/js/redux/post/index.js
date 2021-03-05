@@ -1,29 +1,29 @@
 import { types } from "./types";
 
 export const initialState = {
-    exampleCounter: 0,
+    data: [],
     loading: false,
 }
 
 export default (state = initialState, action = {}) => {
     switch (action.type) {
-        case `${types.ADD_EXAMPLE}_PENDING`:
+        case `${types.FETCH_POSTS}_PENDING`:
             return {
                 ...state,
                 loading: true,
 
             };
-        case `${types.ADD_EXAMPLE}_REJECTED`:
+        case `${types.FETCH_POSTS}_REJECTED`:
             return {
                 ...state,
                 loading: false,
-                exampleCounter: 0
+                data: []
             };
-        case `${types.ADD_EXAMPLE}_FULFILLED`:
+        case `${types.FETCH_POSTS}_FULFILLED`:
             return {
                 ...state,
                 loading: false,
-                exampleCounter: initialState.exampleCounter + 1,
+                data: action.payload.data.data,
             };
         default:
             return state
