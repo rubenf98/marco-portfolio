@@ -7,6 +7,7 @@ import Home from "./components/Home";
 import About from "./components/About";
 import Contact from "./components/Contact";
 import Layout from "./components/Layout";
+import Login from "./components/Login";
 
 export const history = createBrowserHistory();
 
@@ -14,7 +15,9 @@ const Routes = () => {
     return (
         <Router history={history}>
             <Switch>
+                <Route exact path="/login" component={Login} />
                 <Layout>
+
                     <Route exact path="/contact" component={Contact} />
                     <Route exact path="/about" component={About} />
                     <Route exact path="/" component={Home} />
