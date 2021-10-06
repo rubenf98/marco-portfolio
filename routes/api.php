@@ -26,3 +26,4 @@ Route::post('me', 'AuthController@me');
 
 Route::apiResource('category', 'App\Http\Controllers\CategoryController');
 Route::apiResource('post', 'App\Http\Controllers\PostController');
+Route::apiResource('message', 'App\Http\Controllers\MessageController');

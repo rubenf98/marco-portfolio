@@ -3,6 +3,8 @@ import FileUploader from "./common/FileUploader";
 import { Row } from "../styled";
 import styled from "styled-components";
 import { dimensions, customColors } from "../variables";
+import { createMessage } from "../redux/message/actions";
+import { connect } from "react-redux";
 
 const Input = styled.input`
     width: ${(props) => (props.width ? props.width : "100%")};
@@ -49,10 +51,9 @@ const Button = styled.button`
     }
 `;
 
-const ContactForm = () => {
+const ContactForm = ({ createMessage }) => {
     const [form, setForm] = useState({
-        firstName: "",
-        lastName: "",
+        name: "",
         email: "",
         subject: "",
         message: "",
@@ -64,7 +65,7 @@ const ContactForm = () => {
         Object.entries(form).map((field) => {
             formData.append(field[0], field[1]);
         });
-        console.log(formData);
+        createMessage(formData);
     };
 
     const handleFormChange = (e) => {
@@ -74,24 +75,13 @@ const ContactForm = () => {
     return (
         <div className="App">
             <form onSubmit={submitForm} style={{ marginBottom: "60px" }}>
-                <Row type="flex" justify="space-between">
-                    <Input
-                        name="firstName"
-                        placeholder="Nome"
-                        width="45%"
-                        type="text"
-                        value={form.firstName}
-                        onChange={(e) => handleFormChange(e.target)}
-                    />
-                    <Input
-                        name="lastName"
-                        placeholder="Sobrenome"
-                        width="45%"
-                        type="text"
-                        value={form.lastName}
-                        onChange={(e) => handleFormChange(e.target)}
-                    />
-                </Row>
+                <Input
+                    name="name"
+                    placeholder="Nome"
+                    type="text"
+                    value={form.name}
+                    onChange={(e) => handleFormChange(e.target)}
+                />
                 <Input
                     name="email"
                     placeholder="Email"
@@ -129,4 +119,10 @@ const ContactForm = () => {
     );
 };
 
-export default ContactForm;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        createMessage: (data) => dispatch(createMessage(data)),
+    };
+};
+
+export default connect(null, mapDispatchToProps)(ContactForm);

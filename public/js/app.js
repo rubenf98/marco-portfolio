@@ -3064,8 +3064,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _common_FileUploader__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./common/FileUploader */ "./resources/js/components/common/FileUploader.jsx");
 /* harmony import */ var _styled__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../styled */ "./resources/js/styled.jsx");
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
 /* harmony import */ var _variables__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../variables */ "./resources/js/variables.js");
+/* harmony import */ var _redux_message_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../redux/message/actions */ "./resources/js/redux/message/actions.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 
 
 
@@ -3124,16 +3126,19 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 
 
 
-var Input = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.input(_templateObject(), function (props) {
+
+
+var Input = styled_components__WEBPACK_IMPORTED_MODULE_7__.default.input(_templateObject(), function (props) {
   return props.width ? props.width : "100%";
 }, _variables__WEBPACK_IMPORTED_MODULE_4__.customColors.gray, _variables__WEBPACK_IMPORTED_MODULE_4__.customColors.red);
-var Textarea = (0,styled_components__WEBPACK_IMPORTED_MODULE_5__.default)(Input)(_templateObject2());
-var Button = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.button(_templateObject3(), _variables__WEBPACK_IMPORTED_MODULE_4__.customColors.red, _variables__WEBPACK_IMPORTED_MODULE_4__.customColors.hRed);
+var Textarea = (0,styled_components__WEBPACK_IMPORTED_MODULE_7__.default)(Input)(_templateObject2());
+var Button = styled_components__WEBPACK_IMPORTED_MODULE_7__.default.button(_templateObject3(), _variables__WEBPACK_IMPORTED_MODULE_4__.customColors.red, _variables__WEBPACK_IMPORTED_MODULE_4__.customColors.hRed);
 
-var ContactForm = function ContactForm() {
+var ContactForm = function ContactForm(_ref) {
+  var createMessage = _ref.createMessage;
+
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({
-    firstName: "",
-    lastName: "",
+    name: "",
     email: "",
     subject: "",
     message: ""
@@ -3148,7 +3153,7 @@ var ContactForm = function ContactForm() {
     Object.entries(form).map(function (field) {
       formData.append(field[0], field[1]);
     });
-    console.log(formData);
+    createMessage(formData);
   };
 
   var handleFormChange = function handleFormChange(e) {
@@ -3162,28 +3167,14 @@ var ContactForm = function ContactForm() {
       style: {
         marginBottom: "60px"
       },
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_styled__WEBPACK_IMPORTED_MODULE_3__.Row, {
-        type: "flex",
-        justify: "space-between",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Input, {
-          name: "firstName",
-          placeholder: "Nome",
-          width: "45%",
-          type: "text",
-          value: form.firstName,
-          onChange: function onChange(e) {
-            return handleFormChange(e.target);
-          }
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Input, {
-          name: "lastName",
-          placeholder: "Sobrenome",
-          width: "45%",
-          type: "text",
-          value: form.lastName,
-          onChange: function onChange(e) {
-            return handleFormChange(e.target);
-          }
-        })]
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Input, {
+        name: "name",
+        placeholder: "Nome",
+        type: "text",
+        value: form.name,
+        onChange: function onChange(e) {
+          return handleFormChange(e.target);
+        }
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Input, {
         name: "email",
         placeholder: "Email",
@@ -3217,7 +3208,15 @@ var ContactForm = function ContactForm() {
   });
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ContactForm);
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    createMessage: function createMessage(data) {
+      return dispatch((0,_redux_message_actions__WEBPACK_IMPORTED_MODULE_5__.createMessage)(data));
+    }
+  };
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_6__.connect)(null, mapDispatchToProps)(ContactForm));
 
 /***/ }),
 
@@ -4969,6 +4968,48 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 var types = {
   FETCH_CATEGORIES: 'FETCH_CATEGORIES'
+};
+
+/***/ }),
+
+/***/ "./resources/js/redux/message/actions.js":
+/*!***********************************************!*\
+  !*** ./resources/js/redux/message/actions.js ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "createMessage": () => /* binding */ createMessage
+/* harmony export */ });
+/* harmony import */ var _types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./types */ "./resources/js/redux/message/types.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+
+
+var createMessage = function createMessage(data) {
+  return {
+    type: _types__WEBPACK_IMPORTED_MODULE_0__.types.CREATE_MESSAGE,
+    payload: axios__WEBPACK_IMPORTED_MODULE_1___default().post("".concat(window.location.origin, "/api/message"), data)
+  };
+};
+
+/***/ }),
+
+/***/ "./resources/js/redux/message/types.js":
+/*!*********************************************!*\
+  !*** ./resources/js/redux/message/types.js ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "types": () => /* binding */ types
+/* harmony export */ });
+var types = {
+  CREATE_MESSAGE: 'CREATE_MESSAGE'
 };
 
 /***/ }),
