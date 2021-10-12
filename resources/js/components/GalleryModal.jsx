@@ -164,11 +164,11 @@ let GalleryModal = ({ handleClose, post }) => {
                     <Row type="flex" justify="space-around" align="center">
                         <InfoSection
                             title="Data de Projeto"
-                            description="09 Janeiro, 2021"
+                            description={post.date}
                         />
                         <InfoSection
                             title="Cliente"
-                            description={post.client ? post.client : "------"}
+                            description={post.client ? post.client.name : "------"}
                         />
                         <InfoSection
                             title="Categoria"

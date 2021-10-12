@@ -24,6 +24,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        setlocale(LC_TIME, "pt_PT.utf8");
+
         // $schedule->command('inspire')->hourly();
         $schedule->command('queue:work')
             ->everyMinute()

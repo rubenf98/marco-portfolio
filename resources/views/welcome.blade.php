@@ -13,6 +13,12 @@
 </head>
 
 <style>
+    html,
+    body,
+    #index {
+        height: 100%;
+    }
+
     html {
         scroll-behavior: smooth;
     }
@@ -21,11 +27,52 @@
         margin: 0;
         font-family: 'Exo 2', sans-serif;
         position: relative;
+
+    }
+
+    .full-page-loader {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+    }
+
+    .loading {
+        border-radius: 50%;
+        border: 1px solid black;
+        animation: 1.3s infinite growing;
+        position: absolute;
+        opacity: 0;
+    }
+
+
+    @keyframes growing {
+        0% {
+            width: 50px;
+            height: 50px;
+            opacity: 1;
+        }
+
+        100% {
+            width: 200px;
+            height: 200px;
+            opacity: 0;
+        }
     }
 </style>
 
 <body>
     <div id="index">
+
+        <div class="full-page-loader">
+            <div class="loading"></div>
+        </div>
+
         <script src="{{mix('js/app.js')}}"></script>
     </div>
 </body>

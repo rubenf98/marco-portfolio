@@ -32,3 +32,4 @@ Route::apiResource('post', 'App\Http\Controllers\PostController');
 Route::apiResource('message', 'App\Http\Controllers\MessageController');
 Route::apiResource('item', 'App\Http\Controllers\ItemController');
 Route::apiResource('client', 'App\Http\Controllers\ClientController');
+

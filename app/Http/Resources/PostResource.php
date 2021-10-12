@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class PostResource extends JsonResource
@@ -16,9 +17,10 @@ class PostResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'date' => (string) $this->date,
+            'date' => Carbon::parse($this->date)->format('l jS \\of F Y'),
             'cover' => $this->images->where('cover', true)->first(),
             'images' => $this->images->where('cover', false),
+            'client' => $this->client,
             'item' => [
                 'id' => $this->item->id,
                 'name' => $this->item->name,

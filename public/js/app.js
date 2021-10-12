@@ -17355,10 +17355,10 @@ var GalleryModal = function GalleryModal(_ref2) {
         align: "center",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(InfoSection, {
           title: "Data de Projeto",
-          description: "09 Janeiro, 2021"
+          description: post.date
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(InfoSection, {
           title: "Cliente",
-          description: post.client ? post.client : "------"
+          description: post.client ? post.client.name : "------"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(InfoSection, {
           title: "Categoria",
           description: post.item.category.name
