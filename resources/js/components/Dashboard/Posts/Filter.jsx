@@ -7,6 +7,7 @@ const FilterContainer = styled.div`
     background: white;
     border-radius: 5px;
     width: 100%;
+    margin-top: 30px;
 `;
 const Button = styled.button`
     padding: 10px 14px;

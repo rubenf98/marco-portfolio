@@ -1,26 +1,17 @@
 import React, { Component } from "react";
 import styled, { css } from "styled-components";
 import { dimensions, customColors } from "../../../variables";
-import { Row } from "../../../styled";
-import DragAndDrop from "../../common/DragAndDrop";
+import { Modal, Row, Upload } from 'antd';
+import { getBase64 } from "../../../helper";
 
 const Container = styled.div`
     background: white;
     border-radius: 5px;
     width: 100%;
-    margin-top: 30px;
 `;
-const Button = styled.button`
-    padding: 10px 14px;
-    border: none;
-    background: ${customColors.red};
-    color: white;
-    cursor: pointer;
-    font-size: 1.2em;
-    width: 100%;
-
-    &:hover {
-        background: ${customColors.hRed};
+const Dragger = styled(Upload.Dragger)`
+    img{
+        margin: 20px auto;
     }
 `;
 
@@ -81,15 +72,37 @@ const Select = styled.select`
     ${styledInputs}
 `;
 
+const ImageContainer = styled.div`
+    margin: 10px;
+    padding: 8px;
+    width: 120px;
+    height: 120px;
+    cursor: pointer;
+    border: ${props => "1px " + props.active ? "solid" : "dashed" + "#6e6e6e;"};
+
+    &:hover{
+        border: 1px solid #6e6e6e;
+
+        div{
+            filter: brightness(70%);
+        }
+    }
+
+    div {
+        width: 100%;
+        height: 100%;
+        background-image: url(${props => props.background});
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        filter: ${props => "brightness(" + props.active ? 70 : 100 + "%);"};
+    }
+`;
+
 class Form extends Component {
     state = {
-        files: [
-            "nice.pdf",
-            "verycool.jpg",
-            "amazing.png",
-            "goodstuff.mp3",
-            "thankyou.doc",
-        ],
+        files: [],
+        visible: false
     };
 
     handleDrop = (files) => {
@@ -101,21 +114,76 @@ class Form extends Component {
         this.setState({ files: fileList });
     };
 
+    onFinish = (values) => {
+        console.log('Success:', values);
+    };
+
+    onFinishFailed = (errorInfo) => {
+        console.log('Failed:', errorInfo);
+    };
+
+    handleUpload = (file, fileList) => {
+        const { files } = this.state;
+
+        if ((file.type === "image/png" ||
+            file.type === "image/jpeg" ||
+            file.type === "image/jpg")) {
+            getBase64(file, (image) => {
+                files.push({ file: file, image: image });
+                this.setState({ files });
+            })
+
+        }
+
+        if (file.uid === fileList[fileList.length - 1].uid) {
+            this.setState({ visible: true });
+        }
+
+        return false;
+    }
+
+    handleModalClose = () => {
+        this.setState({ visible: false, files: [] });
+    }
+
+    handleImage = file => {
+        getBase64(file, (image) => {
+            return image;
+        })
+    }
+
     render() {
+        const { files } = this.state;
+        console.log(files);
         return (
             <Container>
                 <div>
-                    <DragAndDrop handleDrop={this.handleDrop}>
-                        <div style={{ height: 300, width: 250 }}>
-                            {this.state.files.map((file, i) => (
-                                <div key={i}>{file}</div>
+                    <Modal
+                        width={1000}
+                        onCancel={this.handleModalClose}
+                        visible={this.state.visible}>
+                        <Row type="flex" align="middle">
+                            {files.map((element) => (
+                                <ImageContainer key={element.file.uid} background={element.image}>
+                                    <div></div>
+                                </ImageContainer>
                             ))}
-                        </div>
-                    </DragAndDrop>
-
-                    <Button>Criar</Button>
+                        </Row>
+                    </Modal>
+                    <Dragger
+                        directory
+                        accept=".jpg,.png,.jpeg"
+                        showUploadList={false}
+                        beforeUpload={this.handleUpload}
+                    >
+                        <img src="/icon/upload.svg"></img>
+                        <p className="ant-upload-text">Carrega ou arrasta pastas</p>
+                        <p className="ant-upload-hint">
+                            Suporte para pastas de ficheiros jpg e png.
+                        </p>
+                    </Dragger>
                 </div>
-            </Container>
+            </Container >
         );
     }
 }

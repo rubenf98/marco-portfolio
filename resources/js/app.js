@@ -14,6 +14,7 @@ import {
     refreshAuthorizationToken
 } from "./redux/auth/actions";
 import '../css/app.css';
+import 'antd/dist/antd.css';
 
 const store = createStore(
     reducer,

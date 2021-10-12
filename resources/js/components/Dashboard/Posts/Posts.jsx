@@ -8,7 +8,7 @@ import Filter from "./Filter";
 import Form from "./Form";
 
 const TableContainer = styled.div`
-    width: 70%;
+    width: 73%;
     background: white;
     border-radius: 5px;
 `;
@@ -61,8 +61,8 @@ class Posts extends Component {
                         )}
                     </TableContainer>
                     <SidePanel>
-                        <Filter></Filter>
                         <Form></Form>
+                        <Filter></Filter>
                     </SidePanel>
                 </ContentContainer>
             </Container>
