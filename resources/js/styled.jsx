@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { customColors, dimensions } from "./variables";
 import React, { Fragment } from "react";
+import { Select } from "antd";
 
 export const TitleSection = ({ title, subtitle }) => {
     return (
@@ -13,6 +14,28 @@ export const TitleSection = ({ title, subtitle }) => {
     );
 };
 
+export const CustomSelect = styled(Select)`
+    width: ${(props) => (props.width ? props.width : "100%")};
+    cursor: pointer;
+    -moz-appearance: none; /* Firefox */
+    -webkit-appearance: none; /* Safari and Chrome */
+    appearance: none;
+    outline: none;
+    border-radius: 0px;
+
+    .ant-select-focused:not(.ant-select-disabled).ant-select:not(.ant-select-customize-input) .ant-select-selector, .ant-select-selector{
+        border: none !important;
+        border-bottom: 1px solid #cfcfcf !important;
+        box-shadow: 0px !important;
+    }
+
+    &:focus,
+    &:active, &:hover {
+        .ant-select-focused:not(.ant-select-disabled).ant-select:not(.ant-select-customize-input) .ant-select-selector, .ant-select-selector{
+            border-bottom: 1px solid ${customColors.red} !important;
+        }   
+    }
+`;
 export const Line = styled.div`
     width: 5%;
     min-width: 150px;

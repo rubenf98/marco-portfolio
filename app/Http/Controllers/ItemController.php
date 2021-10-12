@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ItemResource;
 use App\Item;
 use Illuminate\Http\Request;
 
@@ -14,17 +15,12 @@ class ItemController extends Controller
      */
     public function index()
     {
-        //
+        return ItemResource::collection(Item::paginate(10));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function selector()
     {
-        //
+        return ItemResource::collection(Item::all());
     }
 
     /**
@@ -46,18 +42,7 @@ class ItemController extends Controller
      */
     public function show(Item $item)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Item  $item
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Item $item)
-    {
-        //
+        return new ItemResource($item);
     }
 
     /**

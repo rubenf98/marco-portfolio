@@ -1,8 +1,11 @@
 import React, { Component } from "react";
 import styled, { css } from "styled-components";
 import { dimensions, customColors } from "../../../variables";
-import { Modal, Row, Upload } from 'antd';
+import { Col, Modal, Row, Upload } from 'antd';
 import { getBase64 } from "../../../helper";
+import ItemRemoteSelectContainer from "../Item/ItemRemoteSelectContainer";
+import CategoryRemoteSelectContainer from "../Category/CategoryRemoteSelectContainer";
+import ClientRemoteSelectContainer from "../Client/ClientRemoteSelectContainer";
 
 const Container = styled.div`
     background: white;
@@ -78,7 +81,8 @@ const ImageContainer = styled.div`
     width: 120px;
     height: 120px;
     cursor: pointer;
-    border: ${props => "1px " + props.active ? "solid" : "dashed" + "#6e6e6e;"};
+    border-color: #6e6e6e;
+    border: ${props => props.active ? "1px solid" : "1px dashed"};
 
     &:hover{
         border: 1px solid #6e6e6e;
@@ -161,14 +165,30 @@ class Form extends Component {
                     <Modal
                         width={1000}
                         onCancel={this.handleModalClose}
-                        visible={this.state.visible}>
-                        <Row type="flex" align="middle">
-                            {files.map((element) => (
-                                <ImageContainer key={element.file.uid} background={element.image}>
-                                    <div></div>
-                                </ImageContainer>
-                            ))}
-                        </Row>
+                        visible={this.state.visible}
+                    >
+                        <div>
+                            <h1>Selecione a imagem de capa ao clicar na sua escolha</h1>
+                            <Row type="flex" align="middle">
+                                {files.map((element) => (
+                                    <ImageContainer key={element.file.uid} background={element.image}>
+                                        <div></div>
+                                    </ImageContainer>
+                                ))}
+                            </Row>
+                            <h1>Preencha os campos seguintes de acordo com as opcoes, ou crie novas</h1>
+                            <Row gutter={8}>
+                                <Col span={8}>
+                                    <CategoryRemoteSelectContainer />
+                                </Col>
+                                <Col span={8}>
+                                    <ItemRemoteSelectContainer />
+                                </Col>
+                                <Col span={8}>
+                                    <ClientRemoteSelectContainer />
+                                </Col>
+                            </Row>
+                        </div>
                     </Modal>
                     <Dragger
                         directory

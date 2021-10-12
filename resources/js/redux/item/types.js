@@ -1,0 +1,4 @@
+export const types = {
+    FETCH_ITEMS: 'FETCH_ITEMS',
+    FETCH_ITEM_SELECTOR: 'FETCH_ITEM_SELECTOR'
+};
