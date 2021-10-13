@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { customColors, dimensions } from "./variables";
 import React, { Fragment } from "react";
-import { Select } from "antd";
+import { Select, Button, DatePicker } from "antd";
 
 export const TitleSection = ({ title, subtitle }) => {
     return (
@@ -13,6 +13,45 @@ export const TitleSection = ({ title, subtitle }) => {
         </Fragment>
     );
 };
+
+export const CustomButton = styled(Button)`
+    padding: 10px 14px;
+    border: none;
+    background: ${customColors.red};
+    color: white;
+    cursor: pointer;
+    font-size: 1.2em;
+    width: ${props => props.width ? props.width : "100%"};
+    min-height: 50px;
+
+    &:hover, &:active, &:focus {
+        background: ${customColors.hRed};
+    }
+
+`;
+
+export const CustomDatePicker = styled(DatePicker)`
+    width: ${(props) => (props.width ? props.width : "100%")};
+    cursor: pointer;
+    -moz-appearance: none; /* Firefox */
+    -webkit-appearance: none; /* Safari and Chrome */
+    appearance: none;
+    outline: none;
+    border-radius: 0px;
+
+
+        border: none !important;
+        border-bottom: 1px solid #cfcfcf !important;
+        box-shadow: 0px !important;
+    
+
+    &:focus,
+    &:active, &:hover {
+     
+            border-bottom: 1px solid ${customColors.red} !important;
+        
+    }
+`;
 
 export const CustomSelect = styled(Select)`
     width: ${(props) => (props.width ? props.width : "100%")};
@@ -53,6 +92,8 @@ const Subtitle = styled.h2`
     font-weight: normal;
     font-size: 1.4em;
     color: ${customColors.gray};
+
+    
 
     @media (max-width: ${dimensions.lg}) {
         width: 70%;

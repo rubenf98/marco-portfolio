@@ -4,10 +4,26 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Image;
 
 class Post extends Model
 {
     use HasFactory;
+    protected $fillable = ['category_id', 'item_id', 'client_id', 'date'];
+
+    public function savePhoto($file, $cover = false)
+    {
+        $filename = uniqid() . '.jpg';
+
+        Image::create([
+            'post_id' => $this->id,
+            'url' => '/posts/' . $filename,
+            'cover' => $cover,
+        ]);
+
+        Image::storeImage($file, $filename);
+    }
+
 
     public function category()
     {

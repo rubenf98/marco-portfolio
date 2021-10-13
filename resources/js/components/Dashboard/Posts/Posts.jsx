@@ -5,7 +5,7 @@ import Table from "../../common/Table";
 import { connect } from "react-redux";
 import { fetchPosts } from "../../../redux/post/actions";
 import Filter from "./Filter";
-import Form from "./Form";
+import FormContainer from "./FormContainer";
 
 const TableContainer = styled.div`
     width: 73%;
@@ -46,7 +46,7 @@ class Posts extends Component {
             { Header: "Data", accessor: "date" },
             { Header: "Categoria", accessor: "item.category.name" },
             { Header: "Produto", accessor: "item.name" },
-            { Header: "Cliente", accessor: "client" },
+            { Header: "Cliente", accessor: "client.name" },
         ];
 
         return (
@@ -61,7 +61,7 @@ class Posts extends Component {
                         )}
                     </TableContainer>
                     <SidePanel>
-                        <Form></Form>
+                        <FormContainer></FormContainer>
                         <Filter></Filter>
                     </SidePanel>
                 </ContentContainer>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PostRequest;
 use App\Http\Resources\PostResource;
 use App\Post;
 use Illuminate\Http\Request;
@@ -34,9 +35,20 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
-        //
+        $validator = $request->validated();
+
+        $entry = Post::create($validator);
+        $entry->savePhoto($validator['cover'], true);
+
+        if (array_key_exists('images', $validator)) {
+            foreach ($validator["images"] as $key => $image) {
+                $entry->savePhoto($image);
+            }
+        }
+
+        return new PostResource($entry);
     }
 
     /**
