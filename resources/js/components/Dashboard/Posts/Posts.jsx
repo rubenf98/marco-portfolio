@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
-import { fetchPosts } from "../../../redux/post/actions";
+import { fetchPosts, fetchPost } from "../../../redux/post/actions";
 import Filter from "./Filter";
 import FormContainer from "./FormContainer";
 import TableContainer from "./TableContainer";
@@ -55,13 +55,18 @@ class Posts extends Component {
         this.props.fetchPosts(aPage, filters);
     }
 
+    onRowClick = (aRecord) => {
+        this.props.fetchPost(aRecord);
+    }
+
     render() {
-        var { data, loading, meta } = this.props;
+        var { data, loading, meta, current } = this.props;
 
         return (
             <Container>
                 <ContentContainer>
                     <TableContainer
+                        onRowClick={this.onRowClick}
                         setPage={this.setPage}
                         data={data}
                         loading={loading}
@@ -81,6 +86,7 @@ class Posts extends Component {
 const mapDispatchToProps = (dispatch) => {
     return {
         fetchPosts: (page, filters) => dispatch(fetchPosts(page, filters)),
+        fetchPost: (id) => dispatch(fetchPost(id)),
     };
 };
 
@@ -88,7 +94,8 @@ const mapStateToProps = (state) => {
     return {
         loading: state.post.loading,
         data: state.post.data,
-        meta: state.post.meta
+        meta: state.post.meta,
+        current: state.post.current,
     };
 };
 

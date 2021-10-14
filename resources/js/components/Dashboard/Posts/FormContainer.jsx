@@ -92,7 +92,7 @@ class FormContainer extends Component {
 
     handleUpload = (file, fileList) => {
         const { files } = this.state;
-
+        files = [];
         if ((file.type === "image/png" ||
             file.type === "image/jpeg" ||
             file.type === "image/jpg")) {
@@ -100,12 +100,11 @@ class FormContainer extends Component {
                 files.push({ file: file, image: image });
                 this.setState({ files });
             })
-
         }
 
         if (file.uid === fileList[fileList.length - 1].uid) {
-            this.setState({ visible: true });
-        }   
+            this.setState({ visible: true, active: { uid: null } });
+        }
 
         return false;
     }
@@ -248,7 +247,7 @@ class FormContainer extends Component {
                         beforeUpload={this.handleUpload}
                     >
                         <img src="/icon/upload.svg"></img>
-                        <p className="ant-upload-text">Carrega ou arrasta pastas</p>
+                        <p className="ant-upload-text">Carrega pasta com imagens</p>
                         <p className="ant-upload-hint">
                             Suporte para pastas de ficheiros jpg e png.
                         </p>

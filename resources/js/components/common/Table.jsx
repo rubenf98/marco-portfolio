@@ -49,7 +49,7 @@ const Styles = styled.div`
     }
 `;
 
-function Table({ columns, data, meta, onPageChange }) {
+function Table({ columns, data, meta, onPageChange, onRowClick }) {
     const {
         getTableProps,
         getTableBodyProps,
@@ -80,7 +80,7 @@ function Table({ columns, data, meta, onPageChange }) {
                                 prepareRow(row);
 
                                 return (
-                                    <tr {...row.getRowProps()}>
+                                    <tr onClick={() => onRowClick(row.values.id)} {...row.getRowProps()}>
                                         {row.cells.map((cell) => {
                                             return (
                                                 <td {...cell.getCellProps()}>

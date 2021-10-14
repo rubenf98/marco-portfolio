@@ -9,6 +9,11 @@ export const fetchPosts = (page = 1, filters) => ({
     })}&page=${page}`)
 })
 
+export const fetchPost = (id) => ({
+    type: types.FETCH_POST,
+    payload: axios.get(`${window.location.origin}/api/post/${id}`)
+})
+
 export const createPost = (data) => ({
     type: types.CREATE_POST,
     payload: axios.post(`${window.location.origin}/api/post`, data)

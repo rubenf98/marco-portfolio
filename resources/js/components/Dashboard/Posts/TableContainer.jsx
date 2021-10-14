@@ -15,7 +15,7 @@ const columns = [
     { Header: "Data", accessor: "date" },
 ];
 
-export default function TableContainer({ loading, data, meta, setPage }) {
+export default function TableContainer({ loading, data, meta, setPage, onRowClick }) {
     return (
         <PageContainer>
             {!loading && (
@@ -24,6 +24,7 @@ export default function TableContainer({ loading, data, meta, setPage }) {
                     columns={columns}
                     meta={meta}
                     onPageChange={(aPage) => setPage(aPage)}
+                    onRowClick={(aPage) => onRowClick(aPage)}
                 />
             )}
         </PageContainer>

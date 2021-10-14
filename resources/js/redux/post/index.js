@@ -4,30 +4,38 @@ export const initialState = {
     data: [],
     meta: {},
     loading: false,
+    current: {},
 }
 
 export default (state = initialState, action = {}) => {
     switch (action.type) {
         case `${types.CREATE_POST}_PENDING`:
         case `${types.FETCH_POSTS}_PENDING`:
+        case `${types.FETCH_POST}_PENDING`:
             return {
                 ...state,
                 loading: true,
 
             };
-
+        case `${types.FETCH_POST}_REJECTED`:
         case `${types.CREATE_POST}_REJECTED`:
             return {
                 ...state,
                 loading: false
             };
-
         case `${types.FETCH_POSTS}_REJECTED`:
             return {
                 ...state,
                 loading: false,
                 data: []
             };
+        case `${types.FETCH_POST}_FULFILLED`:
+            return {
+                ...state,
+                loading: false,
+                current: action.payload.data.data,
+            };
+
         case `${types.FETCH_POSTS}_FULFILLED`:
             return {
                 ...state,

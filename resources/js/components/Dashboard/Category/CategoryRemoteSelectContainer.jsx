@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Select, Divider, Input } from "antd";
 import { fetchSelector } from "../../../redux/category/actions";
 import styled, { css } from "styled-components";
-import { dimensions, customColors } from "../../../variables";
+import debounce from "lodash/debounce";
 import { CustomSelect } from "../../../styled";
 
 const Option = Select.Option;
@@ -17,6 +17,11 @@ const AddButton = styled.img`
 
 
 class CategoryRemoteSelectContainer extends Component {
+    constructor(props) {
+        super(props);
+        this.onSearch = debounce(this.onSearch, 800);
+    }
+
     state = {
         newItem: undefined
     }
