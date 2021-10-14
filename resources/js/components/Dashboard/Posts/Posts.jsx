@@ -1,22 +1,15 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import Table from "../../common/Table";
 
 import { connect } from "react-redux";
 import { fetchPosts } from "../../../redux/post/actions";
 import Filter from "./Filter";
 import FormContainer from "./FormContainer";
-
-const TableContainer = styled.div`
-    width: 73%;
-    background: white;
-    border-radius: 5px;
-`;
+import TableContainer from "./TableContainer";
 
 const ContentContainer = styled.div`
     width: 60%;
     max-width: 1600px;
-    min-width: 600px;
     display: flex;
     justify-content: space-between;
     align-items: start;
@@ -24,8 +17,8 @@ const ContentContainer = styled.div`
 `;
 
 const Container = styled.div`
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    min-height: 100vh;
     background: rgb(245, 245, 245);
     display: flex;
     align-items: center;
@@ -37,32 +30,15 @@ const SidePanel = styled.div`
 `;
 
 class Posts extends Component {
-    componentDidMount() {
-        this.props.fetchPosts();
-    }
-
     render() {
-        const columns = [
-            { Header: "Data", accessor: "date" },
-            { Header: "Categoria", accessor: "item.category.name" },
-            { Header: "Produto", accessor: "item.name" },
-            { Header: "Cliente", accessor: "client.name" },
-        ];
-
         return (
             <Container>
                 <ContentContainer>
-                    <TableContainer>
-                        {!this.props.loadingPosts && (
-                            <Table
-                                data={this.props.posts}
-                                columns={columns}
-                            ></Table>
-                        )}
-                    </TableContainer>
+                    <TableContainer />
+
                     <SidePanel>
-                        <FormContainer></FormContainer>
-                        <Filter></Filter>
+                        <FormContainer />
+                        <Filter />
                     </SidePanel>
                 </ContentContainer>
             </Container>

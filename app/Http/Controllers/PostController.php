@@ -16,7 +16,7 @@ class PostController extends Controller
      */
     public function index(Request $request)
     {
-        return PostResource::collection(Post::all());
+        return PostResource::collection(Post::latest()->paginate(10));
     }
 
     /**

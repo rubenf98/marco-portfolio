@@ -1,6 +1,10 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { CustomLink } from "../../styled";
+import { customColors } from "../../variables";
+import NameAndLogo from "../common/NameAndLogo";
+import { Row } from "antd";
 
 const Container = styled.div`
     width: 100%;
@@ -25,6 +29,13 @@ const TabList = styled.ul`
             }
         }
     }
+
+    .link--active{
+        color: ${customColors.black};
+        ::before {
+            width: 115%;
+        }
+    }
 `;
 
 const LinkWithSeparator = styled(CustomLink)`
@@ -43,23 +54,30 @@ const LinkWithSeparator = styled(CustomLink)`
         color: #b7b7b7;
         right: -25px;
     }
+
     :last-child {
+        ::after {
         content: "";
+        }
     }
 `;
 
 class NavBar extends Component {
     render() {
+        const NavBarItem = ({ item }) => (
+            <LinkWithSeparator activeClassName="link--active" to={"/painel/" + item} >
+                {item}
+            </LinkWithSeparator>
+        )
+
         return (
             <Container>
                 <TabList>
                     <li>
-                        <LinkWithSeparator as="div">Posts</LinkWithSeparator>
-                        <LinkWithSeparator as="div">
-                            Categorias
-                        </LinkWithSeparator>
-                        <LinkWithSeparator as="div">Produtos</LinkWithSeparator>
-                        <LinkWithSeparator as="div">Clientes</LinkWithSeparator>
+                        <NavBarItem item="posts" />
+                        <NavBarItem item="categorias" />
+                        <NavBarItem item="produtos" />
+                        <NavBarItem item="clientes" />
                     </li>
                 </TabList>
             </Container>

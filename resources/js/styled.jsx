@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { customColors, dimensions } from "./variables";
 import React, { Fragment } from "react";
 import { Select, Button, DatePicker } from "antd";
@@ -135,7 +135,7 @@ export const Title = styled.h1`
     }
 `;
 
-export const CustomLink = styled(Link)`
+export const CustomLink = styled(NavLink)`
     text-decoration: none;
     font-size: 1.2em;
     display: inline-block;

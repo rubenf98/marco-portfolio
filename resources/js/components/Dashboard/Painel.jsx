@@ -1,11 +1,16 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import NavBar from "./NavBar";
-import Posts from "./Posts/Posts";
 
 const PageContainer = styled.div`
     margin: auto;
     display: block;
+
+    section {
+        width: 100%;
+        min-height: 100vh;
+        background: rgb(245, 245, 245);
+    }
 `;
 
 class Painel extends Component {
@@ -13,7 +18,8 @@ class Painel extends Component {
         return (
             <PageContainer>
                 <NavBar></NavBar>
-                <Posts></Posts>
+                <section>{this.props.children}</section>
+
             </PageContainer>
         );
     }

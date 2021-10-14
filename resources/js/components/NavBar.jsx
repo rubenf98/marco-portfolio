@@ -24,13 +24,12 @@ function NavBar() {
         <Container>
             <Section type="flex" align="center">
                 <Link to="/" style={{ textDecoration: " none" }}>
-                    <NameAndLogo></NameAndLogo>
+                    <NameAndLogo />
                 </Link>
             </Section>
             <Section type="flex" align="center" justify="flex-end">
-                <CustomLink to="/">Home</CustomLink>
-                <CustomLink to="/contact">Contactar</CustomLink>
-                <CustomLink to="/about">Sobre</CustomLink>
+                <CustomLink activeClassName="link--active" to="/contact">Contactos</CustomLink>
+                <CustomLink activeClassName="link--active" to="/about">Sobre</CustomLink>
             </Section>
         </Container>
     );

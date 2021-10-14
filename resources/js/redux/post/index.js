@@ -2,6 +2,7 @@ import { types } from "./types";
 
 export const initialState = {
     data: [],
+    meta: {},
     loading: false,
 }
 
@@ -32,14 +33,18 @@ export default (state = initialState, action = {}) => {
                 ...state,
                 loading: false,
                 data: action.payload.data.data,
+                meta: action.payload.data.meta
             };
 
-        case `${types.CREATE_POST}_FULFILLED`:
+        case `${types.CREATE_POST}_FULFILLED`: {
+            let newData = state.data;
+            newData.pop();
             return {
                 ...state,
                 loading: false,
-                data: [action.payload.data.data, ...state.data]
+                data: [action.payload.data.data, ...newData]
             };
+        }
         default:
             return state
     }

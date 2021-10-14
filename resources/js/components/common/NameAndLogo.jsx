@@ -21,8 +21,9 @@ const Container = styled(Row)`
     }
 
     img {
-        height: 28px;
+        height: 26px;
         margin-right: 5px;
+        margin-bottom: 5px;
 
         @media (max-width: ${dimensions.sm}) {
             height: 20px;
