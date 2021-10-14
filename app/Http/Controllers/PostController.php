@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\PostRequest;
 use App\Http\Resources\PostResource;
 use App\Post;
+use App\QueryFilters\PostFilter;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -14,9 +15,9 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(PostFilter $filters)
     {
-        return PostResource::collection(Post::latest()->paginate(10));
+        return PostResource::collection(Post::filterBy($filters)->latest()->paginate(10));
     }
 
     /**

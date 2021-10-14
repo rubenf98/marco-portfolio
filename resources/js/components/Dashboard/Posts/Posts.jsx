@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-
 import { connect } from "react-redux";
 import { fetchPosts } from "../../../redux/post/actions";
 import Filter from "./Filter";
@@ -30,15 +29,48 @@ const SidePanel = styled.div`
 `;
 
 class Posts extends Component {
+    state = {
+        filters: {},
+        page: 1,
+    }
+
+    componentDidMount() {
+        this.props.fetchPosts();
+    }
+
+    setFilters = (aFilters) => {
+        console.log(aFilters);
+        var { filters } = this.state;
+        filters = { ...filters, ...aFilters };
+        console.log(filters);
+        this.setState({ filters });
+
+        this.props.fetchPosts(1, filters);
+    }
+
+    setPage = (aPage) => {
+        var { filters } = this.state;
+        this.setState({ page: aPage });
+
+        this.props.fetchPosts(aPage, filters);
+    }
+
     render() {
+        var { data, loading, meta } = this.props;
+
         return (
             <Container>
                 <ContentContainer>
-                    <TableContainer />
+                    <TableContainer
+                        setPage={this.setPage}
+                        data={data}
+                        loading={loading}
+                        meta={meta}
+                    />
 
                     <SidePanel>
                         <FormContainer />
-                        <Filter />
+                        <Filter setFilters={this.setFilters} />
                     </SidePanel>
                 </ContentContainer>
             </Container>
@@ -48,14 +80,15 @@ class Posts extends Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchPosts: () => dispatch(fetchPosts()),
+        fetchPosts: (page, filters) => dispatch(fetchPosts(page, filters)),
     };
 };
 
 const mapStateToProps = (state) => {
     return {
         loading: state.post.loading,
-        posts: state.post.data,
+        data: state.post.data,
+        meta: state.post.meta
     };
 };
 

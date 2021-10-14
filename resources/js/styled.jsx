@@ -2,7 +2,9 @@ import styled from "styled-components";
 import { Link, NavLink } from "react-router-dom";
 import { customColors, dimensions } from "./variables";
 import React, { Fragment } from "react";
-import { Select, Button, DatePicker } from "antd";
+import { Select, Button, DatePicker, Input } from "antd";
+
+const { RangePicker } = DatePicker;
 
 export const TitleSection = ({ title, subtitle }) => {
     return (
@@ -30,6 +32,27 @@ export const CustomButton = styled(Button)`
 
 `;
 
+export const CustomRangePicker = styled(RangePicker)`
+    width: ${(props) => (props.width ? props.width : "100%")};
+    cursor: pointer;
+    -moz-appearance: none; /* Firefox */
+    -webkit-appearance: none; /* Safari and Chrome */
+    appearance: none;
+    outline: none;
+    border-radius: 0px;
+    border: none !important;
+    border-bottom: 1px solid #cfcfcf !important;
+    box-shadow: none !important;
+    
+
+    &:focus,
+    &:active, &:hover {
+     
+            border-bottom: 1px solid ${customColors.red} !important;
+        
+    }
+`;
+
 export const CustomDatePicker = styled(DatePicker)`
     width: ${(props) => (props.width ? props.width : "100%")};
     cursor: pointer;
@@ -40,9 +63,9 @@ export const CustomDatePicker = styled(DatePicker)`
     border-radius: 0px;
 
 
-        border: none !important;
-        border-bottom: 1px solid #cfcfcf !important;
-        box-shadow: 0px !important;
+    border: none !important;
+    border-bottom: 1px solid #cfcfcf !important;
+    box-shadow: none !important;
     
 
     &:focus,
@@ -55,21 +78,28 @@ export const CustomDatePicker = styled(DatePicker)`
 
 export const CustomSelect = styled(Select)`
     width: ${(props) => (props.width ? props.width : "100%")};
-    cursor: pointer;
+    cursor: pointer !important;
     -moz-appearance: none; /* Firefox */
     -webkit-appearance: none; /* Safari and Chrome */
     appearance: none;
     outline: none;
     border-radius: 0px;
+    border-bottom: 1px solid #cfcfcf !important;
 
-    .ant-select-focused:not(.ant-select-disabled).ant-select:not(.ant-select-customize-input) .ant-select-selector, .ant-select-selector{
+    .ant-select-selection-search-input{
+        cursor: pointer !important;
+    }
+
+    .ant-select-focused:not(.ant-select-disabled).ant-select:not(.ant-select-customize-input) .ant-select-selector, .ant-select-selector {
         border: none !important;
-        border-bottom: 1px solid #cfcfcf !important;
-        box-shadow: 0px !important;
+        box-shadow: none !important;
+        
     }
 
     &:focus,
     &:active, &:hover {
+        box-shadow: none;
+
         .ant-select-focused:not(.ant-select-disabled).ant-select:not(.ant-select-customize-input) .ant-select-selector, .ant-select-selector{
             border-bottom: 1px solid ${customColors.red} !important;
         }   
@@ -133,6 +163,24 @@ export const Title = styled.h1`
         width: 90%;
         font-size: 2em;
     }
+`;
+
+export const CustomInput = styled(Input)`
+    width: ${(props) => (props.width ? props.width : "100%")};
+    margin: 0;
+    border: none;
+    border-bottom: 1px solid #cfcfcf;
+
+    &:focus,
+    &:active, &:hover {
+        outline: none;
+        border: none !important;
+        border-bottom: 1px solid ${customColors.red} !important;
+        background-color: white !important;
+        appearance: none;
+        box-shadow: none;
+    }
+
 `;
 
 export const CustomLink = styled(NavLink)`

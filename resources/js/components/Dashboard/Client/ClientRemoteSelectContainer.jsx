@@ -55,6 +55,8 @@ class ClientRemoteSelectContainer extends Component {
                 loading={loading}
                 placeholder="Clientes"
                 mode={mode}
+                size="large"
+                allowClear
                 dropdownRender={menu => (
                     <div>
                         {menu}

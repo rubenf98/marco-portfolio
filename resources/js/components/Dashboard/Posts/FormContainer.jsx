@@ -228,7 +228,7 @@ class FormContainer extends Component {
                                         name="date"
                                         rules={[{ required: true, message: 'Seelecione uma data' }]}
                                     >
-                                        <CustomDatePicker picker="month" />
+                                        <CustomDatePicker size="large" picker="month" />
                                     </Form.Item>
                                 </Col>
 

@@ -55,6 +55,8 @@ class Item extends Component {
                 loading={loading}
                 placeholder="Produtos"
                 mode={mode}
+                size="large"
+                allowClear
                 dropdownRender={menu => (
                     <div>
                         {menu}

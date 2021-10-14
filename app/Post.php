@@ -3,12 +3,15 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Cerbero\QueryFilters\FiltersRecords;
 use Illuminate\Database\Eloquent\Model;
 use App\Image;
 
 class Post extends Model
 {
     use HasFactory;
+    use FiltersRecords;
+
     protected $fillable = ['category_id', 'item_id', 'client_id', 'date'];
 
     public function savePhoto($file, $cover = false)

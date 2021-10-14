@@ -17,8 +17,10 @@ class CreateImagesTable extends Migration
             $table->id();
             $table->string('url');
             $table->boolean('cover')->default(false);
-            $table->foreignId('post_id')->contrained('posts')->onDelete('delete');
+            $table->unsignedBigInteger('post_id');
             $table->timestamps();
+
+            $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
         });
     }
 

@@ -54,7 +54,9 @@ class CategoryRemoteSelectContainer extends Component {
                 onSearch={this.onSearch}
                 loading={loading}
                 placeholder="Categorias"
+                size="large"
                 mode={mode}
+                allowClear
                 dropdownRender={menu => (
                     <div>
                         {menu}
