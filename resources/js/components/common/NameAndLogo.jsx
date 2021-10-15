@@ -31,12 +31,12 @@ const Container = styled(Row)`
     }
 `;
 
-const NameAndLogo = ({ logo }) => {
+const NameAndLogo = ({ logo = true, name = true }) => {
     return (
         <Container>
             <Row className="logo-container" type="flex" align="center">
-                {!logo && <img src="/logo.png" alt="logo" />}
-                <Name>Marco Abreu</Name>
+                {logo && <img src="/logo.png" alt="logo" />}
+                {name && <Name>Marco Abreu</Name>}
             </Row>
         </Container>
     );

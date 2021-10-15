@@ -1,18 +1,20 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { CustomLink } from "../../styled";
 import { customColors } from "../../variables";
 import NameAndLogo from "../common/NameAndLogo";
-import { Row } from "antd";
+import { Row, Col } from "antd";
 
-const Container = styled.div`
+const Container = styled(Row)`
     width: 100%;
     height: 80px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+`;
+
+const NavBarContainer = styled(Row)`
+    width: 60%;
     text-transform: uppercase;
+    margin: auto;
 `;
 
 const TabList = styled.ul`
@@ -71,14 +73,25 @@ class NavBar extends Component {
         )
 
         return (
-            <Container>
-                <TabList>
-                    <li>
-                        <NavBarItem item="posts" name="posts" />
-                        <NavBarItem item="categorias" name="categorias & produtos" />
-                        <NavBarItem item="clientes" name="clientes" />
-                    </li>
-                </TabList>
+            <Container type="flex" justify="center" align="middle">
+                <NavBarContainer type="flex" justify="space-between" align="middle">
+                    <Col span={3}>
+                        <NavLink to="/painel" >
+                            <NameAndLogo name={false} />
+                        </NavLink>
+                    </Col>
+                    <Col span={18}>
+                        <TabList>
+                            <li>
+                                <NavBarItem item="posts" name="posts" />
+                                <NavBarItem item="categorias" name="categorias & produtos" />
+                                <NavBarItem item="clientes" name="clientes" />
+                            </li>
+                        </TabList>
+                    </Col>
+                    <Col span={3}>
+                    </Col>
+                </NavBarContainer>
             </Container>
         );
     }

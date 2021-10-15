@@ -12,6 +12,7 @@ import Login from "./components/Login";
 import Painel from "./components/Dashboard/Painel";
 import Posts from "./components/Dashboard/Posts/Posts";
 import Categories from "./components/Dashboard/Category/Category";
+import Client from "./components/Dashboard/Client/Client";
 export const history = createBrowserHistory();
 
 const Routes = () => {
@@ -22,6 +23,7 @@ const Routes = () => {
                 <Painel>
                     <Route exact path="/painel/posts" component={Posts} />
                     <Route exact path="/painel/categorias" component={Categories} />
+                    <Route exact path="/painel/clientes" component={Client} />
                 </Painel>
                 <Layout>
 
@@ -29,7 +31,7 @@ const Routes = () => {
                     <Route exact path="/about" component={About} />
                     <Route exact path="/" component={Home} />
                 </Layout>
-                
+
 
             </Switch>
         </Router>

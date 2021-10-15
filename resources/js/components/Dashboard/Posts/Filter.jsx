@@ -19,6 +19,11 @@ const FormItem = styled(Form.Item)`
 
 `;
 
+const CustomForm = styled(Form)`
+    border: 1px solid #dddddd;
+    border-bottom: none;
+`;
+
 function Filter({ setFilters }) {
 
     function onFinish(filters) {
@@ -31,7 +36,7 @@ function Filter({ setFilters }) {
 
     return (
         <FilterContainer >
-            <Form onFinish={onFinish}>
+            <CustomForm onFinish={onFinish}>
                 <FormItem name="date">
                     <CustomRangePicker size="large" picker="month" />
                 </FormItem>
@@ -46,7 +51,7 @@ function Filter({ setFilters }) {
                 </FormItem>
 
                 <CustomButton type="primary" htmlType="submit">Pesquisar</CustomButton>
-            </Form>
+            </CustomForm>
         </FilterContainer>
     )
 }
