@@ -1,7 +1,7 @@
 import { types } from "./types";
 import axios from "axios";
 
-export const fetchClients = () => ({
+export const fetchClients = (page = 1, filters = {}) => ({
     type: types.FETCH_CLIENTS,
     payload: axios.get(`${window.location.origin}/api/client`)
 })

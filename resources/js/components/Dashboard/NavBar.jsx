@@ -33,7 +33,7 @@ const TabList = styled.ul`
     .link--active{
         color: ${customColors.black};
         ::before {
-            width: 115%;
+            width: 105%;
         }
     }
 `;
@@ -64,9 +64,9 @@ const LinkWithSeparator = styled(CustomLink)`
 
 class NavBar extends Component {
     render() {
-        const NavBarItem = ({ item }) => (
+        const NavBarItem = ({ item, name }) => (
             <LinkWithSeparator activeClassName="link--active" to={"/painel/" + item} >
-                {item}
+                {name}
             </LinkWithSeparator>
         )
 
@@ -74,10 +74,9 @@ class NavBar extends Component {
             <Container>
                 <TabList>
                     <li>
-                        <NavBarItem item="posts" />
-                        <NavBarItem item="categorias" />
-                        <NavBarItem item="produtos" />
-                        <NavBarItem item="clientes" />
+                        <NavBarItem item="posts" name="posts" />
+                        <NavBarItem item="categorias" name="categorias & produtos" />
+                        <NavBarItem item="clientes" name="clientes" />
                     </li>
                 </TabList>
             </Container>

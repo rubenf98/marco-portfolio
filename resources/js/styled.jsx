@@ -201,7 +201,7 @@ export const CustomLink = styled(NavLink)`
     &:hover {
         color: ${customColors.black};
         ::before {
-            width: 115%;
+            width: 105%;
         }
     }
 
@@ -209,7 +209,7 @@ export const CustomLink = styled(NavLink)`
         position: absolute;
         margin-left: -5px;
         content: "";
-        width: ${(props) => (props.active ? "115%" : 0)};
+        width: ${(props) => (props.active ? "105%" : 0)};
         height: 8px;
         left: 0;
         bottom: 3px;

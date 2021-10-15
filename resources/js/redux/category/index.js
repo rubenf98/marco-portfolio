@@ -3,6 +3,7 @@ import { types } from "./types";
 export const initialState = {
     data: [],
     selector: [],
+    meta: {},
     loading: false,
 }
 
@@ -38,6 +39,7 @@ export default (state = initialState, action = {}) => {
                 ...state,
                 loading: false,
                 data: action.payload.data.data,
+                meta: action.payload.data.meta
             };
         default:
             return state

@@ -15,15 +15,15 @@ class ItemSeeder extends Seeder
     public function run()
     {
         Item::create([
-            'name' => 'a',
+            'name' => 'blackout',
             'category_id' => 1
         ]);
         Item::create([
-            'name' => 'b',
+            'name' => 'persianas',
             'category_id' => 1
         ]);
         Item::create([
-            'name' => 'c',
+            'name' => 'duofold',
             'category_id' => 1
         ]);
         Item::create([

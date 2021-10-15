@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { fetchPosts, fetchPost } from "../../../redux/post/actions";
 import Filter from "./Filter";
 import FormContainer from "./FormContainer";
-import TableContainer from "./TableContainer";
+import TableContainer from "./PostsTableContainer";
 
 const ContentContainer = styled.div`
     width: 60%;
@@ -48,11 +48,11 @@ class Posts extends Component {
         this.props.fetchPosts(1, filters);
     }
 
-    setPage = (aPage) => {
+    handlePageChange = (pagination) => {
         var { filters } = this.state;
-        this.setState({ page: aPage });
+        this.setState({ page: pagination.current });
 
-        this.props.fetchPosts(aPage, filters);
+        this.props.fetchPosts(pagination.current, filters);
     }
 
     onRowClick = (aRecord) => {
@@ -67,7 +67,7 @@ class Posts extends Component {
                 <ContentContainer>
                     <TableContainer
                         onRowClick={this.onRowClick}
-                        setPage={this.setPage}
+                        handlePageChange={this.handlePageChange}
                         data={data}
                         loading={loading}
                         meta={meta}

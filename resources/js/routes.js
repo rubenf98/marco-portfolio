@@ -11,7 +11,7 @@ import Login from "./components/Login";
 
 import Painel from "./components/Dashboard/Painel";
 import Posts from "./components/Dashboard/Posts/Posts";
-
+import Categories from "./components/Dashboard/Category/Category";
 export const history = createBrowserHistory();
 
 const Routes = () => {
@@ -21,6 +21,7 @@ const Routes = () => {
                 <Route exact path="/login" component={Login} />
                 <Painel>
                     <Route exact path="/painel/posts" component={Posts} />
+                    <Route exact path="/painel/categorias" component={Categories} />
                 </Painel>
                 <Layout>
 

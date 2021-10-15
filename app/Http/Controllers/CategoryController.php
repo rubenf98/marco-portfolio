@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\CategoryResource;
 use App\Category;
+use App\QueryFilters\CategoryFilter;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -13,9 +14,9 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(CategoryFilter $filters)
     {
-        return CategoryResource::collection(Category::paginate(10));
+        return CategoryResource::collection(Category::filterBy($filters)->paginate(10));
     }
 
     public function selector()
