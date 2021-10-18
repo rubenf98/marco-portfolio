@@ -9,10 +9,8 @@ import Contact from "./components/Contact";
 import Layout from "./components/Layout";
 import Login from "./components/Login";
 
-import Painel from "./components/Dashboard/Painel";
-import Posts from "./components/Dashboard/Posts/Posts";
-import Categories from "./components/Dashboard/Category/Category";
-import Client from "./components/Dashboard/Client/Client";
+import PainelLayout from "./components/Dashboard/PainelLayout";
+
 export const history = createBrowserHistory();
 
 const Routes = () => {
@@ -20,13 +18,10 @@ const Routes = () => {
         <Router history={history}>
             <Switch>
                 <Route exact path="/login" component={Login} />
-                <Painel>
-                    <Route exact path="/painel/posts" component={Posts} />
-                    <Route exact path="/painel/categorias" component={Categories} />
-                    <Route exact path="/painel/clientes" component={Client} />
-                </Painel>
-                <Layout>
+                <Route path="/painel" component={PainelLayout} />
+                
 
+                <Layout>
                     <Route exact path="/contact" component={Contact} />
                     <Route exact path="/about" component={About} />
                     <Route exact path="/" component={Home} />

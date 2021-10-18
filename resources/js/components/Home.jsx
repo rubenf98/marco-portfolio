@@ -243,6 +243,7 @@ class Home extends Component {
                         handleClose={this.handleModalClose}
                     />
                 </Modal>
+
                 {!loadingPosts && (
                     <Row type="flex">
                         {[0, 1, 2, 3].map((index) => (
@@ -259,6 +260,7 @@ class Home extends Component {
                         ))}
                     </Row>
                 )}
+
             </div>
         );
     }
@@ -267,7 +269,7 @@ class Home extends Component {
 const mapDispatchToProps = (dispatch) => {
     return {
         fetchCategories: () => dispatch(fetchCategories()),
-        fetchPosts: () => dispatch(fetchPosts()),
+        fetchPosts: (page, filters) => dispatch(fetchPosts(page, filters)),
     };
 };
 
