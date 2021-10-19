@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import NavBar from "./NavBar";
+import Footer from "./Footer";
 import styled from "styled-components";
 import { withRouter } from "react-router";
 
@@ -16,6 +17,8 @@ class Layout extends Component {
                 <NavBar />
 
                 <section>{this.props.children}</section>
+
+                <Footer />
             </Container>
         );
     }
