@@ -2,7 +2,9 @@ import { types } from "./types";
 
 export const initialState = {
     data: [],
+    infiniteData: [],
     meta: {},
+    links: {},
     loading: false,
     current: {},
 }
@@ -40,8 +42,10 @@ export default (state = initialState, action = {}) => {
             return {
                 ...state,
                 loading: false,
+                infiniteData: { ...state.infiniteData, [action.payload.data.meta.current_page]: action.payload.data.data },
                 data: action.payload.data.data,
-                meta: action.payload.data.meta
+                meta: action.payload.data.meta,
+                links: action.payload.data.links
             };
 
         case `${types.CREATE_POST}_FULFILLED`: {

@@ -1,12 +1,27 @@
 import Modal from "./common/Modal";
 import GalleryModal from "./GalleryModal";
-import React, { Component } from "react";
-import styled from "styled-components";
-import { Row, CustomLink, Title } from "../styled";
+import React, { Component, Fragment } from "react";
+import styled, { keyframes } from "styled-components";
+import { CustomLink, Title } from "../styled";
 import { dimensions } from "../variables";
 import { fetchCategories } from "../redux/category/actions";
 import { fetchPosts } from "../redux/post/actions";
 import { connect } from "react-redux";
+import { fadeInDown, fadeInUp } from 'react-animations'
+import InfiniteScroll from "react-infinite-scroll-component";
+import { Row } from "antd";
+
+const fadeInDownAnimation = keyframes`${fadeInDown}`;
+const fadeInUpAnimation = keyframes`${fadeInUp}`;
+const spin = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+`;
 
 const FilterList = styled.ul`
     text-align: center;
@@ -23,6 +38,44 @@ const FilterList = styled.ul`
         }
     }
 `;
+
+const LoadingContainer = styled(Row)`
+    margin: 20px;
+
+    img {
+        width: 50px;
+        animation:${spin} 3s linear infinite;
+    }
+
+    
+`;
+
+
+
+const ImageSectionContainer = styled.div`
+    -webkit-column-count: 4;
+    -moz-column-count: 4;
+    column-count: 4;
+    -webkit-column-gap: 8px;
+    -moz-column-gap: 8px;
+    column-gap: 8px;
+    line-height: 8px;
+    margin: 0 10px;
+
+    @media (max-width: ${dimensions.md}) {
+    -moz-column-count:    2;
+    -webkit-column-count: 2;
+    column-count:         2;
+    }
+
+    @media (max-width: ${dimensions.xs}) {
+    -moz-column-count:    1;
+    -webkit-column-count: 1;
+    column-count:         1;
+    }
+`;
+
+
 
 const LinkWithSeparator = styled(CustomLink)`
     margin: 0 20px;
@@ -45,50 +98,31 @@ const LinkWithSeparator = styled(CustomLink)`
     }
 `;
 
-const Col = styled.div`
-    -ms-flex: 25%; /* IE10 */
-    flex: 25%;
-    max-width: 25%;
-    box-sizing: border-box;
-    padding: 0 6px;
-
-    @media (max-width: ${dimensions.lg}) {
-        -ms-flex: 50%;
-        flex: 50%;
-        max-width: 50%;
-    }
-
-    @media (max-width: ${dimensions.sm}) {
-        -ms-flex: 100%;
-        flex: 100%;
-        max-width: 100%;
-        padding: 0 3px;
-    }
-
-    img {
-        margin-top: 8px;
-        vertical-align: middle;
-        width: 100%;
-        cursor: pointer;
-        transition: 0.2s;
-
-        &:hover {
-            filter: brightness(50%);
-        }
-    }
-`;
 
 const ImageContainer = styled.div`
-    margin-top: 8px;
     position: relative;
     width: 100%;
     vertical-align: middle;
     transition: 0.2s;
     cursor: pointer;
+    animation: 1s ${props => props.hasAnimation && fadeInUpAnimation};
+    
 
     &:hover {
         .overlay {
             opacity: 0.5;
+        }
+
+        .category,
+        .product {
+            opacity: 1;
+        }
+        .category{
+            animation: .8s ${fadeInDownAnimation};
+        }
+
+        .product{
+            animation: .8s ${fadeInUpAnimation};
         }
     }
 
@@ -112,16 +146,17 @@ const ImageContainer = styled.div`
         position: absolute;
         text-align: center;
         left: 10px;
+        opacity: 0;
     }
     .category {
-        font-size: 1em;
-        bottom: 55px;
-        font-weight: 200;
+        font-size: 14px;
+        bottom: 40px;
+        
     }
     .product {
-        font-size: 1.6em;
-        bottom: 25px;
-        font-weight: 500;
+        font-size: 30px;
+        bottom: 20px;
+        font-weight: bold;
     }
 
     img {
@@ -140,8 +175,8 @@ const ImageContainer = styled.div`
 
 class Home extends Component {
     state = {
-        loadingPosts: true,
-        postsRange: [],
+
+
         postsPerColumn: 0,
         activeCategory: 0,
         visible: false,
@@ -150,24 +185,7 @@ class Home extends Component {
 
     componentDidMount() {
         this.props.fetchCategories();
-        this.props.fetchPosts().then(() => {
-            let { posts } = this.props;
-            let postsPerColumn = Math.floor(this.props.posts.length / 4);
-
-            this.setState({
-                loadingPosts: false,
-                postsPerColumn: postsPerColumn,
-                postsRange: [
-                    [0, postsPerColumn],
-                    [postsPerColumn, postsPerColumn + postsPerColumn],
-                    [
-                        postsPerColumn + postsPerColumn,
-                        posts.length - postsPerColumn,
-                    ],
-                    [posts.length - postsPerColumn, posts.length],
-                ],
-            });
-        });
+        this.props.fetchPosts();
     }
 
     handleFilterClick = (e) => {
@@ -177,90 +195,108 @@ class Home extends Component {
     handleModalClose = () => {
         this.setState({ visible: false });
     };
+
     handleModalOpen = (post) => {
         this.setState({ visible: true, openPost: post });
     };
 
+    handleNextPage = () => {
+        setTimeout(() => {
+            var { meta } = this.props;
+            var nextPage = meta.current_page + 1;
+            this.props.fetchPosts(nextPage);
+        }, 3000);
+
+    };
+
     render() {
-        var { postsRange, loadingPosts, openPost } = this.state;
-        var { posts } = this.props;
+        var { openPost } = this.state;
+        var { newPosts, posts, links, meta } = this.props;
 
         const ImageSection = ({ post }) => {
             return (
                 <ImageContainer
                     className="container"
                     onClick={() => this.handleModalOpen(post)}
+                    hasAnimation={false} //newPosts.some(e => e.id === post.id)}
                 >
                     <img
                         src={`${window.location.origin}/images/${post.cover.url}`}
                     />
                     <div className="overlay">
-                        <div className="category">
-                            {post.item.category.name}
-                        </div>
-                        <div className="product">{post.item.name}</div>
+
                     </div>
+                    <div className="category">
+                        {post.item.category.name}
+                    </div>
+                    <div className="product">{post.item.name}</div>
                 </ImageContainer>
             );
         };
 
         return (
             <div>
-                <Title>
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                </Title>
-                <FilterList>
-                    <li>
-                        <LinkWithSeparator
-                            onClick={this.handleFilterClick}
-                            as="div"
-                            id={0}
-                            active={this.state.activeCategory == 0 && true}
-                        >
-                            todos
-                        </LinkWithSeparator>
-                    </li>
-                    {Object.values(this.props.categories).map((category) => (
-                        <li key={category.id}>
+                <InfiniteScroll
+                    dataLength={meta.to ? meta.to : 6}
+                    next={this.handleNextPage}
+                    hasMore={links.first && links.next}
+                    loader={
+                        <LoadingContainer type="flex" justify="center">
+                            <img src="/icon/loading.svg" />
+                        </LoadingContainer>
+                    }
+                >
+                    <Title>
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                    </Title>
+                    <FilterList>
+                        <li>
                             <LinkWithSeparator
                                 onClick={this.handleFilterClick}
                                 as="div"
-                                id={category.id}
-                                active={
-                                    this.state.activeCategory == category.id &&
-                                    true
-                                }
+                                id={0}
+                                active={this.state.activeCategory == 0 && true}
                             >
-                                {category.name}
+                                todos
                             </LinkWithSeparator>
                         </li>
-                    ))}
-                </FilterList>
-
-                <Modal visible={this.state.visible}>
-                    <GalleryModal
-                        post={openPost}
-                        handleClose={this.handleModalClose}
-                    />
-                </Modal>
-
-                {!loadingPosts && (
-                    <Row type="flex">
-                        {[0, 1, 2, 3].map((index) => (
-                            <Col key={index}>
-                                {Object.values(
-                                    posts.slice(
-                                        postsRange[index][0],
-                                        postsRange[index][1]
-                                    )
-                                ).map((post) => (
-                                    <ImageSection key={post.id} post={post} />
-                                ))}
-                            </Col>
+                        {Object.values(this.props.categories).map((category) => (
+                            <li key={category.id}>
+                                <LinkWithSeparator
+                                    onClick={this.handleFilterClick}
+                                    as="div"
+                                    id={category.id}
+                                    active={
+                                        this.state.activeCategory == category.id &&
+                                        true
+                                    }
+                                >
+                                    {category.name}
+                                </LinkWithSeparator>
+                            </li>
                         ))}
-                    </Row>
-                )}
+                    </FilterList>
 
+                    <Modal visible={this.state.visible}>
+                        <GalleryModal
+                            post={openPost}
+                            handleClose={this.handleModalClose}
+                        />
+                    </Modal>
+
+
+                    {Object.values(posts).map((page) => (
+                        <ImageSectionContainer type="flex">
+                            {
+                                page.map((post) => (
+                                    <ImageSection key={post.id} post={post} />
+                                ))
+                            }
+                        </ImageSectionContainer>
+                    ))}
+
+                    <br />
+                </InfiniteScroll>
             </div>
         );
     }
@@ -276,7 +312,10 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => {
     return {
         loadingPosts: state.post.loading,
-        posts: state.post.data,
+        posts: state.post.infiniteData,
+        newPosts: state.post.data,
+        links: state.post.links,
+        meta: state.post.meta,
         categories: state.category.data,
         loadingCategories: state.category.loading,
     };

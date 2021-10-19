@@ -17,7 +17,7 @@ class PostController extends Controller
      */
     public function index(PostFilter $filters)
     {
-        return PostResource::collection(Post::filterBy($filters)->latest()->paginate(10));
+        return PostResource::collection(Post::filterBy($filters)->latest()->paginate(5));
     }
 
     /**
