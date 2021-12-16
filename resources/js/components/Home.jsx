@@ -1,4 +1,4 @@
-import Modal from "./common/Modal";
+
 import GalleryModal from "./GalleryModal";
 import React, { Component, Fragment } from "react";
 import styled, { keyframes } from "styled-components";
@@ -9,7 +9,11 @@ import { fetchPosts } from "../redux/post/actions";
 import { connect } from "react-redux";
 import { fadeInDown, fadeInUp } from 'react-animations'
 import InfiniteScroll from "react-infinite-scroll-component";
-import { Row } from "antd";
+import { Row, Modal } from "antd";
+
+let sum = 0;
+let randoms = [0, 0, 0, 0];
+let percentage = 0;
 
 const fadeInDownAnimation = keyframes`${fadeInDown}`;
 const fadeInUpAnimation = keyframes`${fadeInUp}`;
@@ -21,6 +25,21 @@ const spin = keyframes`
   to {
     transform: rotate(360deg);
   }
+`;
+
+
+const CustomModal = styled(Modal)`
+
+
+    .ant-modal-content{
+        box-shadow: none;
+    }
+    
+`;
+
+const PostContainer = styled(Row)`
+    min-height: 100px;
+    margin-bottom: 50px;
 `;
 
 const FilterList = styled.ul`
@@ -50,31 +69,24 @@ const LoadingContainer = styled(Row)`
     
 `;
 
-
-
 const ImageSectionContainer = styled.div`
-    -webkit-column-count: 4;
-    -moz-column-count: 4;
     column-count: 4;
-    -webkit-column-gap: 8px;
-    -moz-column-gap: 8px;
     column-gap: 8px;
     line-height: 8px;
     margin: 0 10px;
 
     @media (max-width: ${dimensions.md}) {
-    -moz-column-count:    2;
-    -webkit-column-count: 2;
-    column-count:         2;
+        column-count:         2;
     }
 
     @media (max-width: ${dimensions.xs}) {
-    -moz-column-count:    1;
-    -webkit-column-count: 1;
-    column-count:         1;
+        column-count:         1;
     }
 `;
 
+const Container = styled.div`
+    //
+`;
 
 
 const LinkWithSeparator = styled(CustomLink)`
@@ -100,12 +112,24 @@ const LinkWithSeparator = styled(CustomLink)`
 
 
 const ImageContainer = styled.div`
-    position: relative;
-    width: 100%;
+    padding: 8px;
+    height: 400px;
+    width :${props => props.width + "%"};
     vertical-align: middle;
     transition: 0.2s;
     cursor: pointer;
     animation: 1s ${props => props.hasAnimation && fadeInUpAnimation};
+   
+
+    .background {
+        background: ${props => "url(" + props.src + ")"};
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        height: 100%;
+        width :100%;
+        position: relative;
+    }
     
 
     &:hover {
@@ -149,34 +173,19 @@ const ImageContainer = styled.div`
         opacity: 0;
     }
     .category {
-        font-size: 14px;
-        bottom: 40px;
+        font-size: 1.2em;
+        bottom: 60px;
         
     }
     .product {
-        font-size: 30px;
+        font-size: 2.4em;
         bottom: 20px;
-        font-weight: bold;
-    }
-
-    img {
-        margin-top: 8px;
-        display: block;
-        width: 100%;
-        height: auto;
-
-        transition: 0.2s;
-
-        &:hover {
-            filter: brightness(50%);
-        }
+        font-weight: 900;
     }
 `;
 
 class Home extends Component {
     state = {
-
-
         postsPerColumn: 0,
         activeCategory: 0,
         visible: false,
@@ -190,6 +199,7 @@ class Home extends Component {
 
     handleFilterClick = (e) => {
         this.setState({ activeCategory: parseInt(e.target.id) });
+        this.props.fetchPosts(1, { category: parseInt(e.target.id) });
     };
 
     handleModalClose = () => {
@@ -209,33 +219,54 @@ class Home extends Component {
 
     };
 
+    getRandom = () => {
+        let min = Math.ceil(30);
+        let max = Math.floor(70);
+        return Math.floor(Math.random() * (max - min)) + min;
+    };
+
+    getWidth = (pageIndex, index) => {
+        let i = (pageIndex * 8) + index;
+        let divide = (i + 1) % 4;
+
+        if (divide == 1) {
+            counter = 100;
+            sum = 0;
+            randoms = [this.getRandom(), this.getRandom(), this.getRandom(), this.getRandom()];
+            randoms.map((val) => { sum += val; })
+        }
+
+        return randoms[divide] / sum * 100;
+    };
+
+
     render() {
         var { openPost } = this.state;
         var { newPosts, posts, links, meta } = this.props;
 
-        const ImageSection = ({ post }) => {
+
+        const ImageSection = ({ post, width }) => {
             return (
                 <ImageContainer
+                    width={width}
                     className="container"
                     onClick={() => this.handleModalOpen(post)}
+                    src={`${window.location.origin}/images/${post.cover.url}`}
                     hasAnimation={false} //newPosts.some(e => e.id === post.id)}
                 >
-                    <img
-                        src={`${window.location.origin}/images/${post.cover.url}`}
-                    />
-                    <div className="overlay">
-
+                    <div className="background">
+                        <div className="overlay" />
+                        <div className="category">
+                            {post.item.category.name}
+                        </div>
+                        <div className="product">{post.item.name}</div>
                     </div>
-                    <div className="category">
-                        {post.item.category.name}
-                    </div>
-                    <div className="product">{post.item.name}</div>
                 </ImageContainer>
             );
         };
 
         return (
-            <div>
+            <Container>
                 <InfiniteScroll
                     dataLength={meta.to ? meta.to : 6}
                     next={this.handleNextPage}
@@ -277,27 +308,38 @@ class Home extends Component {
                         ))}
                     </FilterList>
 
-                    <Modal visible={this.state.visible}>
+                    <CustomModal width={1000} closable={false} maskClosable={false} maskStyle={{ background: "#fff", boxShadow: "none" }} footer={null} visible={this.state.visible}>
                         <GalleryModal
                             post={openPost}
                             handleClose={this.handleModalClose}
                         />
-                    </Modal>
+                    </CustomModal>
 
+                    <PostContainer type="flex">
 
-                    {Object.values(posts).map((page) => (
-                        <ImageSectionContainer type="flex">
-                            {
-                                page.map((post) => (
-                                    <ImageSection key={post.id} post={post} />
-                                ))
-                            }
-                        </ImageSectionContainer>
-                    ))}
+                        {Object.values(posts).map((page, pageIndex) => (
+                            <Fragment>
+                                {page.map((post, index) => {
+                                    let i = (pageIndex * 8) + index;
+                                    let divide = (i + 1) % 4;
+                                    if (divide == 1) {
+                                        sum = 0;
+                                        randoms = [this.getRandom(), this.getRandom(), this.getRandom(), this.getRandom()];
+                                        randoms.map((val) => { sum += val; })
+                                    }
 
-                    <br />
+                                    percentage = randoms[divide] / sum * 100;
+
+                                    return (
+                                        <ImageSection width={percentage} key={post.id} post={post} index={(pageIndex * 8) + index} />
+                                    )
+                                })}
+                            </Fragment>
+                        ))}
+
+                    </PostContainer>
                 </InfiniteScroll>
-            </div>
+            </Container >
         );
     }
 }

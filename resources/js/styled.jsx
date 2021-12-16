@@ -122,7 +122,6 @@ const Subtitle = styled.h2`
     font-weight: normal;
     font-size: 1.4em;
     color: ${customColors.gray};
-
     
 
     @media (max-width: ${dimensions.lg}) {

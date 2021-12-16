@@ -70,8 +70,6 @@ const CloseIcon = styled.img`
 
 const Gallery = styled(Carousel)`
     width: 100%;
-    margin: auto;
-    display: block;
 
     .carousel .slide {
         background: transparent;
@@ -95,21 +93,15 @@ const Gallery = styled(Carousel)`
         border-bottom: 12px solid transparent;
     }
 
-    .carousel .control-arrow::before,
-    .carousel.carousel-slider .control-arrow::before {
-        border-top: 12px solid transparent;
-        border-bottom: 12px solid transparent;
-    }
-
     .carousel.carousel-slider .control-arrow:hover {
         background: none;
+
+        
     }
 `;
 
 const GalleryImage = styled.img`
-    height: 60vh;
-    width: auto !important;
-    max-width: 1000px;
+    width: 90% !important;
     margin: auto;
     display: block;
 `;
