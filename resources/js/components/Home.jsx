@@ -11,9 +11,10 @@ import { fadeInDown, fadeInUp } from 'react-animations'
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Row, Modal } from "antd";
 
-let sum = 0;
-let randoms = [0, 0, 0, 0];
-let percentage = 0;
+let currentIndex = 0;
+const grid1 = [28, 19, 27, 26, 22, 31, 26, 21, 26, 21, 25, 28, 15, 33, 32, 20];
+const grid2 = [40, 60, 38, 62, 50, 50, 55, 45, 70, 30];
+const grid3 = [100, 100, 100, 100];
 
 const fadeInDownAnimation = keyframes`${fadeInDown}`;
 const fadeInUpAnimation = keyframes`${fadeInUp}`;
@@ -29,12 +30,9 @@ const spin = keyframes`
 
 
 const CustomModal = styled(Modal)`
-
-
     .ant-modal-content{
         box-shadow: none;
     }
-    
 `;
 
 const PostContainer = styled(Row)`
@@ -65,24 +63,9 @@ const LoadingContainer = styled(Row)`
         width: 50px;
         animation:${spin} 3s linear infinite;
     }
-
-    
 `;
 
-const ImageSectionContainer = styled.div`
-    column-count: 4;
-    column-gap: 8px;
-    line-height: 8px;
-    margin: 0 10px;
 
-    @media (max-width: ${dimensions.md}) {
-        column-count:         2;
-    }
-
-    @media (max-width: ${dimensions.xs}) {
-        column-count:         1;
-    }
-`;
 
 const Container = styled.div`
     //
@@ -186,15 +169,30 @@ const ImageContainer = styled.div`
 
 class Home extends Component {
     state = {
-        postsPerColumn: 0,
         activeCategory: 0,
         visible: false,
         openPost: false,
+        grid: grid1,
+    };
+
+    handleResize = () => {
+        var { grid } = this.state;
+        console.log(window.innerWidth);
+        if (window.innerWidth > 992) {
+            grid = grid1;
+        } else if (window.innerWidth < 576) {
+            grid = grid3;
+        } else grid = grid2;
+
+        this.setState({ grid });
     };
 
     componentDidMount() {
         this.props.fetchCategories();
         this.props.fetchPosts();
+
+        window.addEventListener('resize', this.handleResize)
+        this.handleResize();
     }
 
     handleFilterClick = (e) => {
@@ -215,34 +213,12 @@ class Home extends Component {
             var { meta } = this.props;
             var nextPage = meta.current_page + 1;
             this.props.fetchPosts(nextPage);
-        }, 3000);
-
+        }, 2000);
     };
-
-    getRandom = () => {
-        let min = Math.ceil(30);
-        let max = Math.floor(70);
-        return Math.floor(Math.random() * (max - min)) + min;
-    };
-
-    getWidth = (pageIndex, index) => {
-        let i = (pageIndex * 8) + index;
-        let divide = (i + 1) % 4;
-
-        if (divide == 1) {
-            counter = 100;
-            sum = 0;
-            randoms = [this.getRandom(), this.getRandom(), this.getRandom(), this.getRandom()];
-            randoms.map((val) => { sum += val; })
-        }
-
-        return randoms[divide] / sum * 100;
-    };
-
 
     render() {
-        var { openPost } = this.state;
-        var { newPosts, posts, links, meta } = this.props;
+        var { openPost, grid } = this.state;
+        var { posts, links, meta } = this.props;
 
 
         const ImageSection = ({ post, width }) => {
@@ -316,27 +292,20 @@ class Home extends Component {
                     </CustomModal>
 
                     <PostContainer type="flex">
-
                         {Object.values(posts).map((page, pageIndex) => (
                             <Fragment>
                                 {page.map((post, index) => {
-                                    let i = (pageIndex * 8) + index;
-                                    let divide = (i + 1) % 4;
-                                    if (divide == 1) {
-                                        sum = 0;
-                                        randoms = [this.getRandom(), this.getRandom(), this.getRandom(), this.getRandom()];
-                                        randoms.map((val) => { sum += val; })
-                                    }
-
-                                    percentage = randoms[divide] / sum * 100;
-
+                                    currentIndex = (pageIndex * 8) + index;
                                     return (
-                                        <ImageSection width={percentage} key={post.id} post={post} index={(pageIndex * 8) + index} />
+                                        <ImageSection
+                                            width={grid[currentIndex] ? grid[currentIndex] : grid[currentIndex - grid.length]}
+                                            key={post.id}
+                                            post={post}
+                                        />
                                     )
                                 })}
                             </Fragment>
                         ))}
-
                     </PostContainer>
                 </InfiniteScroll>
             </Container >
@@ -355,7 +324,6 @@ const mapStateToProps = (state) => {
     return {
         loadingPosts: state.post.loading,
         posts: state.post.infiniteData,
-        newPosts: state.post.data,
         links: state.post.links,
         meta: state.post.meta,
         categories: state.category.data,
