@@ -293,22 +293,23 @@ class Home extends Component {
                             </li>
                         ))}
                     </FilterList>
+                    {
+                        this.state.visible &&
+                        <CustomModal
+                            width={1000}
+                            closable={false}
+                            maskClosable={false}
+                            maskStyle={{ background: "#fff", boxShadow: "none" }}
+                            footer={null}
+                            visible
+                        >
+                            <GalleryModal
+                                post={openPost}
+                                handleClose={this.handleModalClose}
+                            />
+                        </CustomModal>
 
-                    <CustomModal
-                        width={1000}
-                        closable={false}
-                        maskClosable={false}
-                        maskStyle={{ background: "#fff", boxShadow: "none" }}
-                        footer={null}
-                        visible={this.state.visible}
-                    >
-                        <GalleryModal
-                            post={openPost}
-                            handleClose={this.handleModalClose}
-                        />
-                    </CustomModal>
-
-
+                    }
                     <PostContainer type="flex">
                         {Object.values(posts).map((page, pageIndex) => (
                             <Fragment>

@@ -148,9 +148,9 @@ let GalleryModal = ({ handleClose, post }) => {
                     </Row>
 
                     <Gallery
-                        infiniteLoop={true}
-                        autoPlay={true}
-                        stopOnHover={true}
+                        infiniteLoop
+                        autoPlay
+                        stopOnHover
                         selectedItem={0}
                     >
                         <GalleryImageContainer>

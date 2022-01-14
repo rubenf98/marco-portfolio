@@ -16,7 +16,7 @@ class Post extends Model
 
     public function savePhoto($file, $cover = false)
     {
-        $filename = uniqid() . '.jpg';
+        $filename = uniqid() . '.webp';
 
         Image::create([
             'post_id' => $this->id,
