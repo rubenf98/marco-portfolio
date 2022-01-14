@@ -11,7 +11,8 @@ import { fadeInDown, fadeInUp } from 'react-animations'
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Row, Modal } from "antd";
 import ScrollAnimation from 'react-animate-on-scroll';
-import "animate.css/animate.min.css";
+import AnimationContainer from "./common/AnimationContainer";
+
 let currentIndex = 0;
 const grid1 = [28, 19, 27, 26, 22, 31, 26, 21, 26, 21, 25, 28, 15, 33, 32, 20];
 const grid2 = [40, 60, 38, 62, 50, 50, 55, 45, 70, 30];
@@ -259,9 +260,12 @@ class Home extends Component {
                         </LoadingContainer>
                     }
                 >
-                    <Title>
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                    </Title>
+                    <AnimationContainer animation="fadeInDown">
+                        <Title>
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                        </Title>
+                    </AnimationContainer>
+
                     <FilterList>
                         <li>
                             <LinkWithSeparator

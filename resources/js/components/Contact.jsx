@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import styled from "styled-components";
 import { Row, TitleSection } from "../styled";
 import { customColors, dimensions } from "../variables";
+import AnimationContainer from "./common/AnimationContainer";
 import NameAndLogo from "./common/NameAndLogo";
 import ContactForm from "./ContactForm";
 
@@ -84,11 +85,8 @@ class Contact extends Component {
             <div>
                 <TitleSection
                     title="Lorem, ipsum dolor sit amet consectetur adipisicing elit."
-                    subtitle="Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Quos incidunt eligendi atque earum tempore error amet at
-                enim voluptas. Quia, id. Cupiditate ut obcaecati quod
-                repudiandae, perferendis neque nam optio?"
                 />
+
                 <StyledRow type="flex" justify="space-between" width="60%">
 
                     <InfoContainer>
@@ -119,6 +117,8 @@ class Contact extends Component {
                         <ContactForm />
                     </ContactContainer>
                 </StyledRow>
+
+
             </div>
         );
     }

@@ -9,6 +9,7 @@
     <meta name="Description" content="Website description">
     <link rel="stylesheet" href="https://cdnjs.cloudfl&diare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@200;400;700&display=swap" rel="stylesheet">
     <title>Marco Abreu | Estofador</title>
 </head>

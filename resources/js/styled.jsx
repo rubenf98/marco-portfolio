@@ -3,16 +3,22 @@ import { Link, NavLink } from "react-router-dom";
 import { customColors, dimensions } from "./variables";
 import React, { Fragment } from "react";
 import { Select, Button, DatePicker, Input } from "antd";
+import AnimationContainer from "./components/common/AnimationContainer";
 
 const { RangePicker } = DatePicker;
 
 export const TitleSection = ({ title, subtitle }) => {
     return (
         <Fragment>
-            <Title style={{ marginBottom: "20px" }}>{title}</Title>
-            <Line />
-            <Subtitle>{subtitle}</Subtitle>
+            <AnimationContainer animation="fadeInDown">
+                <Title style={{ marginBottom: "20px" }}>{title}</Title>
+            </AnimationContainer>
+            <AnimationContainer animation="zoomIn">
+                <Line style={{ marginBottom: "120px" }} />
+            </AnimationContainer >
+
         </Fragment>
+
     );
 };
 
