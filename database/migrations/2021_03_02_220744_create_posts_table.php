@@ -15,13 +15,11 @@ class CreatePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('item_id');
             $table->unsignedBigInteger('client_id')->nullable();
             $table->date('date');
             $table->timestamps();
 
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
             $table->foreign('client_id')->references('id')->on('clients')->onDelete('set null');
         });

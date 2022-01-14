@@ -30,6 +30,8 @@ class PostFilter extends QueryFilters
     }
     public function category($id)
     {
-        $this->query->where('category_id', $id);
+        $this->query->whereHas('item', function ($query) use ($id) {
+            $query->where('category_id', $id);
+        });
     }
 }

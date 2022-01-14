@@ -16,73 +16,61 @@ class PostSeeder extends Seeder
     {
 
         Post::create([
-            'category_id' => 1,
             'item_id' => 1,
             'client_id' => 4,
             'date' => '2021-03-04'
         ]);
         Post::create([
-            'category_id' => 1,
             'item_id' => 2,
             'client_id' => 1,
             'date' => '2021-03-04'
         ]);
         Post::create([
-            'category_id' => 1,
             'item_id' => 3,
             'client_id' => 3,
             'date' => '2021-03-04'
         ]);
         Post::create([
-            'category_id' => 2,
             'item_id' => 6,
             'client_id' => 1,
             'date' => '2021-03-04'
         ]);
         Post::create([
-            'category_id' => 1,
             'item_id' => 1,
             'client_id' => 1,
             'date' => '2021-03-04'
         ]);
         Post::create([
-            'category_id' => 1,
             'item_id' => 2,
             'client_id' => 1,
             'date' => '2021-03-04'
         ]);
         Post::create([
-            'category_id' => 1,
             'item_id' => 3,
             'client_id' => 2,
             'date' => '2021-03-04'
         ]);
         Post::create([
-            'category_id' => 2,
             'item_id' => 6,
             'client_id' => 1,
             'date' => '2021-03-04'
         ]);
         Post::create([
-            'category_id' => 1,
             'item_id' => 1,
             'client_id' => 1,
             'date' => '2021-03-04'
         ]);
         Post::create([
-            'category_id' => 1,
             'item_id' => 2,
             'client_id' => 2,
             'date' => '2021-03-04'
         ]);
         Post::create([
-            'category_id' => 1,
             'item_id' => 3,
             'client_id' => 4,
             'date' => '2021-03-04'
         ]);
         Post::create([
-            'category_id' => 2,
             'item_id' => 6,
             'client_id' => 3,
             'date' => '2021-03-04'

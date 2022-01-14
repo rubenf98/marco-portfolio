@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Select, Divider, Input } from "antd";
+import { Select, Cascader } from "antd";
 import { fetchSelector } from "../../../redux/category/actions";
 import styled, { css } from "styled-components";
 import debounce from "lodash/debounce";
@@ -17,73 +17,23 @@ const AddButton = styled.img`
 
 
 class CategoryRemoteSelectContainer extends Component {
-    constructor(props) {
-        super(props);
-        this.onSearch = debounce(this.onSearch, 800);
-    }
-
-    state = {
-        newItem: undefined
-    }
-
-    onSearch = (search) => {
-        this.props.fetchSelector({ search: search });
-    };
-
     componentDidMount() {
         this.props.fetchSelector();
     }
 
-    onNameChange = event => {
-        this.setState({
-            newItem: event.target.value,
-        });
-    };
-
-    addItem = () => {
-        console.log('addItem');
-        const { items, name } = this.state;
-        this.setState({
-            items: [...items, name || `New item ${index++}`],
-            name: '',
-        });
-    };
-
     render() {
-        const { data, loading, value, onChange, mode } = this.props;
+        const { data, loading, handleValueChange, onChange, mode } = this.props;
         return (
-            <CustomSelect
-                showSearch
-                value={value}
-                onChange={onChange}
-                onSearch={this.onSearch}
-                loading={loading}
-                placeholder="Categorias"
+            <Cascader
+                onChange={(value) => handleValueChange(value)}
                 size="large"
-                mode={mode}
+                expandTrigger="hover"
+                fieldNames={{ label: "name", value: 'id', children: 'items' }}
+                options={data}
+                placeholder="Produto"
                 allowClear
-                dropdownRender={menu => (
-                    <div>
-                        {menu}
-                        <Divider style={{ margin: '4px 0' }} />
-                        <div style={{ display: 'flex', flexWrap: 'nowrap', padding: 8 }}>
-                            <Input
-                                value={this.state.newItem}
-                                onChange={this.onNameChange}
-                                placeholder="Adicionar nova categoria"
-                            />
+            />
 
-                            <AddButton onClick={this.addItem} src="/icon/add.svg" alt="add-button" />
-                        </div>
-                    </div>
-                )}
-            >
-                {data.map((d) => (
-                    <Option value={d.id} key={d.id}>
-                        {d.name}
-                    </Option>
-                ))}
-            </CustomSelect>
         );
     }
 }

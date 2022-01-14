@@ -86,26 +86,22 @@ class FormContainer extends Component {
         console.log('Success:', values);
     };
 
-    onFinishFailed = (errorInfo) => {
-        console.log('Failed:', errorInfo);
-    };
-
     handleUpload = (file, fileList) => {
+        if (fileList.length <= 10) {
+            let { files } = this.state;
 
-        let { files } = this.state;
+            if ((file.type === "image/webp")) {
+                getBase64(file, (image) => {
+                    files.push({ file: file, image: image });
+                    this.setState({ files });
+                })
+            }
 
-        if ((file.type === "image/png" ||
-            file.type === "image/jpeg" ||
-            file.type === "image/jpg")) {
-            getBase64(file, (image) => {
-                files.push({ file: file, image: image });
-                this.setState({ files });
-            })
+            if (file.uid === fileList[fileList.length - 1].uid) {
+                this.setState({ visible: true, active: { uid: null } });
+            }
         }
 
-        if (file.uid === fileList[fileList.length - 1].uid) {
-            this.setState({ visible: true, active: { uid: null } });
-        }
 
         return false;
     }
@@ -143,8 +139,7 @@ class FormContainer extends Component {
 
     onFinish = (values) => {
         let formData = new FormData();
-
-        formData.append('category_id', values.category_id);
+        console.log(values);
         formData.append('client_id', values.client_id);
         formData.append('item_id', values.item_id);
         formData.append('date', moment(values.date).format("YYYY-MM-DD"));
@@ -179,7 +174,6 @@ class FormContainer extends Component {
                             ref={this.formRef}
                             name="basic"
                             onFinish={this.onFinish}
-                            onFinishFailed={this.onFinishFailed}
                         >
                             <Instruction>Selecione a imagem de capa ao clicar na sua escolha</Instruction>
                             <HiddenInput name="cover" rules={[{ required: true, message: 'Selecione uma imagem de capa' }]}><Input /></HiddenInput>
@@ -199,34 +193,28 @@ class FormContainer extends Component {
 
                             <Instruction>Preencha os campos seguintes de acordo com as opcões, ou crie novas</Instruction>
                             <Row style={{ width: "90%", margin: "auto" }} gutter={16}>
-                                <Col span={12}>
-                                    <Form.Item
-                                        name="category_id"
-                                        rules={[{ required: true, message: 'Seelecione uma categoria' }]}
-                                    >
-                                        <CategoryRemoteSelectContainer />
-                                    </Form.Item>
-                                </Col>
-                                <Col span={12}>
+                                <Col span={8}>
                                     <Form.Item
                                         name="item_id"
-                                        rules={[{ required: true, message: 'Seelecione um produto' }]}
+                                        rules={[{ required: true, message: 'Selecione um produto' }]}
                                     >
-                                        <ItemRemoteSelectContainer />
+                                        <CategoryRemoteSelectContainer
+                                            handleValueChange={(value) => this.formRef.current.setFieldsValue({ item_id: value[1] })}
+                                        />
                                     </Form.Item>
                                 </Col>
-                                <Col span={12}>
+                                <Col span={8}>
                                     <Form.Item
                                         name="client_id"
-                                        rules={[{ required: true, message: 'Seelecione um cliente' }]}
+                                        rules={[{ required: true, message: 'Selecione um cliente' }]}
                                     >
                                         <ClientRemoteSelectContainer />
                                     </Form.Item>
                                 </Col>
-                                <Col span={12}>
+                                <Col span={8}>
                                     <Form.Item
                                         name="date"
-                                        rules={[{ required: true, message: 'Seelecione uma data' }]}
+                                        rules={[{ required: true, message: 'Selecione uma data' }]}
                                     >
                                         <CustomDatePicker size="large" picker="month" />
                                     </Form.Item>
@@ -243,7 +231,7 @@ class FormContainer extends Component {
                     </Modal>
                     <Dragger
                         directory
-                        accept=".jpg,.png,.jpeg"
+                        accept=".webp"
                         showUploadList={false}
                         beforeUpload={this.handleUpload}
                     >
