@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5">
     <meta name="Description" content="Website description">
     <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;500;700&display=swap" rel="stylesheet">
     <title>Marco Abreu | Estofador</title>
 </head>
@@ -42,6 +43,11 @@
         bottom: 0;
     }
 
+    .full-page-loader > img {
+        width: 80px;
+        filter: grayscale(1) brightness(2.5);
+    }
+
     .loading {
         border-radius: 50%;
         border: 1px solid black;
@@ -53,8 +59,8 @@
 
     @keyframes growing {
         0% {
-            width: 50px;
-            height: 50px;
+            width: 100px;
+            height: 100px;
             opacity: 1;
         }
 
@@ -66,14 +72,21 @@
     }
 </style>
 
+<script>
+    window.onbeforeunload = function () {
+        window.scrollTo(0, 0);
+    }
+</script>
+
 <body>
     <div id="index">
 
         <div class="full-page-loader">
             <div class="loading"></div>
+            <img src="/logo.png" alt="logo">
         </div>
-
         <script src="{{mix('js/app.js')}}"></script>
+
     </div>
 </body>
 

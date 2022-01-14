@@ -21,7 +21,7 @@ const Container = styled(Row)`
     }
 
     img {
-        height: 26px;
+        height: 30px;
         margin-right: 5px;
         margin-bottom: 5px;
 

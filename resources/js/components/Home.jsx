@@ -10,7 +10,8 @@ import { connect } from "react-redux";
 import { fadeInDown, fadeInUp } from 'react-animations'
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Row, Modal } from "antd";
-
+import ScrollAnimation from 'react-animate-on-scroll';
+import "animate.css/animate.min.css";
 let currentIndex = 0;
 const grid1 = [28, 19, 27, 26, 22, 31, 26, 21, 26, 21, 25, 28, 15, 33, 32, 20];
 const grid2 = [40, 60, 38, 62, 50, 50, 55, 45, 70, 30];
@@ -65,7 +66,13 @@ const LoadingContainer = styled(Row)`
         animation:${spin} 3s linear infinite;
     }
 `;
-
+const ScrollContainer = styled(ScrollAnimation)`
+    padding: 8px;
+    height: 400px;
+    width :${props => props.width + "%"};
+    vertical-align: middle;
+    cursor: pointer;
+`;
 
 
 const Container = styled.div`
@@ -96,13 +103,8 @@ const LinkWithSeparator = styled(CustomLink)`
 
 
 const ImageContainer = styled.div`
-    padding: 8px;
-    height: 400px;
-    width :${props => props.width + "%"};
-    vertical-align: middle;
-    transition: 0.2s;
-    cursor: pointer;
-    animation: 1s ${props => props.hasAnimation && fadeInUpAnimation};
+    height: 100%;
+    width : 100%;
    
 
     .background {
@@ -223,15 +225,16 @@ class Home extends Component {
         var { posts, links, meta } = this.props;
 
 
-        const ImageSection = ({ post, width }) => {
+        const ImageSection = ({ post }) => {
             return (
+
                 <ImageContainer
-                    width={width}
                     className="container"
                     onClick={() => this.handleModalOpen(post)}
                     src={`${window.location.origin}/images/${post.cover.url}`}
                     hasAnimation={true}
                 >
+
                     <div className="background">
                         <div className="overlay" />
                         <div className="category">
@@ -240,6 +243,7 @@ class Home extends Component {
                         <div className="product">{post.item.name}</div>
                     </div>
                 </ImageContainer>
+
             );
         };
 
@@ -300,22 +304,28 @@ class Home extends Component {
                         />
                     </CustomModal>
 
+
                     <PostContainer type="flex">
                         {Object.values(posts).map((page, pageIndex) => (
                             <Fragment>
-                                {page.map((post, index) => {
-                                    currentIndex = (pageIndex * 8) + index;
-                                    return (
-                                        <ImageSection
-                                            width={grid[currentIndex] ? grid[currentIndex] : grid[currentIndex - grid.length]}
-                                            key={post.id}
-                                            post={post}
-                                        />
-                                    )
-                                })}
+                                {
+                                    page.map((post, index) => {
+                                        currentIndex = (pageIndex * 8) + index;
+                                        return (
+                                            <ScrollContainer offset={1000} key={post.id} animateOnce animateIn="fadeInUp" width={grid[currentIndex] ? grid[currentIndex] : grid[currentIndex - grid.length]}>
+                                                <ImageSection
+
+
+                                                    post={post}
+                                                />
+                                            </ScrollContainer>
+                                        )
+                                    })
+                                }
                             </Fragment>
                         ))}
                     </PostContainer>
+
                 </InfiniteScroll>
             </Container >
         );
