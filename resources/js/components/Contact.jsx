@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import styled from "styled-components";
 import { Row, TitleSection } from "../styled";
 import { customColors, dimensions } from "../variables";
+import NameAndLogo from "./common/NameAndLogo";
 import ContactForm from "./ContactForm";
 
 const StyledRow = styled(Row)`
@@ -12,7 +13,8 @@ const StyledRow = styled(Row)`
 `;
 
 const ContactContainer = styled.div`
-    width: 55%;
+    width: 60%;
+
 
     @media (max-width: ${dimensions.lg}) {
         width: 65%;
@@ -25,7 +27,7 @@ const ContactContainer = styled.div`
     }
 `;
 
-const InfoContainer = styled(ContactContainer)`
+const InfoContainer = styled.div`
     width: 40%;
 
     @media (max-width: ${dimensions.lg}) {
@@ -41,18 +43,13 @@ const InfoContainer = styled(ContactContainer)`
     }
 
     div {
-        width: 48%;
+        width: 100%;
         min-width: 150px;
         @media (max-width: ${dimensions.sm}) {
             width: 20%;
         }
     }
 
-    .larger-input {
-        @media (max-width: ${dimensions.sm}) {
-            width: 60%;
-        }
-    }
 
     h3 {
         text-transform: uppercase;
@@ -74,7 +71,7 @@ const InfoContainer = styled(ContactContainer)`
 
 const InfoSection = ({ title, description, larger }) => {
     return (
-        <div className={larger && "larger-input"}>
+        <div>
             <h3>{title}</h3>
             <p>{description}</p>
         </div>
@@ -93,19 +90,14 @@ class Contact extends Component {
                 repudiandae, perferendis neque nam optio?"
                 />
                 <StyledRow type="flex" justify="space-between" width="60%">
-                    <ContactContainer>
-                        <ContactForm />
-                    </ContactContainer>
+
                     <InfoContainer>
+                        <br />
+                        <NameAndLogo />
+                        <br />
                         <InfoSection
-                            larger
                             title="Morada"
-                            description={
-                                <Fragment>
-                                    <span>Caminho do (qualquer coisa) 32,</span>
-                                    <span>Madeira, Camacha</span>
-                                </Fragment>
-                            }
+                            description="Caminho do (qualquer coisa) 32, Madeira, Camacha"
                         />
                         <InfoSection
                             title="Telemóvel"
@@ -122,6 +114,10 @@ class Contact extends Component {
                             description="9h00 - 18h00"
                         />
                     </InfoContainer>
+
+                    <ContactContainer>
+                        <ContactForm />
+                    </ContactContainer>
                 </StyledRow>
             </div>
         );

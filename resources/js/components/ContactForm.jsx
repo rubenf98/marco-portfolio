@@ -39,12 +39,13 @@ const Textarea = styled(Input)`
 `;
 
 const Button = styled.button`
-    padding: 10px 14px;
+    padding: 14px 26px;
     border: none;
     background: ${customColors.red};
     color: white;
     cursor: pointer;
     font-size: 1.2em;
+    float: right;
 
     &:hover {
         background: ${customColors.hRed};
@@ -74,7 +75,7 @@ const ContactForm = ({ createMessage }) => {
 
     return (
         <div className="App">
-            <form onSubmit={submitForm} style={{ marginBottom: "60px" }}>
+            <form onSubmit={submitForm} style={{ marginBottom: "20px" }}>
                 <Input
                     name="name"
                     placeholder="Nome"
@@ -90,21 +91,14 @@ const ContactForm = ({ createMessage }) => {
                     onChange={(e) => handleFormChange(e.target)}
                 />
 
-                <Input
-                    name="subject"
-                    placeholder="Assunto"
-                    type="text"
-                    value={form.subject}
-                    onChange={(e) => handleFormChange(e.target)}
-                />
-
                 <Textarea
                     name="message"
-                    rows="6"
+                    rows="5"
                     as="textarea"
                     placeholder="Mensagem"
                     type="textarea"
                     value={form.message}
+                    max={180}
                     onChange={(e) => handleFormChange(e.target)}
                 />
 

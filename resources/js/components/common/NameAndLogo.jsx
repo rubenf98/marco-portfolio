@@ -7,6 +7,7 @@ const Name = styled.h1`
     color: ${customColors.black};
     font-weight: normal;
     font-size: 1.6em;
+    text-transform: uppercase;
 
     @media (max-width: ${dimensions.sm}) {
         font-size: 1.2em;
