@@ -31,7 +31,7 @@ class PostRequest extends FormRequest
             'item_id' => 'required|integer|exists:items,id',
             'date' => 'required|date',
             'cover' => 'required|mimes:jpeg,png,jpg,gif,svg,webp',
-            'images' => 'required',
+            'images' => 'nullable',
             'images.*' => 'mimes:jpeg,png,jpg,gif,svg,webp'
         ];
     }

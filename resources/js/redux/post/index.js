@@ -57,6 +57,13 @@ export default (state = initialState, action = {}) => {
                 data: [action.payload.data.data, ...newData]
             };
         }
+
+        case types.RESET_INFINITE_DATA:
+            return {
+                ...state,
+                infiniteData: [],
+            };
+
         default:
             return state
     }

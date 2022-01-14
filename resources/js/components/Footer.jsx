@@ -2,6 +2,7 @@ import { Col, Row } from 'antd';
 import React from 'react'
 import { NavLink } from 'react-router-dom';
 import styled from "styled-components";
+import moment from "moment";
 
 const Container = styled.div`
     width: 100%;
@@ -97,7 +98,7 @@ export default function Footer() {
             </Section>
 
             <Row type="flex" justify="center">
-                <Copyright>© Copyright 2021 | Rúben Freitas</Copyright>
+                <Copyright>© Copyright {moment().year()} | Rúben Freitas</Copyright>
             </Row>
         </Container>
     )

@@ -91,8 +91,9 @@ class FormContainer extends Component {
     };
 
     handleUpload = (file, fileList) => {
-        const { files } = this.state;
-        files = [];
+
+        let { files } = this.state;
+
         if ((file.type === "image/png" ||
             file.type === "image/jpeg" ||
             file.type === "image/jpg")) {
@@ -196,7 +197,7 @@ class FormContainer extends Component {
                                 ))}
                             </Row>
 
-                            <Instruction>Preencha os campos seguintes de acordo com as opcoes, ou crie novas</Instruction>
+                            <Instruction>Preencha os campos seguintes de acordo com as opcões, ou crie novas</Instruction>
                             <Row style={{ width: "90%", margin: "auto" }} gutter={16}>
                                 <Col span={12}>
                                     <Form.Item

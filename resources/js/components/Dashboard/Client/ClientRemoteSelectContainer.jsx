@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { Select, Divider, Input } from "antd";
 import { fetchSelector } from "../../../redux/client/actions";
@@ -19,7 +19,7 @@ const AddButton = styled.img`
 class ClientRemoteSelectContainer extends Component {
     constructor(props) {
         super(props);
-        this.onSearch = debounce(this.onSearch, 800);
+        this.onSearch = debounce(this.onSearch, 1000);
     }
 
     state = {
@@ -27,7 +27,7 @@ class ClientRemoteSelectContainer extends Component {
     }
 
     onSearch = (search) => {
-        this.props.fetchSelector({ search: search });
+        this.props.fetchSelector({ search });
     };
 
     componentDidMount() {
@@ -51,6 +51,7 @@ class ClientRemoteSelectContainer extends Component {
 
     render() {
         const { data, loading, value, onChange, mode } = this.props;
+
         return (
             <CustomSelect
                 showSearch
@@ -84,13 +85,14 @@ class ClientRemoteSelectContainer extends Component {
                     </Option>
                 ))}
             </CustomSelect>
+
         );
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchSelector: () => dispatch(fetchSelector()),
+        fetchSelector: (filters) => dispatch(fetchSelector(filters)),
     };
 };
 

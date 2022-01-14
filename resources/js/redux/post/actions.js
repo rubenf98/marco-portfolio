@@ -18,3 +18,9 @@ export const createPost = (data) => ({
     type: types.CREATE_POST,
     payload: axios.post(`${window.location.origin}/api/post`, data)
 })
+
+export const resetInfiniteData = () => ({
+    type: types.RESET_INFINITE_DATA,
+    payload: "teste"
+})
+

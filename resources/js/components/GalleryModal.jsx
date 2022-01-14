@@ -69,10 +69,12 @@ const CloseIcon = styled.img`
 `;
 
 const Gallery = styled(Carousel)`
-    width: 100%;
+    width: 90%;
+    margin: auto;
 
     .carousel .slide {
         background: transparent;
+        display: flex;
     }
 
     .carousel-status {
@@ -100,11 +102,23 @@ const Gallery = styled(Carousel)`
     }
 `;
 
-const GalleryImage = styled.img`
-    width: 90% !important;
+const GalleryImage = styled.div`
+    width: 100%;
+    background: ${props => "url(" + props.src + ")"};
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 60vh;
     margin: auto;
     display: block;
 `;
+
+const GalleryImageContainer = styled.div`
+    margin: auto;
+    display: block;
+    width: 90%;
+`;
+
 
 const InfoSection = ({ title, description }) => {
     return (
@@ -139,17 +153,17 @@ let GalleryModal = ({ handleClose, post }) => {
                         stopOnHover={true}
                         selectedItem={0}
                     >
-                        <div>
+                        <GalleryImageContainer>
                             <GalleryImage
                                 src={`${window.location.origin}/images/${post.cover.url}`}
                             />
-                        </div>
+                        </GalleryImageContainer>
                         {Object.values(post.images).map((image) => (
-                            <div>
+                            <GalleryImageContainer>
                                 <GalleryImage
                                     src={`${window.location.origin}/images/${image.url}`}
                                 />
-                            </div>
+                            </GalleryImageContainer>
                         ))}
                     </Gallery>
 

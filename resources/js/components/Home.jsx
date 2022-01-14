@@ -5,7 +5,7 @@ import styled, { keyframes } from "styled-components";
 import { CustomLink, Title } from "../styled";
 import { dimensions } from "../variables";
 import { fetchCategories } from "../redux/category/actions";
-import { fetchPosts } from "../redux/post/actions";
+import { fetchPosts, resetInfiniteData } from "../redux/post/actions";
 import { connect } from "react-redux";
 import { fadeInDown, fadeInUp } from 'react-animations'
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -30,6 +30,7 @@ const spin = keyframes`
 
 
 const CustomModal = styled(Modal)`
+    top: 10px;
     .ant-modal-content{
         box-shadow: none;
     }
@@ -195,9 +196,10 @@ class Home extends Component {
         this.handleResize();
     }
 
-    handleFilterClick = (e) => {
+    handleFilterClick = (e, hasID = true) => {
         this.setState({ activeCategory: parseInt(e.target.id) });
-        this.props.fetchPosts(1, { category: parseInt(e.target.id) });
+        this.props.resetInfiniteData();
+        this.props.fetchPosts(1, { category: hasID ? parseInt(e.target.id) : null });
     };
 
     handleModalClose = () => {
@@ -228,7 +230,7 @@ class Home extends Component {
                     className="container"
                     onClick={() => this.handleModalOpen(post)}
                     src={`${window.location.origin}/images/${post.cover.url}`}
-                    hasAnimation={false} //newPosts.some(e => e.id === post.id)}
+                    hasAnimation={true}
                 >
                     <div className="background">
                         <div className="overlay" />
@@ -259,7 +261,7 @@ class Home extends Component {
                     <FilterList>
                         <li>
                             <LinkWithSeparator
-                                onClick={this.handleFilterClick}
+                                onClick={(e) => this.handleFilterClick(e, false)}
                                 as="div"
                                 id={0}
                                 active={this.state.activeCategory == 0 && true}
@@ -284,7 +286,14 @@ class Home extends Component {
                         ))}
                     </FilterList>
 
-                    <CustomModal width={1000} closable={false} maskClosable={false} maskStyle={{ background: "#fff", boxShadow: "none" }} footer={null} visible={this.state.visible}>
+                    <CustomModal
+                        width={1000}
+                        closable={false}
+                        maskClosable={false}
+                        maskStyle={{ background: "#fff", boxShadow: "none" }}
+                        footer={null}
+                        visible={this.state.visible}
+                    >
                         <GalleryModal
                             post={openPost}
                             handleClose={this.handleModalClose}
@@ -317,6 +326,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         fetchCategories: () => dispatch(fetchCategories()),
         fetchPosts: (page, filters) => dispatch(fetchPosts(page, filters)),
+        resetInfiniteData: () => dispatch(resetInfiniteData()),
     };
 };
 
