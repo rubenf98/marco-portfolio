@@ -87,37 +87,38 @@ class Contact extends Component {
                     title="Lorem, ipsum dolor sit amet consectetur adipisicing elit."
                 />
 
-                <StyledRow type="flex" justify="space-between" width="60%">
+                <AnimationContainer animation="fadeInUp">
+                    <StyledRow type="flex" justify="space-between" width="60%">
 
-                    <InfoContainer>
-                        <br />
-                        <NameAndLogo />
-                        <br />
-                        <InfoSection
-                            title="Morada"
-                            description="Caminho do (qualquer coisa) 32, Madeira, Camacha"
-                        />
-                        <InfoSection
-                            title="Telemóvel"
-                            description="962 860 429"
-                        />
-                        <InfoSection
-                            larger
-                            title="Email"
-                            description="marcoabreu31@hotmail.com"
-                        />
+                        <InfoContainer>
+                            <br />
+                            <NameAndLogo />
+                            <br />
+                            <InfoSection
+                                title="Morada"
+                                description="Caminho do (qualquer coisa) 32, Madeira, Camacha"
+                            />
+                            <InfoSection
+                                title="Telemóvel"
+                                description="962 860 429"
+                            />
+                            <InfoSection
+                                larger
+                                title="Email"
+                                description="marcoabreu31@hotmail.com"
+                            />
 
-                        <InfoSection
-                            title="Horário"
-                            description="9h00 - 18h00"
-                        />
-                    </InfoContainer>
+                            <InfoSection
+                                title="Horário"
+                                description="9h00 - 18h00"
+                            />
+                        </InfoContainer>
 
-                    <ContactContainer>
-                        <ContactForm />
-                    </ContactContainer>
-                </StyledRow>
-
+                        <ContactContainer>
+                            <ContactForm />
+                        </ContactContainer>
+                    </StyledRow>
+                </AnimationContainer>
 
             </div>
         );
