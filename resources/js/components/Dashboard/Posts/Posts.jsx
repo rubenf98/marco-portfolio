@@ -4,15 +4,20 @@ import { connect } from "react-redux";
 import { fetchPosts, fetchPost } from "../../../redux/post/actions";
 import Filter from "./Filter";
 import FormContainer from "./FormContainer";
+import { dimensions } from "../../../variables";
 import TableContainer from "./PostsTableContainer";
 
 const ContentContainer = styled.div`
-    width: 60%;
-    max-width: 1600px;
+    width: 70%;
     display: flex;
     justify-content: space-between;
     align-items: start;
     flex-wrap: wrap;
+    margin: 50px 0px;
+
+    @media (max-width: ${dimensions.lg}){
+        width: 90%;
+    }
 `;
 
 const Container = styled.div`
@@ -26,6 +31,18 @@ const Container = styled.div`
 
 const SidePanel = styled.div`
     width: 25%;
+
+    @media (max-width: ${dimensions.md}){
+        display: none;
+    }
+`;
+
+const Table = styled.div`
+    width: 73%;
+
+    @media (max-width: ${dimensions.md}){
+        width: 100%;
+    }
 `;
 
 class Posts extends Component {
@@ -65,14 +82,15 @@ class Posts extends Component {
         return (
             <Container>
                 <ContentContainer>
-                    <TableContainer
-                        onRowClick={this.onRowClick}
-                        handlePageChange={this.handlePageChange}
-                        data={data}
-                        loading={loading}
-                        meta={meta}
-                    />
-
+                    <Table>
+                        <TableContainer
+                            onRowClick={this.onRowClick}
+                            handlePageChange={this.handlePageChange}
+                            data={data}
+                            loading={loading}
+                            meta={meta}
+                        />
+                    </Table>
                     <SidePanel>
                         <FormContainer />
                         <Filter setFilters={this.setFilters} />

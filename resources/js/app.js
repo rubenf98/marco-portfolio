@@ -9,7 +9,7 @@ import reducer from './reducer'
 import { composeWithDevTools } from 'redux-devtools-extension';
 import jwtDecode from "jwt-decode";
 import {
-    me,
+    loginSuccess,
     setAuthorizationToken,
     refreshAuthorizationToken
 } from "./redux/auth/actions";
@@ -27,16 +27,17 @@ const store = createStore(
 )
 
 if (localStorage.token) {
-    // const token = jwtDecode(localStorage.token);
-    // const tokenExp = token.exp < Date.now() / 1000;
+    const token = jwtDecode(localStorage.token);
+    const tokenExp = token.exp < Date.now() / 1000;
 
-    // if (tokenExp) {
-    //     store.dispatch(refreshAuthorizationToken(localStorage.token));
-    // } else {
-    //     setAuthorizationToken(localStorage.token);
-    //     store.dispatch(me(localStorage.token));
-    // }
+    if (tokenExp) {
+        store.dispatch(refreshAuthorizationToken(localStorage.token));
+    } else {
+        store.dispatch(loginSuccess());
+        setAuthorizationToken(localStorage.token);
+    }
 }
+
 
 render(
     <Provider store={store}>

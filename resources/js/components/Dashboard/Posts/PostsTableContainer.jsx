@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Table from "../../common/TableContainer";
 
 const Container = styled.div`
-    width: 73%;
+    width: 100%;
 `;
 
 const columns = [

@@ -2,7 +2,6 @@ import { types } from "./types";
 
 export const initialState = {
     isAuthenticated: false,
-    isAdministrator: false,
     loading: false,
     currentUser: {}
 }
@@ -33,9 +32,6 @@ export default (state = initialState, action = {}) => {
                 ...state,
                 loading: false,
                 isAuthenticated: false,
-                currentUser: {},
-                isAdministrator: false,
-                userHasFracao: false
             };
 
         case `${types.LOGIN_SUCCESS}`:
@@ -53,9 +49,6 @@ export default (state = initialState, action = {}) => {
                 ...state,
                 loading: false,
                 isAuthenticated: true,
-                currentUser: action.payload.data.data,
-                isAdministrator: action.payload.data.data.administrador,
-                userHasFracao: action.payload.data.data.fracaos.length > 0 && true
             };
         default:
             return state

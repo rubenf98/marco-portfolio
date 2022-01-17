@@ -16,7 +16,7 @@ export const login = data => {
                 const token = res.value.data.access_token;
                 localStorage.setItem("token", token);
                 setAuthorizationToken(token);
-                res.value.data.login ? history.push("/login/first") : history.push("/painel");
+                history.push("/painel");
             },
             err => {
                 let messages = [];

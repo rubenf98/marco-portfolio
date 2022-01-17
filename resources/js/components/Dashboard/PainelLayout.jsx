@@ -6,6 +6,7 @@ import Posts from "./Posts/Posts";
 import Categories from "./Category/Category";
 import Client from "./Client/Client";
 import Painel from "./Painel";
+import PrivateRoute from "./PrivateRoute";
 
 const PageContainer = styled.div`
     margin: auto;
@@ -34,10 +35,10 @@ export default class PainelLayout extends Component {
                 <NavBarContainer><NavBar /></NavBarContainer>
 
                 <Content>
-                    <Route path="/painel/posts" component={Posts} />
-                    <Route path="/painel/categorias" component={Categories} />
-                    <Route path="/painel/clientes" component={Client} />
-                    <Route path="/painel" component={Painel} />
+                    <PrivateRoute path="/painel/posts" component={Posts} />
+                    <PrivateRoute path="/painel/categorias" component={Categories} />
+                    <PrivateRoute path="/painel/clientes" component={Client} />
+                    <PrivateRoute path="/painel" component={Painel} />
                 </Content>
 
             </PageContainer>
