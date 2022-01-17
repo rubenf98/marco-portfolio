@@ -1,9 +1,9 @@
 import React from 'react'
 import ScrollAnimation from 'react-animate-on-scroll';
 
-function AnimationContainer({ animation, children }) {
+function AnimationContainer({ animation, animateOnce = true, children }) {
     return (
-        <ScrollAnimation animateIn={animation} animateOnce>
+        <ScrollAnimation animateIn={animation} animateOnce={animateOnce}>
             {children}
         </ScrollAnimation>
     )

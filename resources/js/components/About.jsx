@@ -15,6 +15,7 @@ const StyledImage = styled.img`
 
     @media (max-width: ${dimensions.md}) {
         width: 95%;
+        margin: 20px auto;
     }
 `;
 

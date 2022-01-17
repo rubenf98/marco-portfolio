@@ -36,7 +36,7 @@ const InfoContainer = styled.div`
     }
 
     @media (max-width: ${dimensions.md}) {
-        width: 96%;
+        width: 100%;
         display: flex;
         justify-content: space-around;
         align-items: center;
@@ -45,9 +45,14 @@ const InfoContainer = styled.div`
 
     div {
         width: 100%;
-        min-width: 150px;
+        
+
+        @media (max-width: ${dimensions.md}) {
+            width: 45%;
+        }
+
         @media (max-width: ${dimensions.sm}) {
-            width: 20%;
+            width: 100%;
         }
     }
 
@@ -70,7 +75,13 @@ const InfoContainer = styled.div`
     }
 `;
 
-const InfoSection = ({ title, description, larger }) => {
+const LogoContainer = styled.div`
+    @media (max-width: ${dimensions.md}) {
+        display: none;
+    }
+`;
+
+const InfoSection = ({ title, description }) => {
     return (
         <div>
             <h3>{title}</h3>
@@ -92,7 +103,9 @@ class Contact extends Component {
 
                         <InfoContainer>
                             <br />
-                            <NameAndLogo />
+                            <LogoContainer>
+                                <NameAndLogo />
+                            </LogoContainer>
                             <br />
                             <InfoSection
                                 title="Morada"
