@@ -1,10 +1,8 @@
 import React, { Component } from "react";
-import { Link, NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { CustomLink } from "../../styled";
-import { customColors } from "../../variables";
-import NameAndLogo from "../common/NameAndLogo";
-import { Row, Col } from "antd";
+import { customColors, dimensions } from "../../variables";
+import { Row } from "antd";
 
 const Container = styled(Row)`
     width: 100%;
@@ -15,6 +13,10 @@ const NavBarContainer = styled(Row)`
     width: 60%;
     text-transform: uppercase;
     margin: auto;
+
+    @media (max-width: ${dimensions.md}){
+        width: 100%;
+    }
 `;
 
 const TabList = styled.ul`
@@ -45,6 +47,11 @@ const LinkWithSeparator = styled(CustomLink)`
     text-transform: uppercase;
     font-size: 1em;
 
+    @media (max-width: ${dimensions.sm}){
+        font-size: .9em;
+        margin: 0 10px;
+    }
+
     ::before {
         height: 6px;
         bottom: 1px;
@@ -55,6 +62,10 @@ const LinkWithSeparator = styled(CustomLink)`
         content: "•";
         color: #b7b7b7;
         right: -25px;
+
+        @media (max-width: ${dimensions.sm}){
+            right: -15px;
+        }
     }
 
     :last-child {
@@ -74,23 +85,16 @@ class NavBar extends Component {
 
         return (
             <Container type="flex" justify="center" align="middle">
-                <NavBarContainer type="flex" justify="space-between" align="middle">
-                    <Col span={3}>
-                        <NavLink to="/painel" >
-                            <NameAndLogo name={false} />
-                        </NavLink>
-                    </Col>
-                    <Col span={18}>
-                        <TabList>
-                            <li>
-                                <NavBarItem item="posts" name="posts" />
-                                <NavBarItem item="categorias" name="categorias & produtos" />
-                                <NavBarItem item="clientes" name="clientes" />
-                            </li>
-                        </TabList>
-                    </Col>
-                    <Col span={3}>
-                    </Col>
+                <NavBarContainer type="flex" justify="space-around" align="middle">
+
+                    <TabList>
+                        <li>
+                            <NavBarItem item="posts" name="posts" />
+                            <NavBarItem item="categorias" name="produtos" />
+                            <NavBarItem item="clientes" name="clientes" />
+                        </li>
+                    </TabList>
+
                 </NavBarContainer>
             </Container>
         );

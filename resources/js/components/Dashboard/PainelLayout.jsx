@@ -9,27 +9,36 @@ import Painel from "./Painel";
 
 const PageContainer = styled.div`
     margin: auto;
-    display: block;
+    display: flex;
+    width: 100%;
+    min-height:100vh;
+    display: flex;
+    flex-direction: column;
+`;
 
-    section {
-        width: 100%;
-        min-height: 100vh;
-        background: rgb(245, 245, 245);
-    }
+const Content = styled(Switch)`
+    flex: 1;
+    background: rgb(245, 245, 245);
+    
+`;
+
+const NavBarContainer = styled.div`
+    height: 80px;
+    
 `;
 
 export default class PainelLayout extends Component {
     render() {
         return (
             <PageContainer>
-                <NavBar></NavBar>
-                <Switch>
+                <NavBarContainer><NavBar /></NavBarContainer>
 
+                <Content>
                     <Route path="/painel/posts" component={Posts} />
                     <Route path="/painel/categorias" component={Categories} />
                     <Route path="/painel/clientes" component={Client} />
                     <Route path="/painel" component={Painel} />
-                </Switch>
+                </Content>
 
             </PageContainer>
         );
