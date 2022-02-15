@@ -53,7 +53,7 @@ const Logo = styled(Facebook)`
 `;
 
 const TitleContainer = styled.div`
-    max-width: 500px;
+    max-width: 700px;
     text-align: center;
     color: white;
     margin: auto;
@@ -76,22 +76,22 @@ export default function Footer() {
         <Container>
             <TitleContainer>
                 <h1>Marco Abreu</h1>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                <p>Estofador e decorador a <b>criar espaços customizados</b> há mais de 20 anos consigo</p>
             </TitleContainer>
 
             <Section type="flex" justify="space-around" align="middle">
                 <Col span={2}>
-                    <Logo src="/logo.svg" alt="facebook-logo" />
+                    <Logo src="/logo.svg" alt="logo" />
                 </Col>
                 <Col span={18}>
                     <Row type="flex" justify="center" align="middle">
-                        <Link to="/"> Home</Link>
+                        <Link to="/"> Início</Link>
                         <Link to="/contact"> Contactos</Link>
                         <Link to="/about"> Sobre</Link>
                     </Row>
                 </Col>
                 <Col span={2}>
-                    <a href="https://www.facebook.com/marcosilvioestofador" target="_blank">
+                    <a href="https://www.facebook.com/marcosilvioestofador" target="_blank" rel="noreferrer">
                         <Facebook src="/icon/facebook.png" alt="facebook-logo" />
                     </a>
                 </Col>

@@ -3,7 +3,6 @@ import GalleryModal from "./GalleryModal";
 import React, { Component, Fragment } from "react";
 import styled, { keyframes } from "styled-components";
 import { CustomLink, Title } from "../styled";
-import { dimensions } from "../variables";
 import { fetchCategories } from "../redux/category/actions";
 import { fetchPosts, resetInfiniteData } from "../redux/post/actions";
 import { connect } from "react-redux";
@@ -262,7 +261,7 @@ class Home extends Component {
                 >
                     <AnimationContainer animation="fadeInDown">
                         <Title>
-                            Estofador Marco Abreu com mais de 20 anos de experiência a criar espaços customizados
+                            Estofador e decorador a <b>criar espaços customizados</b> há mais de 20 anos consigo
                         </Title>
                     </AnimationContainer>
 

@@ -7,8 +7,8 @@
    viewBox="0 0 174.08862 74.378266"
    version="1.1"
    id="svg5"
-   inkscape:version="1.1.1 (1:1.1+202109281949+c3084ef5ed)"
-   sodipodi:docname="logo2.svg"
+   inkscape:version="1.1.2 (1:1.1+202202050950+0a00cf5339)"
+   sodipodi:docname="logo.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -24,10 +24,10 @@
      inkscape:document-units="mm"
      showgrid="false"
      inkscape:zoom="1.0998546"
-     inkscape:cx="188.6613"
+     inkscape:cx="172.2955"
      inkscape:cy="242.75936"
-     inkscape:window-width="2560"
-     inkscape:window-height="1369"
+     inkscape:window-width="1920"
+     inkscape:window-height="1009"
      inkscape:window-x="0"
      inkscape:window-y="34"
      inkscape:window-maximized="1"
@@ -371,7 +371,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-89.700994,109.31251)">
+     transform="translate(-94.099359,109.31251)">
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20.6px;line-height:0.95;font-family:aakar;-inkscape-font-specification:aakar;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:0.321569;stroke:none;stroke-width:0.515002"
@@ -392,8 +392,8 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20.6px;line-height:0.95;font-family:aakar;-inkscape-font-specification:aakar;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.515002"
-       x="83.666992"
-       y="-54.917011"
+       x="87.845245"
+       y="-55.794819"
        id="text2590"
        transform="scale(1.0526804,0.94995594)"
        inkscape:export-filename="/home/ruben/Projects/marco-portfolio/public/text2590.png"
@@ -401,13 +401,13 @@
        inkscape:export-ydpi="96"><tspan
          sodipodi:role="line"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Poppins;-inkscape-font-specification:Poppins;fill:#000000;fill-opacity:1;stroke-width:0.515002"
-         x="83.666992"
-         y="-54.917011"
+         x="87.845245"
+         y="-55.794819"
          id="tspan53743">MARCO &amp; SÍLVIO </tspan><tspan
          sodipodi:role="line"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Poppins;-inkscape-font-specification:Poppins;fill:#000000;fill-opacity:1;stroke-width:0.515002"
-         x="83.666992"
-         y="-35.347012"
+         x="87.845245"
+         y="-36.224819"
          id="tspan8663" /></text>
     <text
        xml:space="preserve"
@@ -421,9 +421,9 @@
        inkscape:export-ydpi="96"><tspan
          x="126.23981"
          y="87.465775"
-         id="tspan8874"><tspan
+         id="tspan1051"><tspan
            style="font-family:Megrim;-inkscape-font-specification:Megrim"
-           id="tspan8872">ESTOFADOR</tspan></tspan></text>
+           id="tspan1049">ESTOFADOR</tspan></tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.1554548,0,0,0.1554548,87.105092,-9.2917071)"

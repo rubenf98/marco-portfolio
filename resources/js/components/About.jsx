@@ -143,16 +143,15 @@ class About extends Component {
                         <AnimationContainer animation="fadeIn">
                             <ProfileImages>
                                 <div >
-                                    <img src="/about5.jpeg" alt="" />
+                                    <img src="/images/about/about5.jpeg" alt="" />
                                 </div>
-                                <img className="absolute" src="/about4.jpg" alt="" />
+                                <img className="absolute" src="/images/about/about4.jpg" alt="" />
                             </ProfileImages>
                         </AnimationContainer>
                     </Col>
                     <Col md={24} lg={12}>
                         <AnimationContainer animation="fadeInRight">
                             <ProfileInfo>
-
                                 <h4>Tranformações e decoração com garantia de satisfação</h4>
                                 <p>Trabalho desde o processo de escolha de cores, estilos de decoração, materiais e acessórios para criar novos ambientes e espaços.</p>
                                 <p>Se está a pensar abrir, revitalizar ou renovar o seu negócio, eu serei o seu melhor aliado para criar um espaço customizado com tudo aquilo que alguma vez sonhou!</p>
@@ -162,7 +161,7 @@ class About extends Component {
                 </ProfileContainer>
 
 
-                <Banner src="/about3.jpg" />
+                <Banner src="/images/about/about3.jpg" />
 
                 <SubTitle style={{ marginBottom: "20px" }}>
                     Serviços disponibilizados
@@ -207,8 +206,8 @@ class About extends Component {
                         justify="space-around"
                         style={{ margin: "60px auto" }}
                     >
-                        <StyledImage src="/about1.jpg" />
-                        <StyledImage src="/about2.jpg" />
+                        <StyledImage src="/images/about/about1.jpg" />
+                        <StyledImage src="/images/about/about2.jpg" />
                     </Row>
                 </AnimationContainer>
             </Container >
