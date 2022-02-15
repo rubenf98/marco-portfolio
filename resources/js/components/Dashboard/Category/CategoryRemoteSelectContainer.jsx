@@ -22,10 +22,9 @@ class CategoryRemoteSelectContainer extends Component {
     }
 
     render() {
-        const { data, loading, handleValueChange, onChange, mode } = this.props;
+        const { data, loading, onChange, mode } = this.props;
         return (
             <Cascader
-                onChange={(value) => handleValueChange(value)}
                 size="large"
                 expandTrigger="hover"
                 fieldNames={{ label: "name", value: 'id', children: 'items' }}

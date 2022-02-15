@@ -92,19 +92,13 @@ class FormContainer extends Component {
 
             if ((file.type === "image/png" ||
                 file.type === "image/jpeg" ||
-                file.type === "image/jpg")) {
+                file.type === "image/jpg" ||
+                file.type === "image/webp")) {
                 getBase64(file, (image) => {
                     files.push({ file: file, image: image });
                     this.setState({ files });
                 })
             }
-
-            // if ((file.type === "image/webp") || (file.type === "image/jpg")) {
-            //     getBase64(file, (image) => {
-            //         files.push({ file: file, image: image });
-            //         this.setState({ files });
-            //     })
-            // }
 
             if (file.uid === fileList[fileList.length - 1].uid) {
                 this.setState({ visible: true, active: { uid: null } });

@@ -27,6 +27,7 @@ const CustomForm = styled(Form)`
 function Filter({ setFilters }) {
 
     function onFinish(filters) {
+        console.log(filters);
         if (filters.date) {
             filters.date[0] = moment(filters.date[0]).format("YYYY-MM-DD");
             filters.date[1] = moment(filters.date[1]).format("YYYY-MM-DD");
@@ -43,11 +44,8 @@ function Filter({ setFilters }) {
                 <FormItem name="client">
                     <ClientRemoteSelectContainer />
                 </FormItem>
-                <FormItem name="category">
-                    <CategoryRemoteSelectContainer />
-                </FormItem>
                 <FormItem name="item">
-                    <ItemRemoteSelectContainer />
+                    <CategoryRemoteSelectContainer />
                 </FormItem>
 
                 <CustomButton type="primary" htmlType="submit">Pesquisar</CustomButton>

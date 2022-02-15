@@ -59,7 +59,7 @@ class Posts extends Component {
         console.log(aFilters);
         var { filters } = this.state;
         filters = { ...filters, ...aFilters };
-        console.log(filters);
+  
         this.setState({ filters });
 
         this.props.fetchPosts(1, filters);
