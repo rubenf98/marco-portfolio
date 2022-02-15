@@ -42,11 +42,11 @@
         right: 0;
         left: 0;
         bottom: 0;
+        z-index: 10;
     }
 
     .full-page-loader>img {
-        width: 80px;
-        filter: grayscale(1) brightness(2.9);
+        width: 150px;
     }
 
     .loading {
@@ -60,14 +60,14 @@
 
     @keyframes growing {
         0% {
-            width: 100px;
-            height: 100px;
+            width: 150px;
+            height: 150px;
             opacity: 1;
         }
 
         100% {
-            width: 200px;
-            height: 200px;
+            width: 250px;
+            height: 250px;
             opacity: 0;
         }
     }
@@ -84,7 +84,7 @@
 
         <div class="full-page-loader">
             <div class="loading"></div>
-            <img src="/logo.png" alt="logo">
+            <img src="/logo.svg" alt="logo">
         </div>
         <script src="{{mix('js/app.js')}}"></script>
 

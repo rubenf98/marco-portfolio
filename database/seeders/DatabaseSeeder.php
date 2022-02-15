@@ -18,8 +18,8 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             ItemSeeder::class,
             ClientSeeder::class,
-            PostSeeder::class,
-            ImageSeeder::class,
+            //PostSeeder::class,
+            //ImageSeeder::class,
         ]);
     }
 }

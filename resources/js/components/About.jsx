@@ -12,6 +12,7 @@ const SubTitle = styled(Title)`
 const StyledImage = styled.img`
     width: 40%;
     max-width: 1200px;
+    margin-bottom: 60px;
 
     @media (max-width: ${dimensions.md}) {
         width: 95%;
@@ -35,10 +36,10 @@ const Container = styled.div`
 `;
 
 const Service = styled.div`
-    width: 32%;
+    width: 33%;
     text-align: center;
-    margin: 30px auto;
-    padding: 5px;
+    padding: 20px;
+    margin: 20px auto;
 
     @media (max-width: ${dimensions.md}) {
         width: 50%;
@@ -51,11 +52,12 @@ const Service = styled.div`
     h3 {
         font-weight: normal;
         text-transform: uppercase;
-        font-size: 1.4em;
+        font-size: 24px;
         color: ${customColors.black};
     }
 
     p {
+        font-size: 18px;
         color: ${customColors.gray};
     }
 `;
@@ -100,7 +102,7 @@ const ProfileInfo = styled.div`
     }
 
     p {
-        color: #777;
+        color: #616161;
         font-size: 1.2em;
     }
 `;
@@ -130,7 +132,7 @@ class About extends Component {
         return (
             <Container>
                 <TitleSection
-                    title="Lorem, ipsum dolor sit amet consectetur adipisicing elit."
+                    title="Venha conhecer um pouco mais sobre mim e o meu trabalho"
                 />
 
                 <ProfileContainer type="flex"
@@ -151,9 +153,9 @@ class About extends Component {
                         <AnimationContainer animation="fadeInRight">
                             <ProfileInfo>
 
-                                <h4>Let’s <br></br> Introduce About <br></br>Myself</h4>
-                                <p>Beginning blessed second a creepeth. Darkness wherein fish years good air whose after seed appear midst evenin</p>
-                                <p>Beginning blessed second a creepeth. Darkness wherein fish years good air whose after seed appear midst evenin appear void give third bearing divide one so</p>
+                                <h4>Tranformações e decoração com garantia de satisfação</h4>
+                                <p>Trabalho desde o processo de escolha de cores, estilos de decoração, materiais e acessórios para criar novos ambientes e espaços.</p>
+                                <p>Se está a pensar abrir, revitalizar ou renovar o seu negócio, eu serei o seu melhor aliado para criar um espaço customizado com tudo aquilo que alguma vez sonhou!</p>
                             </ProfileInfo>
                         </AnimationContainer>
                     </Col>
@@ -173,28 +175,28 @@ class About extends Component {
                 >
 
                     <ServiceSection
-                        title="Wedding Photography"
-                        description="It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. "
+                        title="Qualidade"
+                        description="Poderá contar com um serviço profissional, rápido e excelente a todos os níveis"
                     />
                     <ServiceSection
-                        title="Wedding Photography"
-                        description="It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. "
+                        title="Crescimento"
+                        description="Atualização permanente no mercado do sector da decoração, com preços competitivos e inovação"
                     />
                     <ServiceSection
-                        title="Wedding Photography"
-                        description="It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. "
+                        title="Variedade"
+                        description="Uma oferta de produtos de diversos estilos para que possa escolher o que o mais satisfaz"
                     />
                     <ServiceSection
-                        title="Wedding Photography"
-                        description="It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. "
+                        title="Experiência"
+                        description="Prodissional na área da decoração há mais de 20 anos, com foco na sua satisfação com os produtos"
                     />
                     <ServiceSection
-                        title="Wedding Photography"
-                        description="It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. "
+                        title="Atendimento"
+                        description="Cada cliente tem direito ao seu atendimento personalizado consoante as suas necessidades de negócio"
                     />
                     <ServiceSection
-                        title="Wedding Photography"
-                        description="It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. "
+                        title="Local"
+                        description="Trabalho realizado por trabalhadores dedicados e profissionais que conhecem as suas necessidades"
                     />
                 </ProfileContainer>
 

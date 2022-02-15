@@ -262,7 +262,7 @@ class Home extends Component {
                 >
                     <AnimationContainer animation="fadeInDown">
                         <Title>
-                            Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                            Estofador Marco Abreu com mais de 20 anos de experiência a criar espaços customizados
                         </Title>
                     </AnimationContainer>
 

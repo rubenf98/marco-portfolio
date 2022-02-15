@@ -151,7 +151,7 @@ export const Row = styled.div`
 `;
 
 export const Title = styled.h1`
-    width: 40%;
+    width: 50%;
     text-align: center;
     margin: 120px auto;
     display: block;

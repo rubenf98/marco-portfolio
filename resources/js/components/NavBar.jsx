@@ -9,7 +9,7 @@ import AnimationContainer from "./common/AnimationContainer";
 
 const Container = styled.div`
     width: 100%;
-    height: 80px;
+    height: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -88,7 +88,7 @@ function NavBar() {
     return (
         <Container>
             <Section type="flex" align="center">
-                <Link to="/" style={{ textDecoration: " none" }}>
+                <Link to="/" style={{ textDecoration: " none", marginLeft: "15px" }}>
                     <NameAndLogo />
                 </Link>
             </Section>

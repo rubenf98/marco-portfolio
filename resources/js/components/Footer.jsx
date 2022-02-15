@@ -81,7 +81,7 @@ export default function Footer() {
 
             <Section type="flex" justify="space-around" align="middle">
                 <Col span={2}>
-                    <Logo src="/logo.png" alt="facebook-logo" />
+                    <Logo src="/logo.svg" alt="facebook-logo" />
                 </Col>
                 <Col span={18}>
                     <Row type="flex" justify="center" align="middle">

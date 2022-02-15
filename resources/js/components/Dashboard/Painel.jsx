@@ -120,7 +120,7 @@ class Painel extends Component {
                         </Col>
                     </Content>
                     <Footer>
-                        <img src="/logo.png" alt="logo" />
+                        <img src="/logo.svg" alt="logo" />
                         <p>© {moment().year()} Marco Abreu. All Rights Reserved.</p>
                     </Footer>
                 </SubContainer>

@@ -22,12 +22,12 @@ const Container = styled(Row)`
     }
 
     img {
-        height: 30px;
+        height: 60px;
         margin-right: 5px;
         margin-bottom: 5px;
 
         @media (max-width: ${dimensions.sm}) {
-            height: 20px;
+            height: 40px;
         }
     }
 `;
@@ -36,8 +36,7 @@ const NameAndLogo = ({ logo = true, name = true }) => {
     return (
         <Container>
             <Row className="logo-container" type="flex" align="center">
-                {logo && <img src="/logo.png" alt="logo" />}
-                {name && <Name>Marco Abreu</Name>}
+                {logo && <img src="/logo.svg" alt="logo" />}
             </Row>
         </Container>
     );

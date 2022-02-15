@@ -95,35 +95,31 @@ class Contact extends Component {
         return (
             <div>
                 <TitleSection
-                    title="Lorem, ipsum dolor sit amet consectetur adipisicing elit."
+                    title="Pode contatar-me directamente por telefone, através de e-mail ou preencha o formulário abaixo"
                 />
 
                 <AnimationContainer animation="fadeInUp">
                     <StyledRow type="flex" justify="space-between" width="60%">
 
                         <InfoContainer>
-                            <br />
-                            <LogoContainer>
-                                <NameAndLogo />
-                            </LogoContainer>
-                            <br />
+
                             <InfoSection
                                 title="Morada"
-                                description="Caminho do (qualquer coisa) 32, Madeira, Camacha"
+                                description="Caminho ..., Madeira, Camacha"
                             />
                             <InfoSection
                                 title="Telemóvel"
-                                description="962 860 429"
+                                description="+351 962 860 429"
                             />
                             <InfoSection
                                 larger
                                 title="Email"
-                                description="marcoabreu31@hotmail.com"
+                                description="info@marcoabreu.com"
                             />
 
                             <InfoSection
                                 title="Horário"
-                                description="9h00 - 18h00"
+                                description="Segunda a Sexta das 9h00 às 18h00"
                             />
                         </InfoContainer>
 
