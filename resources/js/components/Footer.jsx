@@ -41,6 +41,7 @@ const Copyright = styled.p`
     bottom: 5px;
     left: 50%;
     transform: translate(-50%, 0);
+    -webkit-transform: translate(-50%,0);
 `;
 
 const Facebook = styled.img`
