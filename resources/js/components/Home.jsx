@@ -75,6 +75,7 @@ const LoadingContainer = styled(Row)`
 `;
 const ScrollContainer = styled(ScrollAnimation)`
     padding: 8px;
+    box-sizing: border-box;
     height: 400px;
     width :${props => props.width + "%"};
     vertical-align: middle;
@@ -130,17 +131,18 @@ const ImageContainer = styled.div`
             opacity: 0.5;
         }
 
-        .category,
-        .product {
+        .info {
             opacity: 1;
-        }
-        .category{
-            animation: .8s ${fadeInDownAnimation};
-        }
 
-        .product{
-            animation: .8s ${fadeInUpAnimation};
+            .category{
+                animation: .8s ${fadeInDownAnimation};
+            }
+
+            .product{
+                animation: .8s ${fadeInUpAnimation};
+            }
         }
+        
     }
 
     .overlay {
@@ -156,25 +158,24 @@ const ImageContainer = styled.div`
         background-color: #000000;
     }
 
-    .category,
-    .product {
-        color: white;
-        text-transform: uppercase;
+    .info {
         position: absolute;
-        text-align: center;
+        text-align: left;
+        text-transform: uppercase;
         left: 10px;
         opacity: 0;
-    }
-    .category {
-        font-size: 1.2em;
-        bottom: 60px;
-        
-    }
-    .product {
-        font-size: 2.4em;
         bottom: 20px;
-        font-weight: 900;
+        color: white;
+
+        .category {
+            font-size: 1.2em; 
+        }
+        .product {
+            font-size: 2.4em;
+            font-weight: 900;
+        }
     }
+    
 `;
 
 class Home extends Component {
@@ -244,10 +245,13 @@ class Home extends Component {
 
                     <div className="background">
                         <div className="overlay" />
-                        <div className="category">
-                            {post.category.name}
+                        <div className="info">
+                            <div className="category">
+                                {post.category.name}
+                            </div>
+                            <div className="product">{post.item}</div>
                         </div>
-                        <div className="product">{post.item}</div>
+
                     </div>
                 </ImageContainer>
 
@@ -257,7 +261,7 @@ class Home extends Component {
         return (
             <Container>
                 <InfiniteScroll
-                    dataLength={meta.to ? meta.to : 6}
+                    dataLength={meta.to ? meta.to : 20}
                     next={this.handleNextPage}
                     hasMore={links.first && links.next}
                     loader={
@@ -325,8 +329,6 @@ class Home extends Component {
                                         return (
                                             <ScrollContainer offset={1000} key={post.id} animateOnce animateIn="fadeInUp" width={grid[currentIndex] ? grid[currentIndex] : grid[currentIndex - grid.length]}>
                                                 <ImageSection
-
-
                                                     post={post}
                                                 />
                                             </ScrollContainer>
