@@ -141,7 +141,7 @@ class FormContainer extends Component {
 
     onFinish = (values) => {
         let formData = new FormData();
-        
+
         formData.append('client_id', values.client_id);
         formData.append('category_id', values.category_id);
         formData.append('item', values.item);
@@ -207,7 +207,7 @@ class FormContainer extends Component {
                                 </Col>
                                 <Col span={12}>
                                     <Form.Item name="item" >
-                                        <CustomInput placeholder="Nome do artigo" />
+                                        <CustomInput size="large" placeholder="Nome do artigo" />
                                     </Form.Item>
                                 </Col>
                                 <Col span={12}>

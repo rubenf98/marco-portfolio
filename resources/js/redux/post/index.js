@@ -14,11 +14,23 @@ export default (state = initialState, action = {}) => {
         case `${types.CREATE_POST}_PENDING`:
         case `${types.FETCH_POSTS}_PENDING`:
         case `${types.FETCH_POST}_PENDING`:
+        case `${types.DELETE_POST}_PENDING`:
             return {
                 ...state,
                 loading: true,
 
             };
+
+        case `${types.DELETE_POST}_FULFILLED`:
+            return {
+                ...state,
+                loading: false,
+                data: state.data.filter(
+                    record => record.id !== action.meta.id
+                )
+            };
+
+        case `${types.DELETE_POST}_REJECTED`:
         case `${types.FETCH_POST}_REJECTED`:
         case `${types.CREATE_POST}_REJECTED`:
             return {

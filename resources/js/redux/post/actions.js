@@ -19,6 +19,13 @@ export const createPost = (data) => ({
     payload: axios.post(`${window.location.origin}/api/post`, data)
 })
 
+
+export const deletePost = (id) => ({
+    type: types.DELETE_POST,
+    payload: axios.delete(`${window.location.origin}/api/post/${id}`),
+    meta: { id }
+})
+
 export const resetInfiniteData = () => ({
     type: types.RESET_INFINITE_DATA,
     payload: "teste"
