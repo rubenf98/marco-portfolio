@@ -14,7 +14,7 @@ import AnimationContainer from "./common/AnimationContainer";
 import { dimensions } from "../variables";
 
 let currentIndex = 0;
-const grid1 = [28, 19, 27, 26, 22, 31, 26, 21, 26, 21, 25, 28, 15, 33, 32, 20];
+const grid1 = [28, 19, 27, 26, 22, 31, 26, 21, 26, 21, 25, 28, 15, 33, 32, 20, 22, 31, 26, 21];
 const grid2 = [40, 60, 38, 62, 50, 50, 55, 45, 70, 30];
 const grid3 = [100, 100, 100, 100];
 
@@ -325,9 +325,9 @@ class Home extends Component {
                             <Fragment>
                                 {
                                     page.map((post, index) => {
-                                        currentIndex = (pageIndex * 20) + index;
+                                        currentIndex = ((pageIndex * 20) + index) - (20 * pageIndex);
                                         return (
-                                            <ScrollContainer offset={1000} key={post.id} animateOnce animateIn="fadeInUp" width={grid[currentIndex] ? grid[currentIndex] : grid[currentIndex - grid.length]}>
+                                            <ScrollContainer offset={1000} key={post.id} animateOnce animateIn="fadeInUp" width={grid[currentIndex]}>
                                                 <ImageSection
                                                     post={post}
                                                 />
