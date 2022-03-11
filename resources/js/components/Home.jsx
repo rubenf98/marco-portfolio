@@ -15,8 +15,8 @@ import { dimensions } from "../variables";
 
 let currentIndex = 0;
 const grid1 = [28, 19, 27, 26, 22, 31, 26, 21, 26, 21, 25, 28, 15, 33, 32, 20, 22, 31, 26, 21];
-const grid2 = [40, 60, 38, 62, 50, 50, 55, 45, 70, 30];
-const grid3 = [100, 100, 100, 100];
+const grid2 = [40, 60, 38, 62, 50, 50, 55, 45, 70, 30, 40, 60, 38, 62, 50, 50, 55, 45, 70, 30];
+const grid3 = [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100];
 
 const fadeInDownAnimation = keyframes`${fadeInDown}`;
 const fadeInUpAnimation = keyframes`${fadeInUp}`;
