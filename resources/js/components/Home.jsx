@@ -11,6 +11,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { Row, Modal } from "antd";
 import ScrollAnimation from 'react-animate-on-scroll';
 import AnimationContainer from "./common/AnimationContainer";
+import { dimensions } from "../variables";
 
 let currentIndex = 0;
 const grid1 = [28, 19, 27, 26, 22, 31, 26, 21, 26, 21, 25, 28, 15, 33, 32, 20];
@@ -32,6 +33,12 @@ const spin = keyframes`
 
 const CustomModal = styled(Modal)`
     top: 10px;
+
+    @media (max-width: ${dimensions.md}) {
+        .ant-modal-body {
+            padding: 0px;
+        }
+    }
     .ant-modal-content{
         box-shadow: none;
     }
@@ -238,9 +245,9 @@ class Home extends Component {
                     <div className="background">
                         <div className="overlay" />
                         <div className="category">
-                            {post.item.category.name}
+                            {post.category.name}
                         </div>
-                        <div className="product">{post.item.name}</div>
+                        <div className="product">{post.item}</div>
                     </div>
                 </ImageContainer>
 

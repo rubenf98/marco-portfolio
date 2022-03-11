@@ -13,13 +13,12 @@ const columns = [
     },
     {
         title: 'Categoria',
-        dataIndex: 'item',
-        render: (element) => (element.category.name),
+        dataIndex: 'category',
+        render: (element) => (element.name),
     },
     {
-        title: 'Produto',
+        title: 'Artigo',
         dataIndex: 'item',
-        render: (element) => (element.name),
     },
     {
         title: 'Cliente',

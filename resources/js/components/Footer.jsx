@@ -10,6 +10,7 @@ const Container = styled.div`
     background-color: #222;
     margin-top: 100px;
     padding: 70px 0;
+    position: relative;
 `;
 
 const Section = styled(Row)`
@@ -36,6 +37,10 @@ const Copyright = styled.p`
     color: #aaa;
     font-size: .8em;
     margin-bottom: 20px;
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    transform: translate(-50%, 0);
 `;
 
 const Facebook = styled.img`
@@ -97,9 +102,9 @@ export default function Footer() {
                 </Col>
             </Section>
 
-            <Row type="flex" justify="center">
-                <Copyright>© Copyright {moment().year()} | Rúben Freitas</Copyright>
-            </Row>
+
+            <Copyright>© Copyright {moment().year()} | Rúben Freitas</Copyright>
+
         </Container>
     )
 }

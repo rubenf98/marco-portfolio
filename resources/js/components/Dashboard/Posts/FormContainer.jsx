@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import styled, { css } from "styled-components";
-import { Col, Modal, Row, Upload, Form, Input, DatePicker } from 'antd';
+import { Col, Modal, Row, Upload, Form, Input } from 'antd';
 import moment from 'moment';
 import { getBase64 } from "../../../helper";
-import ItemRemoteSelectContainer from "../Item/ItemRemoteSelectContainer";
 import CategoryRemoteSelectContainer from "../Category/CategoryRemoteSelectContainer";
 import ClientRemoteSelectContainer from "../Client/ClientRemoteSelectContainer";
-import { CustomButton, CustomDatePicker } from "../../../styled"
+import { CustomButton, CustomDatePicker, CustomInput } from "../../../styled"
 import { createPost } from "../../../redux/post/actions";
 import { connect } from "react-redux";
 
@@ -142,11 +141,13 @@ class FormContainer extends Component {
 
     onFinish = (values) => {
         let formData = new FormData();
-        console.log(values);
+        
         formData.append('client_id', values.client_id);
-        formData.append('item_id', values.item_id);
+        formData.append('category_id', values.category_id);
+        formData.append('item', values.item);
         formData.append('date', moment(values.date).format("YYYY-MM-DD"));
         formData.append('cover', values.cover);
+
         for (var i = 0; i < values.images.length; i++) {
             formData.append('images[]', values.images[i]);
         }
@@ -196,17 +197,20 @@ class FormContainer extends Component {
 
                             <Instruction>Preencha os campos seguintes de acordo com as opcões, ou crie novas</Instruction>
                             <Row style={{ width: "90%", margin: "auto" }} gutter={16}>
-                                <Col span={8}>
+                                <Col span={12}>
                                     <Form.Item
-                                        name="item_id"
-                                        rules={[{ required: true, message: 'Selecione um produto' }]}
+                                        name="category_id"
+                                        rules={[{ required: true, message: 'Selecione uma categoria' }]}
                                     >
-                                        <CategoryRemoteSelectContainer
-                                            handleValueChange={(value) => this.formRef.current.setFieldsValue({ item_id: value[1] })}
-                                        />
+                                        <CategoryRemoteSelectContainer />
                                     </Form.Item>
                                 </Col>
-                                <Col span={8}>
+                                <Col span={12}>
+                                    <Form.Item name="item" >
+                                        <CustomInput placeholder="Nome do artigo" />
+                                    </Form.Item>
+                                </Col>
+                                <Col span={12}>
                                     <Form.Item
                                         name="client_id"
                                         rules={[{ required: true, message: 'Selecione um cliente' }]}
@@ -214,12 +218,12 @@ class FormContainer extends Component {
                                         <ClientRemoteSelectContainer />
                                     </Form.Item>
                                 </Col>
-                                <Col span={8}>
+                                <Col span={12}>
                                     <Form.Item
                                         name="date"
                                         rules={[{ required: true, message: 'Selecione uma data' }]}
                                     >
-                                        <CustomDatePicker size="large" picker="month" />
+                                        <CustomDatePicker size="large" picker="year" />
                                     </Form.Item>
                                 </Col>
 

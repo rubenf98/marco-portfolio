@@ -12,7 +12,7 @@ class Post extends Model
     use HasFactory;
     use FiltersRecords;
 
-    protected $fillable = ['item_id', 'client_id', 'date'];
+    protected $fillable = ['category_id', 'client_id', 'date', 'item'];
 
     public function savePhoto($file, $cover = false)
     {
@@ -27,9 +27,9 @@ class Post extends Model
         Image::storeImage($file, $filename);
     }
 
-    public function item()
+    public function category()
     {
-        return $this->belongsTo('App\Item');
+        return $this->belongsTo('App\Category');
     }
 
     public function client()

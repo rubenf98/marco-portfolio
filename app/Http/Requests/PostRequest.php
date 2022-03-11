@@ -27,7 +27,8 @@ class PostRequest extends FormRequest
     {
         return [
             'client_id' => 'required|integer|exists:clients,id',
-            'item_id' => 'required|integer|exists:items,id',
+            'item' => 'nullable|string',
+            'category_id' => 'required|integer|exists:categories,id',
             'date' => 'required|date',
             'cover' => 'required|mimes:jpeg,png,jpg,gif,svg,webp',
             'images' => 'nullable',

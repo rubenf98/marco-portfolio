@@ -22,18 +22,6 @@ export default function CategoryTableContainer({ loading, data, meta, handlePage
             dataIndex: 'name',
             filterDropdown: () => (getFilter("name")),
         },
-        {
-            title: 'Produtos',
-            dataIndex: 'items',
-            filterDropdown: () => (getFilter("item")),
-            render: (element) => (
-                <div>
-                    {element.map((item) => (
-                        <p style={{ margin: 0 }} key={item.id}>{item.name}</p>
-                    ))}
-                </div>
-            ),
-        }
     ];
 
     function handleFilterChange(field, value) {

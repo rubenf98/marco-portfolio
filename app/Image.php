@@ -13,7 +13,10 @@ class Image extends Model
 
     public static function storeImage($photo, $filename)
     {
-        IMG::make($photo)->save(public_path('images/posts/' . $filename));
+        IMG::make($photo)->resize(800, null, function ($constraint) {
+            $constraint->aspectRatio();
+            $constraint->upsize();
+        })->save(public_path('images/posts/' . $filename));
     }
 
     public function post()

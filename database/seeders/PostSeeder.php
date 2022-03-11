@@ -16,62 +16,62 @@ class PostSeeder extends Seeder
     {
 
         Post::create([
-            'item_id' => 1,
+            'category_id' => 1,
             'client_id' => 4,
             'date' => '2021-03-04'
         ]);
         Post::create([
-            'item_id' => 2,
+            'category_id' => 2,
             'client_id' => 1,
             'date' => '2021-03-04'
         ]);
         Post::create([
-            'item_id' => 3,
+            'category_id' => 3,
             'client_id' => 3,
             'date' => '2021-03-04'
         ]);
         Post::create([
-            'item_id' => 6,
+            'category_id' => 1,
             'client_id' => 1,
             'date' => '2021-03-04'
         ]);
         Post::create([
-            'item_id' => 1,
+            'category_id' => 1,
             'client_id' => 1,
             'date' => '2021-03-04'
         ]);
         Post::create([
-            'item_id' => 2,
+            'category_id' => 2,
             'client_id' => 1,
             'date' => '2021-03-04'
         ]);
         Post::create([
-            'item_id' => 3,
+            'category_id' => 3,
             'client_id' => 2,
             'date' => '2021-03-04'
         ]);
         Post::create([
-            'item_id' => 6,
+            'category_id' => 2,
             'client_id' => 1,
             'date' => '2021-03-04'
         ]);
         Post::create([
-            'item_id' => 1,
+            'category_id' => 1,
             'client_id' => 1,
             'date' => '2021-03-04'
         ]);
         Post::create([
-            'item_id' => 2,
+            'category_id' => 2,
             'client_id' => 2,
             'date' => '2021-03-04'
         ]);
         Post::create([
-            'item_id' => 3,
+            'category_id' => 3,
             'client_id' => 4,
             'date' => '2021-03-04'
         ]);
         Post::create([
-            'item_id' => 6,
+            'category_id' => 3,
             'client_id' => 3,
             'date' => '2021-03-04'
         ]);

@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { Select, Cascader } from "antd";
 import { fetchSelector } from "../../../redux/category/actions";
 import styled, { css } from "styled-components";
-import debounce from "lodash/debounce";
 import { CustomSelect } from "../../../styled";
 
 const Option = Select.Option;
@@ -22,16 +21,25 @@ class CategoryRemoteSelectContainer extends Component {
     }
 
     render() {
-        const { data, loading, onChange, mode } = this.props;
+        const { data, loading, onChange, mode, value } = this.props;
         return (
-            <Cascader
+            <CustomSelect
+                showSearch
+                value={value}
+                onChange={onChange}
+                onSearch={this.onSearch}
+                loading={loading}
+                placeholder="Categorias"
+                mode={mode}
                 size="large"
-                expandTrigger="hover"
-                fieldNames={{ label: "name", value: 'id', children: 'items' }}
-                options={data}
-                placeholder="Produto"
                 allowClear
-            />
+            >
+                {data.map((d) => (
+                    <Option value={d.id} key={d.id}>
+                        {d.name}
+                    </Option>
+                ))}
+            </CustomSelect>
 
         );
     }

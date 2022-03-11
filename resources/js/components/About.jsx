@@ -9,10 +9,14 @@ const SubTitle = styled(Title)`
     font-size: 2.5em;
 `;
 
-const StyledImage = styled.img`
+const GalleryImage = styled.picture`
     width: 40%;
     max-width: 1200px;
     margin-bottom: 60px;
+
+    img {
+        width: 100%;
+    }
 
     @media (max-width: ${dimensions.md}) {
         width: 95%;
@@ -22,7 +26,9 @@ const StyledImage = styled.img`
 
 const Banner = styled.img`
     width: 100%;
+    max-height: 600px;
     margin: 80px 0px;
+    object-fit: cover;
 
     @media (max-width: ${dimensions.md}) {
         margin: 0px;
@@ -143,9 +149,16 @@ class About extends Component {
                         <AnimationContainer animation="fadeIn">
                             <ProfileImages>
                                 <div >
+                                    <picture>
+                                        <source srcSet="/images/about/about5.jpg" type="image/jpg" />
+                                        <img src="/images/about/about5.webp" loading="eager" alt="staircase" />
+                                    </picture>
                                     <img src="/images/about/about5.jpeg" alt="" />
                                 </div>
-                                <img className="absolute" src="/images/about/about4.jpg" alt="" />
+                                <picture>
+                                    <source srcSet="/images/about/about4.jpg" type="image/jpg" />
+                                    <img className="absolute" src="/images/about/about4.webp" loading="eager" alt="attic" />
+                                </picture>
                             </ProfileImages>
                         </AnimationContainer>
                     </Col>
@@ -159,9 +172,6 @@ class About extends Component {
                         </AnimationContainer>
                     </Col>
                 </ProfileContainer>
-
-
-                <Banner src="/images/about/about3.jpg" />
 
                 <SubTitle style={{ marginBottom: "20px" }}>
                     Serviços disponibilizados
@@ -199,6 +209,11 @@ class About extends Component {
                     />
                 </ProfileContainer>
 
+                <picture>
+                    <source srcSet="/images/about/about3.jpg" type="image/jpg" />
+                    <Banner src="/images/about/about3.webp" loading="lazy" alt="banner" />
+                </picture>
+
                 <AnimationContainer animation="fadeInUp">
                     <Row
                         type="flex"
@@ -206,8 +221,14 @@ class About extends Component {
                         justify="space-around"
                         style={{ margin: "60px auto" }}
                     >
-                        <StyledImage src="/images/about/about1.jpg" />
-                        <StyledImage src="/images/about/about2.jpg" />
+                        <GalleryImage>
+                            <source srcSet="/images/about/about1.jpg" type="image/jpg" />
+                            <img src="/images/about/about1.webp" loading="lazy" alt="banner" />
+                        </GalleryImage>
+                        <GalleryImage>
+                            <source srcSet="/images/about/about2.jpg" type="image/jpg" />
+                            <img src="/images/about/about2.webp" loading="lazy" alt="banner" />
+                        </GalleryImage>
                     </Row>
                 </AnimationContainer>
             </Container >

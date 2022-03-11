@@ -24,14 +24,12 @@ class PostFilter extends QueryFilters
     {
         $this->query->where('client_id', $id);
     }
-    public function item($id)
+    public function item($string)
     {
-        $this->query->where('item_id', $id);
+        $this->query->where('item', 'like', '%' . $string . '%');
     }
     public function category($id)
     {
-        $this->query->whereHas('item', function ($query) use ($id) {
-            $query->where('category_id', $id);
-        });
+        $this->query->where('category_id', $id);
     }
 }

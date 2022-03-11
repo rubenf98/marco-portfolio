@@ -21,14 +21,11 @@ class PostResource extends JsonResource
             'cover' => $this->images->where('cover', true)->first(),
             'images' => $this->images->where('cover', false),
             'client' => $this->client,
-            'item' => [
-                'id' => $this->item->id,
-                'name' => $this->item->name,
-                'category' => [
-                    'id' => $this->item->category->id,
-                    'name' => $this->item->category->name,
-                ]
-            ]
+            'category' => [
+                'id' => $this->category->id,
+                'name' => $this->category->name,
+            ],
+            'item' => $this->item
         ];
     }
 }

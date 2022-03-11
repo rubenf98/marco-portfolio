@@ -7,27 +7,16 @@ import NameAndLogo from "./common/NameAndLogo";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
 
-const Header = styled.ul`
-    text-align: center;
-    margin: 0 auto 3% auto;
-    display: block;
-    padding: 0;
-
-    li {
-        display: inline-block;
-        :last-child {
-            div::after {
-                content: "";
-            }
-        }
-    }
-`;
-
 const LogoContainer = styled.div`
-    width: 50% auto;
     display: flex;
     align-items: center;
-    margin: 30px 0;
+    padding: 20px 0;
+    box-sizing: border-box;
+    margin-bottom: 50px;
+
+    @media (max-width: ${dimensions.md}) {
+        padding: 15px 0;
+    }
 `;
 
 const Info = styled.div`
@@ -72,6 +61,10 @@ const Gallery = styled(Carousel)`
     width: 90%;
     margin: auto;
 
+    @media (max-width: ${dimensions.md}) {
+        width: 100%;
+    }
+
     .carousel .slide {
         background: transparent;
         display: flex;
@@ -102,13 +95,9 @@ const Gallery = styled(Carousel)`
     }
 `;
 
-const GalleryImage = styled.div`
+const GalleryImage = styled.img`
     width: 100%;
-    background: ${props => "url(" + props.src + ")"};
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    height: 60vh;
+    object-fit: cover;
     margin: auto;
     display: block;
 `;
@@ -116,7 +105,11 @@ const GalleryImage = styled.div`
 const GalleryImageContainer = styled.div`
     margin: auto;
     display: block;
-    width: 90%;
+    width: 100%;    
+
+    @media (max-width: ${dimensions.md}) {
+        width: 100%;
+    }
 `;
 
 
@@ -147,11 +140,31 @@ let GalleryModal = ({ handleClose, post }) => {
                         </LogoContainer>
                     </Row>
 
+                    <Row type="flex" justify="space-around" align="center">
+                        <InfoSection
+                            title="Data de Projeto"
+                            description={post.date}
+                        />
+                        <InfoSection
+                            title="Cliente"
+                            description={post.client ? post.client.name : "------"}
+                        />
+                        <InfoSection
+                            title="Categoria"
+                            description={post.category.name}
+                        />
+                        <InfoSection
+                            title="Artigo"
+                            description={post.item}
+                        />
+                    </Row>
+
                     <Gallery
                         infiniteLoop
                         autoPlay
                         stopOnHover
                         selectedItem={0}
+                        dynamicHeight
                     >
                         <GalleryImageContainer>
                             <GalleryImage
@@ -167,24 +180,7 @@ let GalleryModal = ({ handleClose, post }) => {
                         ))}
                     </Gallery>
 
-                    <Row type="flex" justify="space-around" align="center">
-                        <InfoSection
-                            title="Data de Projeto"
-                            description={post.date}
-                        />
-                        <InfoSection
-                            title="Cliente"
-                            description={post.client ? post.client.name : "------"}
-                        />
-                        <InfoSection
-                            title="Categoria"
-                            description={post.item.category.name}
-                        />
-                        <InfoSection
-                            title="Produto"
-                            description={post.item.name}
-                        />
-                    </Row>
+                    
                 </Fragment>
             )}
         </div>

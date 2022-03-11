@@ -13,11 +13,6 @@ class Category extends Model
 
     public function posts()
     {
-        return $this->hasManyThrough('App\Post', 'App\Item');
-    }
-
-    public function items()
-    {
-        return $this->hasMany('App\Item');
+        return $this->hasMany('App\Post');
     }
 }
