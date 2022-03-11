@@ -325,7 +325,7 @@ class Home extends Component {
                             <Fragment>
                                 {
                                     page.map((post, index) => {
-                                        currentIndex = (pageIndex * 8) + index;
+                                        currentIndex = (pageIndex * 20) + index;
                                         return (
                                             <ScrollContainer offset={1000} key={post.id} animateOnce animateIn="fadeInUp" width={grid[currentIndex] ? grid[currentIndex] : grid[currentIndex - grid.length]}>
                                                 <ImageSection
