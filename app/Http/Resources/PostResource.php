@@ -17,7 +17,7 @@ class PostResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'date' => Carbon::parse($this->date)->format('l jS \\of F Y'),
+            'date' => Carbon::parse($this->date)->format('Y'),
             'cover' => $this->images->where('cover', true)->first(),
             'images' => $this->images->where('cover', false),
             'client' => $this->client,

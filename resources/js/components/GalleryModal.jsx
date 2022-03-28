@@ -180,7 +180,7 @@ let GalleryModal = ({ handleClose, post }) => {
                         ))}
                     </Gallery>
 
-                    
+
                 </Fragment>
             )}
         </div>

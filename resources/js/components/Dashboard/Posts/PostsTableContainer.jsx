@@ -33,6 +33,10 @@ const Action = styled.span`
 function PostsTableContainer({ loading, data, meta, handlePageChange, onRowClick, deletePost }) {
     const columns = [
         {
+            title: 'ID',
+            dataIndex: 'id',
+        },
+        {
             title: '',
             dataIndex: 'cover',
             render: (element, row) => (<Avatar src={"/images" + element.url} alt={row.item} />),
