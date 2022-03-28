@@ -14,6 +14,12 @@
     <meta name="msapplication-TileColor" content="#ff0000">
     <meta name="theme-color" content="#ffffff">
 
+    <meta name="keywords"
+        content="Estofador,estofador de sofas,estofador sofás, estofador madeira, estofador cadeiras,criatividade,decoração,decoracao,Produção,Producao,estofador auto,decoração sala,decoração quarto,decoração de interiores,lojas de decoração, marco abreu,marco,abreu">
+    <meta name="author" content="Rúben Freitas">
+    <meta name="description"
+        content="Trabalho desde o processo de escolha de cores, estilos de decoração, materiais e acessórios para criar novos ambientes e espaços. Se está a pensar abrir, revitalizar ou renovar o seu negócio, eu serei o seu melhor aliado para criar um espaço customizado com tudo aquilo que alguma vez sonhou!">
+
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5">
