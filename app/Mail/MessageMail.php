@@ -12,7 +12,6 @@ class MessageMail extends Mailable
 
     public $messageContent;
     public $user;
-    public $subject;
     public $email;
 
     /**
@@ -20,11 +19,10 @@ class MessageMail extends Mailable
      *
      * @return void
      */
-    public function __construct($aMessage, $aName, $aSubject, $aEmail)
+    public function __construct($aMessage, $aName, $aEmail)
     {
         $this->messageContent = $aMessage;
         $this->user = $aName;
-        $this->subject = $aSubject;
         $this->email = $aEmail;
     }
 
@@ -35,6 +33,6 @@ class MessageMail extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.message')->subject($this->subject);
+        return $this->view('emails.message');
     }
 }

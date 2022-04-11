@@ -29,7 +29,7 @@ class MessageController extends Controller
     {
         $validator = $request->validated();
         Message::create($validator);
-        NotifyMessageEmail::dispatch($validator['message'], $validator['name'], $validator['subject'], $validator['email']);
+        NotifyMessageEmail::dispatch($validator['message'], $validator['name'], $validator['email']);
         return response()->json(
             [
                 'success' => true,

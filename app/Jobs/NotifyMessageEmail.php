@@ -17,7 +17,6 @@ class NotifyMessageEmail implements ShouldQueue
 
     protected $message;
     protected $user;
-    protected $subject;
     protected $email;
 
     /**
@@ -25,11 +24,10 @@ class NotifyMessageEmail implements ShouldQueue
      *
      * @return void
      */
-    public function __construct($aMessage, $aName, $aSubject, $aEmail)
+    public function __construct($aMessage, $aName, $aEmail)
     {
         $this->message = $aMessage;
         $this->user = $aName;
-        $this->subject = $aSubject;
         $this->email = $aEmail;
     }
 
@@ -41,6 +39,6 @@ class NotifyMessageEmail implements ShouldQueue
      */
     public function handle()
     {
-        Mail::to('joseruben98@hotmail.com')->queue(new MessageMail($this->message, $this->user, $this->subject, $this->email));
+        Mail::to('joseruben98@hotmail.com')->queue(new MessageMail($this->message, $this->user, $this->email));
     }
 }

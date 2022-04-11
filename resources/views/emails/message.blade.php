@@ -5,11 +5,11 @@
     <div class="email-container" style="max-width: 600px;width: 90%;margin: auto;display: block;">
 
 
-        <h1 class="title" style="font-weight: normal;">Email enviado automaticamente após uma nova mensagem no website
-            Marco Estofador</h1>
+        <h1 class="title" style="font-weight: normal;">Nova mensagem de contacto no seu website de Sr(a) {{$user}}</h1>
         <div style="font-size: 1em;">
-            <span style="font-weigth: bold;">Cliente: </span> {{$user}} {{$email}}
+            <span style="font-weigth: bold;">Contacto: </span> {{$email}}
         </div>
+        <br />
         <div class="text" style="font-size: 1em;">
             <span style="font-weigth: bold;">Mensagem: </span> {{$messageContent}}
         </div>
@@ -38,13 +38,6 @@
     .flex-center {
         display: flex;
         justify-content: center;
-    }
-
-    .password-container {
-        color: #ff7a5c;
-        margin-top: 30px;
-        font-size: 1.2em;
-        font-weight: bold;
     }
 
     .warning-container {

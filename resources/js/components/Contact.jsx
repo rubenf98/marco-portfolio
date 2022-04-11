@@ -1,9 +1,8 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import styled from "styled-components";
 import { Row, TitleSection } from "../styled";
 import { customColors, dimensions } from "../variables";
 import AnimationContainer from "./common/AnimationContainer";
-import NameAndLogo from "./common/NameAndLogo";
 import ContactForm from "./ContactForm";
 
 const StyledRow = styled(Row)`
@@ -75,12 +74,6 @@ const InfoContainer = styled.div`
     }
 `;
 
-const LogoContainer = styled.div`
-    @media (max-width: ${dimensions.md}) {
-        display: none;
-    }
-`;
-
 const InfoSection = ({ title, description }) => {
     return (
         <div>
@@ -105,7 +98,7 @@ class Contact extends Component {
 
                             <InfoSection
                                 title="Morada"
-                                description="Caminho ..., Madeira, Camacha"
+                                description="Santa Cruz, Caniço"
                             />
                             <InfoSection
                                 title="Telemóvel"
@@ -114,7 +107,7 @@ class Contact extends Component {
                             <InfoSection
                                 larger
                                 title="Email"
-                                description="info@marcoabreu.com"
+                                description="marcoabreu31@hotmail.com"
                             />
 
                             <InfoSection
