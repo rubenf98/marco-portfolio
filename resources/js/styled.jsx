@@ -155,9 +155,15 @@ export const Title = styled.h1`
     text-align: center;
     margin: 120px auto;
     display: block;
-    font-weight: normal;
+    font-weight: 300;
     font-size: 3em;
     color: ${customColors.black};
+    font-family: 'Playfair Display', serif;
+
+    span {
+        font-weight: bold;
+        font-style: italic;
+    }
 
     @media (max-width: ${dimensions.lg}) {
         width: 70%;

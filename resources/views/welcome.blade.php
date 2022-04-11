@@ -20,14 +20,14 @@
     <meta name="description"
         content="Trabalho desde o processo de escolha de cores, estilos de decoração, materiais e acessórios para criar novos ambientes e espaços. Se está a pensar abrir, revitalizar ou renovar o seu negócio, eu serei o seu melhor aliado para criar um espaço customizado com tudo aquilo que alguma vez sonhou!">
 
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=Poppins:wght@400;700&display=swap" rel="stylesheet"> 
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5">
     <meta name="Description" content="Website description">
     <link rel="stylesheet" href="https://cdnjs.cloudfl&diare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@200;400;700&display=swap" rel="stylesheet">
     <title>Marco Abreu | Estofador</title>
 </head>
 
@@ -36,6 +36,7 @@
     body,
     #index {
         height: 100%;
+        font-family: 'Poppins', sans-serif;
     }
 
     html {
@@ -44,7 +45,6 @@
 
     body {
         margin: 0;
-        font-family: 'Sora', sans-serif;
         position: relative;
 
     }

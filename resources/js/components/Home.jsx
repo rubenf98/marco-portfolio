@@ -272,7 +272,7 @@ class Home extends Component {
                 >
                     <AnimationContainer animation="fadeInDown">
                         <Title>
-                            Estofador e decorador a <b>criar espaços customizados</b> há mais de 20 anos consigo
+                            <span>Estofador</span> e <span>Decorador</span>! A criar <span>espaços customizados</span> há mais de 20 anos!
                         </Title>
                     </AnimationContainer>
 
