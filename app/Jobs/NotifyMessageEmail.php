@@ -39,6 +39,6 @@ class NotifyMessageEmail implements ShouldQueue
      */
     public function handle()
     {
-        Mail::to('joseruben98@hotmail.com')->queue(new MessageMail($this->message, $this->user, $this->email));
+        Mail::to('marcoabreu31@hotmail.com')->queue(new MessageMail($this->message, $this->user, $this->email));
     }
 }
