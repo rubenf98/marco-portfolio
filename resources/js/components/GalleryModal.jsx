@@ -161,8 +161,7 @@ let GalleryModal = ({ handleClose, post }) => {
 
                     <Gallery
                         infiniteLoop
-                        autoPlay
-                        stopOnHover
+                        autoPlay={false}
                         selectedItem={0}
                         dynamicHeight
                     >
