@@ -7,6 +7,8 @@ import ContactForm from "./ContactForm";
 
 const StyledRow = styled(Row)`
     width: 60%;
+    min-height: 80vh;
+    
     @media (max-width: ${dimensions.md}) {
         width: 90%;
     }

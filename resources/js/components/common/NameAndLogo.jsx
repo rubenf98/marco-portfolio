@@ -36,7 +36,7 @@ const NameAndLogo = ({ logo = true, name = true }) => {
     return (
         <Container>
             <Row className="logo-container" type="flex" align="center">
-                {logo && <img src="/logo.svg" alt="logo" />}
+                {logo && <img src="/logo-minimal.svg" alt="logo" />}
             </Row>
         </Container>
     );

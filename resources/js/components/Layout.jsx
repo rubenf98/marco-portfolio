@@ -5,7 +5,10 @@ import styled from "styled-components";
 import { withRouter } from "react-router";
 
 const Container = styled.div`
-    max-width: 3840px;
+    background-color: #FFFEF8;
+`;
+
+const Content = styled.div`
     margin: auto;
     display: block;
 `;
@@ -14,11 +17,13 @@ class Layout extends Component {
     render() {
         return (
             <Container>
-                <NavBar />
+                <Content>
+                    <NavBar />
 
-                <section>{this.props.children}</section>
+                    <section>{this.props.children}</section>
 
-                <Footer />
+                    <Footer />
+                </Content>
             </Container>
         );
     }

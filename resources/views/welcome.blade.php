@@ -23,13 +23,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=Poppins:wght@400;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Della+Respira&family=Philosopher&family=Raleway:wght@400;700&display=swap"
         rel="stylesheet">
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5">
     <meta name="Description" content="Website description">
-    <link rel="stylesheet" href="https://cdnjs.cloudfl&diare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <title>Marco Abreu | Estofador</title>
 </head>
 
@@ -38,7 +38,7 @@
     body,
     #index {
         height: 100%;
-        font-family: 'Poppins', sans-serif;
+        font-family: 'Raleway', sans-serif;
     }
 
     html {
@@ -57,7 +57,7 @@
         align-items: center;
         height: 100vh;
         width: 100vw;
-        background: #ffffff;
+        background: #FFFEF8;
         box-sizing: border-box;
         overflow: hidden;
     }
@@ -553,6 +553,6 @@
     script.src = "{{mix('js/app.js')}}";
     setTimeout(() => {
         document.getElementById('index').append(script);
-    }, 3800);
-    
+    }, 100);
+    // 3800
 </script>

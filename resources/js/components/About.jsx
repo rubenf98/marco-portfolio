@@ -1,7 +1,7 @@
 import { Col, Row } from "antd";
 import React, { Component } from "react";
 import styled from "styled-components";
-import { Title, TitleSection, Line } from "../styled";
+import { Title, TitleSection, Line, Subtitle } from "../styled";
 import { customColors, dimensions } from "../variables";
 import AnimationContainer from "./common/AnimationContainer";
 
@@ -165,7 +165,7 @@ class About extends Component {
                     <Col md={24} lg={12}>
                         <AnimationContainer animation="fadeInRight">
                             <ProfileInfo>
-                                <h4>Tranformações e decoração com garantia de satisfação</h4>
+                                <Subtitle>Tranformações e decoração com garantia de satisfação</Subtitle>
                                 <p>Trabalho desde o processo de escolha de cores, estilos de decoração, materiais e acessórios para criar novos ambientes e espaços.</p>
                                 <p>Se está a pensar abrir, revitalizar ou renovar o seu negócio, eu serei o seu melhor aliado para criar um espaço customizado com tudo aquilo que alguma vez sonhou!</p>
                             </ProfileInfo>

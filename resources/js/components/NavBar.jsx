@@ -6,18 +6,20 @@ import { Drawer } from "antd";
 import { customColors, dimensions } from "../variables";
 import NameAndLogo from "./common/NameAndLogo";
 import AnimationContainer from "./common/AnimationContainer";
+import { maxWidth } from "../helper";
 
 const Container = styled.div`
     width: 100%;
     height: 100px;
+    max-width: ${maxWidth};
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     text-transform: uppercase;
+    margin: auto;
 `;
 
 const Section = styled(Row)`
-    width: 50%;
     height: 100%;
 
     .links {
@@ -43,7 +45,7 @@ const Section = styled(Row)`
 `;
 
 const MenuLink = styled(Link)`
-    color: #2a2a2a !important;
+    color: black;
     display: block;
     text-align: center;
     font-size: 3em;
@@ -51,7 +53,7 @@ const MenuLink = styled(Link)`
     cursor: pointer;
     transition: .3s ease-in-out;
     font-size: 34px;
-    font-weight: 300;
+    font-weight: bold;
     margin: 0;
     padding: 15px;
     
@@ -83,24 +85,38 @@ const CustomDrawer = styled(Drawer)`
     }
 `;
 
+const Logo = styled(Link)`
+    img {
+        width: 120px !important;
+        height: auto !important;
+    }
+        
+`;
 function NavBar() {
     const [visibility, setVisibility] = useState(false)
     return (
         <Container>
-            <Section type="flex" align="center">
-                <Link to="/" style={{ textDecoration: " none", marginLeft: "15px" }}>
-                    <NameAndLogo />
-                </Link>
-            </Section>
-            <Section type="flex" align="center" justify="flex-end">
+            <Section type="flex" align="center" justify="start">
                 <div className="links">
                     <CustomLink activeClassName="link--active" to="/contact">Contactos</CustomLink>
                     <CustomLink activeClassName="link--active" to="/about">Sobre</CustomLink>
+                    <CustomLink activeClassName="link--active" to="/portofolio">Trabalhos</CustomLink>
                 </div>
                 <div className="drawer">
                     <img src="/icon/menu.svg" alt="menu" onClick={() => setVisibility(true)} />
                 </div>
             </Section>
+
+            <Section type="flex" align="center" justify="center">
+                <Logo to="/" style={{ textDecoration: " none" }}>
+                    <NameAndLogo />
+                </Logo>
+            </Section>
+            <Section type="flex" align="center" justify="end">
+                pesquisa
+            </Section>
+
+
             <CustomDrawer
                 height="100%"
                 width="100%"
@@ -114,6 +130,7 @@ function NavBar() {
                             <li><MenuLink onClick={() => setVisibility(false)} to="/">home</MenuLink></li>
                             <li><MenuLink onClick={() => setVisibility(false)} to="/about">Sobre</MenuLink></li>
                             <li><MenuLink onClick={() => setVisibility(false)} to="/contact">Contactos</MenuLink></li>
+                            <li><MenuLink onClick={() => setVisibility(false)} to="/portofolio">Trabalhos</MenuLink></li>
                         </ul>
                     </AnimationContainer>
 

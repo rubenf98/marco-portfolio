@@ -5,18 +5,17 @@ import styled from "styled-components";
 import moment from "moment";
 
 const Container = styled.div`
-    width: 100%;
-    min-height: 250px;
-    background-color: #222;
+    width: 80%;
+    margin: auto;
     margin-top: 100px;
-    padding: 70px 0;
     position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 `;
 
 const Section = styled(Row)`
-    max-width: 720px;
-    margin: auto;
-    border-top: 1px solid #4e4e4e;
+   width: 50%;
 
     p {
         margin: 25px;
@@ -25,54 +24,44 @@ const Section = styled(Row)`
 `;
 
 const Link = styled(NavLink)`
-    margin: 25px;
-    color: white; 
+    margin: 0px 25px;
+    display: block;
+    width: 100%;
+    color: #2b2b2b; 
     
     &:hover { 
-        color: white
+        color: #000000
     }
 `;
 
 const Copyright = styled.p`
-    color: #aaa;
-    font-size: .8em;
-    margin-bottom: 20px;
-    position: absolute;
-    bottom: 5px;
-    left: 50%;
-    transform: translate(-50%, 0);
-    -webkit-transform: translate(-50%,0);
-`;
-
-const Facebook = styled.img`
-    width: 22px;
-    margin: auto;
-    display: block;
-`;
-
-
-const Logo = styled(Facebook)`
-    width: auto;
-    height: 22px;
-    filter: brightness(0) invert(1);
-
+    font-size: 12px;
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+    width: 100%;
 `;
 
 const TitleContainer = styled.div`
     max-width: 700px;
-    text-align: center;
-    color: white;
+    text-align: left;
     margin: auto;
     display: block;
-    padding: 50px;
-    color: #c7c7c7;
+    width: 50%;
 
-    h1 {
-        color: white;
+    h3 {
         margin: auto;
         display: block;
-        font-weight: bold;
         font-size: 2.2em;
+        font-size: 26px;
+        font-family: 'Merriweather';
+        font-weight: 700;
+        font-style: italic;
+    }
+
+    p {
+        font-size: 18px;
+        width: 70%;
     }
 `;
 
@@ -81,25 +70,20 @@ export default function Footer() {
     return (
         <Container>
             <TitleContainer>
-                <h1>Marco Abreu</h1>
+                <h3>Marco Abreu</h3>
                 <p>Estofador e decorador a <b>criar espaços customizados</b> há mais de 20 anos consigo</p>
             </TitleContainer>
 
-            <Section type="flex" justify="space-around" align="middle">
-                <Col span={2}>
-                    <Logo src="/logo.svg" alt="logo" />
+            <Section type="flex" justify="space-between" align="middle">
+                <Col span={12}>
+                    <Link to="/"> Início</Link>
+                    <Link to="/contact"> Contactos</Link>
+                    <Link to="/about"> Sobre</Link>
                 </Col>
-                <Col span={18}>
-                    <Row type="flex" justify="center" align="middle">
-                        <Link to="/"> Início</Link>
-                        <Link to="/contact"> Contactos</Link>
-                        <Link to="/about"> Sobre</Link>
-                    </Row>
-                </Col>
-                <Col span={2}>
-                    <a href="https://www.facebook.com/marcosilvioestofador" target="_blank" rel="noreferrer">
-                        <Facebook src="/icon/facebook.png" alt="facebook-logo" />
-                    </a>
+                <Col span={12}>
+                    <Link to="/"> Início</Link>
+                    <Link to="/contact"> Contactos</Link>
+                    <Link to="/about"> Sobre</Link>
                 </Col>
             </Section>
 

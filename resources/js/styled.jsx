@@ -4,20 +4,16 @@ import { customColors, dimensions } from "./variables";
 import React, { Fragment } from "react";
 import { Select, Button, DatePicker, Input } from "antd";
 import AnimationContainer from "./components/common/AnimationContainer";
+import { fonts, maxWidth } from "./helper";
 
 const { RangePicker } = DatePicker;
 
-export const TitleSection = ({ title, subtitle }) => {
+export const TitleSection = ({ title }) => {
     return (
-        <Fragment>
-            <AnimationContainer animation="fadeInDown">
-                <Title style={{ marginBottom: "20px" }}>{title}</Title>
-            </AnimationContainer>
-            <AnimationContainer animation="zoomIn">
-                <Line style={{ marginBottom: "120px" }} />
-            </AnimationContainer >
 
-        </Fragment>
+        <AnimationContainer animation="fadeInDown">
+            <Title>{title}</Title>
+        </AnimationContainer>
 
     );
 };
@@ -120,23 +116,24 @@ export const Line = styled.div`
     display: block;
 `;
 
-const Subtitle = styled.h2`
-    width: 50%;
-    text-align: center;
-    margin: 60px auto;
-    display: block;
-    font-weight: normal;
-    font-size: 1.4em;
-    color: ${customColors.gray};
+export const Subtitle = styled.h2`
+    font-size: 60px;
+    line-height: 70px;
+    letter-spacing: -.02em;
+    font-family: ${fonts.subtitle};
+    max-width: ${maxWidth};
+    margin: 50px auto;
+    color: ${customColors.black};
     
 
     @media (max-width: ${dimensions.lg}) {
-        width: 70%;
-        font-size: 1.2em;
+        font-size: 50px;
+        line-height: 60px;
     }
 
     @media (max-width: ${dimensions.sm}) {
-        width: 90%;
+        font-size: 36px;
+        line-height: 42px;
     }
 `;
 
@@ -151,22 +148,15 @@ export const Row = styled.div`
 `;
 
 export const Title = styled.h1`
-    width: 50%;
-    text-align: center;
-    margin: 120px auto;
-    display: block;
-    font-weight: 300;
-    font-size: 3em;
+    font-size: 60px;
+    line-height: 70px;
+    letter-spacing: -.02em;
+    font-family: ${fonts.title};
+    max-width: ${maxWidth};
+    margin: 15vh auto 100px auto;
     color: ${customColors.black};
-    font-family: 'Playfair Display', serif;
-
-    span {
-        font-weight: bold;
-        font-style: italic;
-    }
 
     @media (max-width: ${dimensions.lg}) {
-        width: 70%;
         font-size: 2.5em;
     }
 
@@ -196,36 +186,24 @@ export const CustomInput = styled(Input)`
 
 export const CustomLink = styled(NavLink)`
     text-decoration: none;
-    font-size: 1.2em;
+    font-size: 14px;
     display: inline-block;
     padding: 0 10px;
     margin: auto 5px;
     position: relative;
     color: ${(props) => (props.active ? "black" : customColors.gray)};
     cursor: pointer;
-    -webkit-transition: 0.3s;
-    -moz-transition: 0.3s;
-    -o-transition: 0.3s;
-    transition: 0.3s;
+    -webkit-transition: color 0.3s ease;
+    -moz-transition: color 0.3s ease;
+    -o-transition: color 0.3s ease;;
+    transition: color 0.3s ease;
     border-bottom: 6px solid white;
 
     &:hover {
         color: ${customColors.black};
-        ::before {
-            width: 105%;
-        }
     }
 
-    ::before {
-        position: absolute;
-        margin-left: -5px;
-        content: "";
-        width: ${(props) => (props.active ? "105%" : 0)};
-        height: 8px;
-        left: 0;
-        bottom: 3px;
-        background: ${customColors.tRed};
-        z-index: -1;
-        transition: 0.3s;
+    .link--active{
+        color: ${customColors.black};
     }
 `;

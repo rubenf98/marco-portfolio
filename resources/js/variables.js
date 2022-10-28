@@ -1,4 +1,3 @@
-export const maxWeight = "2200px";
 export const customColors = {
     "red": "rgb(255, 54, 54)",
     "hRed": "rgb(255, 0, 37)",
