@@ -74,15 +74,23 @@ const CarouselContainer = styled(Carousel)`
 const Item = styled(Link)`
     width: 100%;   
     
-
-    img {
+    .img-wrapper {
         height: 400px;
-        width: 100%;
-        object-fit: cover;
-        cursor: pointer;  
-        padding-right: 50px;
-        box-sizing: border-box;
+        width: 90%;
+        overflow: hidden;
+        display: inline-block;
+
+        img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            cursor: pointer;  
+            
+            transition: all .3s ease;
+        }
+
     }
+    
 
 
     h3 {
@@ -93,12 +101,18 @@ const Item = styled(Link)`
         box-sizing: border-box;
     }
 
+    &:hover {
+        img {
+            transform: rotate(2deg) scale(1.1);
+        }
+    }
+
 
 `;
 const items = [
     { title: "Sofás", image: "sofas" },
-    { title: "Cadeiras", image: "cadeira" },
-    { title: "Cortinados", image: "cortina" },
+    { title: "Cadeiras", image: "cadeiras" },
+    { title: "Cortinados", image: "cortinados" },
     { title: "Cabeceiras", image: "cabeceira" },
     { title: "Toldos", image: "toldo" },
     { title: "Outros", image: "outro" }
@@ -129,7 +143,10 @@ function Work({ text }) {
 
 
                     <Item to={"portfolio?categoria=" + item.image}>
-                        <img src={"/images/homepage/" + item.image + ".jpg"} />
+                        <div className='img-wrapper'>
+                            <img src={"/images/homepage/" + item.image + ".jpg"} />
+                        </div>
+
 
                         <h3>{item.title}</h3>
 
@@ -139,7 +156,7 @@ function Work({ text }) {
                 ))}
 
             </CarouselContainer>
-        </Container>
+        </Container >
     )
 }
 

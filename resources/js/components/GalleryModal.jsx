@@ -3,9 +3,10 @@ import { Row } from "../styled";
 import styled from "styled-components";
 import { dimensions, customColors } from "../variables";
 import NameAndLogo from "./common/NameAndLogo";
-
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from "react-responsive-carousel";
+import 'react-multi-carousel/lib/styles.css';
+import Carousel from 'react-multi-carousel';
+import { getCarouselBreakpoints } from "../helper";
+import { Col } from "antd";
 
 const LogoContainer = styled.div`
     display: flex;
@@ -57,58 +58,12 @@ const CloseIcon = styled.img`
     }
 `;
 
-const Gallery = styled(Carousel)`
-    width: 90%;
-    margin: auto;
+const GalleryImage = styled.div`
+    width: 100%;  
 
-    @media (max-width: ${dimensions.md}) {
+    img {
         width: 100%;
-    }
-
-    .carousel .slide {
-        background: transparent;
-        display: flex;
-    }
-
-    .carousel-status {
-        display: none;
-    }
-
-    .carousel .control-prev.control-arrow::before {
-        border-right: 12px solid #000;
-    }
-
-    .carousel .control-next.control-arrow::before {
-        border-left: 12px solid #000;
-    }
-
-    .carousel .control-arrow::before,
-    .carousel .carousel-slider .control-arrow::before {
-        border-top: 12px solid transparent;
-        border-bottom: 12px solid transparent;
-    }
-
-    .carousel.carousel-slider .control-arrow:hover {
-        background: none;
-
-        
-    }
-`;
-
-const GalleryImage = styled.img`
-    width: 100%;
-    object-fit: cover;
-    margin: auto;
-    display: block;
-`;
-
-const GalleryImageContainer = styled.div`
-    margin: auto;
-    display: block;
-    width: 100%;    
-
-    @media (max-width: ${dimensions.md}) {
-        width: 100%;
+        height: auto;
     }
 `;
 
@@ -127,10 +82,7 @@ let GalleryModal = ({ handleClose, post }) => {
         <div>
             {post && (
                 <Fragment>
-                    <Row type="flex" justify="space-between" width="90%">
-                        <LogoContainer>
-                            <NameAndLogo />
-                        </LogoContainer>
+                    <Row type="flex" justify="end" width="100%">
                         <LogoContainer>
                             <CloseIcon
                                 src="/icon/close.svg"
@@ -140,44 +92,45 @@ let GalleryModal = ({ handleClose, post }) => {
                         </LogoContainer>
                     </Row>
 
-                    <Row type="flex" justify="space-around" align="center">
-                        <InfoSection
-                            title="Data de Projeto"
-                            description={post.date}
-                        />
-                        <InfoSection
-                            title="Cliente"
-                            description={post.client ? post.client.name : "------"}
-                        />
-                        <InfoSection
-                            title="Categoria"
-                            description={post.category.name}
-                        />
-                        <InfoSection
-                            title="Artigo"
-                            description={post.item}
-                        />
+                    <Row gutter={32} type="flex" justify="space-around" align="start">
+                        <Col span={12}>
+                            <Carousel
+                                autoPlay={false}
+                                interval={200000}
+                                arrows={true}
+                                draggable={false}
+                                swipeable
+                                transitionDuration={700}
+                                responsive={getCarouselBreakpoints([1, 1, 1, 1, 1])}
+                            >
+                                <GalleryImage>
+                                    <img src={"/images/" + post.cover.url} />
+                                </GalleryImage>
+                                {Object.values(post.images).map((image, index) => (
+                                    <GalleryImage>
+                                        <img key={index} src={"/images/" + image.url} />
+                                    </GalleryImage>
+                                ))}
+                            </Carousel>
+                        </Col>
+                        <Col span={12}>
+                            <InfoSection
+                                title="Data"
+                                description={post.date}
+                            />
+                            <InfoSection
+                                title="Categoria"
+                                description={post.category.name}
+                            />
+                            <InfoSection
+                                title="Artigo"
+                                description={post.item}
+                            />
+                        </Col>
+
                     </Row>
 
-                    <Gallery
-                        infiniteLoop
-                        autoPlay={false}
-                        selectedItem={0}
-                        dynamicHeight
-                    >
-                        <GalleryImageContainer>
-                            <GalleryImage
-                                src={`${window.location.origin}/images/${post.cover.url}`}
-                            />
-                        </GalleryImageContainer>
-                        {Object.values(post.images).map((image) => (
-                            <GalleryImageContainer>
-                                <GalleryImage
-                                    src={`${window.location.origin}/images/${image.url}`}
-                                />
-                            </GalleryImageContainer>
-                        ))}
-                    </Gallery>
+
 
 
                 </Fragment>

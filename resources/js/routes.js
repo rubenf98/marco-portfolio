@@ -4,8 +4,6 @@ import { createBrowserHistory } from "history";
 
 //public pages
 import Portfolio from "./components/Portfolio";
-import About from "./components/About";
-import Contact from "./components/Contact";
 import Layout from "./components/Layout";
 import Login from "./components/Login";
 
@@ -23,8 +21,6 @@ const Routes = () => {
 
 
                 <Layout>
-                    <Route exact path="/contact" component={Contact} />
-                    <Route exact path="/about" component={About} />
                     <Route exact path="/portfolio" component={Portfolio} />
                     <Route exact path="/" component={Homepage} />
                 </Layout>

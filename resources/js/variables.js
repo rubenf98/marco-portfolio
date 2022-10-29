@@ -1,5 +1,5 @@
 export const customColors = {
-    "red": "rgb(255, 54, 54)",
+    "red": "#7A1818",
     "hRed": "rgb(255, 0, 37)",
     "tRed": "rgba(255, 54, 54,0.8)",
     "gray": "#777",

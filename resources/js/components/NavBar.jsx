@@ -1,141 +1,60 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import styled from "styled-components";
-import { Row, CustomLink } from "../styled";
-import { Drawer } from "antd";
-import { customColors, dimensions } from "../variables";
-import NameAndLogo from "./common/NameAndLogo";
-import AnimationContainer from "./common/AnimationContainer";
+import { customColors } from "../variables";
 import { maxWidth } from "../helper";
 
-const Container = styled.div`
+const Container = styled.section`
+    width: 100%;
+    background-color: ${customColors.red};
+`;
+
+const Content = styled.div`
     width: 100%;
     height: 100px;
     max-width: ${maxWidth};
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     text-transform: uppercase;
     margin: auto;
 `;
 
-const Section = styled(Row)`
-    height: 100%;
+const LinkDiv = styled.div`
+    font-size: 18px;
+    color: white;
 
-    .links {
-        @media (max-width: ${dimensions.sm}) {
-            display: none;
-        }
-    }
-
-    .drawer {
-        display: none; 
-        cursor: pointer;
-
-        img {
-            width: 20px;
-            margin-right: 5px;
-            
-        }
-
-        @media (max-width: ${dimensions.sm}) {
-            display: block;
-        }
+    a {
+        color: white;
     }
 `;
 
-const MenuLink = styled(Link)`
-    color: black;
-    display: block;
-    text-align: center;
-    font-size: 3em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: .3s ease-in-out;
-    font-size: 34px;
-    font-weight: bold;
-    margin: 0;
-    padding: 15px;
-    
-
-    &:hover {
-        color: red;
-    }
-    
-`;
-
-const CustomDrawer = styled(Drawer)`
-    display: none;
-
-    @media (max-width: ${dimensions.sm}) {
-        display: block;
-    }
-
-    div {
-        display: flex;
-        align-items: center;
-    }
-
-    .ant-drawer-content {
-        background: #ffffffe4;
-
-        ul {
-            list-style: none;
-        }
-    }
-`;
 
 const Logo = styled(Link)`
+    margin: 0px 30px;
     img {
-        width: 120px !important;
-        height: auto !important;
+        width: 120px;
+        height: auto;
     }
         
 `;
 function NavBar() {
-    const [visibility, setVisibility] = useState(false)
     return (
         <Container>
-            <Section type="flex" align="center" justify="start">
-                <div className="links">
-                    <CustomLink activeClassName="link--active" to="/contact">Contactos</CustomLink>
-                    <CustomLink activeClassName="link--active" to="/about">Sobre</CustomLink>
-                    <CustomLink activeClassName="link--active" to="/portofolio">Trabalhos</CustomLink>
-                </div>
-                <div className="drawer">
-                    <img src="/icon/menu.svg" alt="menu" onClick={() => setVisibility(true)} />
-                </div>
-            </Section>
+            <Content>
 
-            <Section type="flex" align="center" justify="center">
+                <LinkDiv>
+                    <NavLink activeClassName="link--active" to="/portofolio">Trabalhos</NavLink>
+                </LinkDiv>
+
                 <Logo to="/" style={{ textDecoration: " none" }}>
-                    <NameAndLogo />
+                    <img src="/images/logo_white.svg" alt="logo" />
                 </Logo>
-            </Section>
-            <Section type="flex" align="center" justify="end">
-                pesquisa
-            </Section>
 
-
-            <CustomDrawer
-                height="100%"
-                width="100%"
-                placement="left"
-                onClose={() => setVisibility(false)}
-                visible={visibility}
-            >
-                <div>
-                    <AnimationContainer animateOnce={false} animation="fadeInLeft">
-                        <ul style={{ padding: "0px" }}>
-                            <li><MenuLink onClick={() => setVisibility(false)} to="/">home</MenuLink></li>
-                            <li><MenuLink onClick={() => setVisibility(false)} to="/about">Sobre</MenuLink></li>
-                            <li><MenuLink onClick={() => setVisibility(false)} to="/contact">Contactos</MenuLink></li>
-                            <li><MenuLink onClick={() => setVisibility(false)} to="/portofolio">Trabalhos</MenuLink></li>
-                        </ul>
-                    </AnimationContainer>
-
-                </div>
-            </CustomDrawer>
+                <LinkDiv>
+                    pesquisar
+                </LinkDiv>
+            </Content>
         </Container>
     );
 }

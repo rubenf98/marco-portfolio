@@ -151,7 +151,7 @@ export const Title = styled.h1`
     font-size: 60px;
     line-height: 70px;
     letter-spacing: -.02em;
-    font-family: ${fonts.title};
+    font-family: ${fonts.subtitle};
     max-width: ${maxWidth};
     margin: 15vh auto 100px auto;
     color: ${customColors.black};

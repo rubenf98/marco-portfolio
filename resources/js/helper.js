@@ -4,7 +4,7 @@ export const maxWidth = "1440px";
 
 export const fonts = {
     "title": "'Philosopher', sans-serif",
-    "subtitle": "'Della Respira', serif",
+    "subtitle": "'Prata', serif",
     "text": "'Raleway', sans-serif",
 };
 

@@ -22,8 +22,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Della+Respira&family=Philosopher&family=Raleway:wght@400;700&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Prata&family=Raleway:wght@200;400;700&display=swap"
         rel="stylesheet">
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -34,6 +33,12 @@
 </head>
 
 <style>
+    @font-face {
+        font-family: 'Butler';
+        src: url('{!! asset('fonts/Butler-ExtraBold.woff') !!}');
+    }
+
+
     html,
     body,
     #index {

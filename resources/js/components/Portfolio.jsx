@@ -10,6 +10,7 @@ import { Row, Modal } from "antd";
 import ScrollAnimation from 'react-animate-on-scroll';
 import AnimationContainer from "./common/AnimationContainer";
 import { dimensions } from "../variables";
+import GalleryModal from "./GalleryModal";
 
 let currentIndex = 0;
 const grid1 = [28, 19, 27, 26, 22, 31, 26, 21, 26, 21, 25, 28, 15, 33, 32, 20, 22, 31, 26, 21];
@@ -111,66 +112,25 @@ const LinkWithSeparator = styled(CustomLink)`
 const ImageContainer = styled.div`
     height: 100%;
     width : 100%;
-   
+    overflow: hidden;
+        display: inline-block;
 
-    .background {
-        background: ${props => "url(" + props.src + ")"};
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center;
-        height: 100%;
-        width :100%;
-        position: relative;
-    }
+
+
+        img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            cursor: pointer;  
+            
+            transition: all .3s ease;
+        }
+
     
-
+    
     &:hover {
-        .overlay {
-            opacity: 0.5;
-        }
-
-        .info {
-            opacity: 1;
-
-            .category{
-                animation: .8s ${fadeInDownAnimation};
-            }
-
-            .product{
-                animation: .8s ${fadeInUpAnimation};
-            }
-        }
-        
-    }
-
-    .overlay {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        height: 100%;
-        width: 100%;
-        opacity: 0;
-        transition: 0.2s ease;
-        background-color: #000000;
-    }
-
-    .info {
-        position: absolute;
-        text-align: left;
-        text-transform: uppercase;
-        left: 10px;
-        opacity: 0;
-        bottom: 20px;
-        color: white;
-
-        .category {
-            font-size: 1.2em; 
-        }
-        .product {
-            font-size: 2.4em;
-            font-weight: 900;
+        img {
+            transform: rotate(2deg) scale(1.1);
         }
     }
     
@@ -200,22 +160,25 @@ class Home extends Component {
         var { categories } = this.props;
         const queryParams = new URLSearchParams(window.location.search);
         const categoria = queryParams.get('categoria');
-        var category = categories.filter((cat) => {
-            cat.name == categoria;
-        })
-        console.log(categories);
-
         this.props.fetchCategories();
-        this.props.fetchPosts();
+        var category = undefined;
+        categories.map((cat) => {
+            if (cat.name == categoria) {
+                category = cat;
+            }
+
+        })
+
+        this.handleFilterClick(category.id, category.id)
 
         window.addEventListener('resize', this.handleResize)
         this.handleResize();
     }
 
-    handleFilterClick = (e, hasID = true) => {
-        this.setState({ activeCategory: parseInt(e.target.id) });
+    handleFilterClick = (id, hasID = true) => {
+        this.setState({ activeCategory: parseInt(id) });
         this.props.resetInfiniteData();
-        this.props.fetchPosts(1, { category: hasID ? parseInt(e.target.id) : null });
+        this.props.fetchPosts(1, { category: hasID ? parseInt(id) : null });
     };
 
     handleModalClose = () => {
@@ -248,17 +211,7 @@ class Home extends Component {
                     src={`${window.location.origin}/images/${post.cover.url}`}
                     hasAnimation={true}
                 >
-
-                    <div className="background">
-                        <div className="overlay" />
-                        <div className="info">
-                            <div className="category">
-                                {post.category.name}
-                            </div>
-                            <div className="product">{post.item}</div>
-                        </div>
-
-                    </div>
+                    <img src={"/images/" + post.cover.url} alt={post.item} />
                 </ImageContainer>
 
             );
@@ -285,7 +238,7 @@ class Home extends Component {
                     <FilterList>
                         <li>
                             <LinkWithSeparator
-                                onClick={(e) => this.handleFilterClick(e, false)}
+                                onClick={(e) => this.handleFilterClick(e.target.id, false)}
                                 as="div"
                                 id={0}
                                 active={this.state.activeCategory == 0 && true}
@@ -296,7 +249,7 @@ class Home extends Component {
                         {Object.values(this.props.categories).map((category) => (
                             <li key={category.id}>
                                 <LinkWithSeparator
-                                    onClick={this.handleFilterClick}
+                                    onClick={(e) => this.handleFilterClick(e.target.id)}
                                     as="div"
                                     id={category.id}
                                     active={
@@ -319,10 +272,10 @@ class Home extends Component {
                             footer={null}
                             visible
                         >
-                            {/* <GalleryModal
+                            <GalleryModal
                                 post={openPost}
                                 handleClose={this.handleModalClose}
-                            /> */}
+                            />
                         </CustomModal>
 
                     }
