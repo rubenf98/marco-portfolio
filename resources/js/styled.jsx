@@ -118,7 +118,7 @@ export const Line = styled.div`
 
 export const Subtitle = styled.h2`
     font-size: 60px;
-    line-height: 70px;
+    line-height: 94%;
     letter-spacing: -.02em;
     font-family: ${fonts.subtitle};
     max-width: ${maxWidth};
@@ -128,12 +128,12 @@ export const Subtitle = styled.h2`
 
     @media (max-width: ${dimensions.lg}) {
         font-size: 50px;
-        line-height: 60px;
     }
 
     @media (max-width: ${dimensions.sm}) {
-        font-size: 36px;
-        line-height: 42px;
+        font-size: 24px;
+        line-height: 100%;
+        letter-spacing: 0em;
     }
 `;
 

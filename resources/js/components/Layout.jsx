@@ -1,11 +1,11 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import NavBar from "./NavBar";
 import Footer from "./Footer";
 import styled from "styled-components";
-import { withRouter } from "react-router";
+import { useHistory } from "react-router-dom";
 
 const Container = styled.div`
-    background-color: #FFFEF8;
+    background-color: #ffffff;
 `;
 
 const Content = styled.div`
@@ -13,20 +13,26 @@ const Content = styled.div`
     display: block;
 `;
 
-class Layout extends Component {
-    render() {
-        return (
-            <Container>
-                <Content>
-                    <NavBar />
+function Layout({ children }) {
+    const [search, setSearch] = useState("");
+    let history = useHistory();
 
-                    <section>{this.props.children}</section>
-
-                    <Footer />
-                </Content>
-            </Container>
-        );
+    function handleSearch(e) {
+        history.push("/portfolio?search=" + e);
     }
+
+    return (
+        <Container>
+            <Content>
+                <NavBar search={search} setSearch={setSearch} />
+
+                <section>{children}</section>
+
+                <Footer />
+            </Content>
+        </Container>
+    )
 }
 
-export default withRouter(Layout);
+export default Layout
+

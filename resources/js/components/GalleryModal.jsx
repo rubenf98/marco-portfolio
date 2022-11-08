@@ -1,24 +1,8 @@
-import React, { Fragment } from "react";
-import { Row } from "../styled";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { dimensions, customColors } from "../variables";
-import NameAndLogo from "./common/NameAndLogo";
-import 'react-multi-carousel/lib/styles.css';
-import Carousel from 'react-multi-carousel';
-import { getCarouselBreakpoints } from "../helper";
-import { Col } from "antd";
-
-const LogoContainer = styled.div`
-    display: flex;
-    align-items: center;
-    padding: 20px 0;
-    box-sizing: border-box;
-    margin-bottom: 50px;
-
-    @media (max-width: ${dimensions.md}) {
-        padding: 15px 0;
-    }
-`;
+import Lightbox from "react-awesome-lightbox";
+import "react-awesome-lightbox/build/style.css";
 
 const Info = styled.div`
     @media (max-width: ${dimensions.sm}) {
@@ -44,28 +28,16 @@ const Info = styled.div`
     }
 `;
 
-const CloseIcon = styled.img`
-    height: 20px;
-    cursor: pointer;
-    transition: 0.3s ease-out;
-
-    &:hover {
-        transform: rotate(90deg);
+const Container = styled.div`
+    .lb-icon-arrow {
+        display: ${props => props.hasControls ? "block" : "none"};
     }
 
-    @media (max-width: ${dimensions.sm}) {
-        height: 18px;
+    .lb-container {
+        height: 100vh;
     }
 `;
 
-const GalleryImage = styled.div`
-    width: 100%;  
-
-    img {
-        width: 100%;
-        height: auto;
-    }
-`;
 
 
 const InfoSection = ({ title, description }) => {
@@ -77,65 +49,33 @@ const InfoSection = ({ title, description }) => {
     );
 };
 
-let GalleryModal = ({ handleClose, post }) => {
+
+let GalleryModal = ({ handleClose, post, images }) => {
+    const [imagery, setImagery] = useState([])
+    useEffect(() => {
+        if (images) {
+            var i = [];
+            images.map((image) => {
+                i.push({ url: "/images" + image.url, title: post.item });
+            })
+            setImagery(i);
+        }
+
+
+    }, [images])
+    console.log(imagery);
     return (
-        <div>
-            {post && (
-                <Fragment>
-                    <Row type="flex" justify="end" width="100%">
-                        <LogoContainer>
-                            <CloseIcon
-                                src="/icon/close.svg"
-                                alt="close"
-                                onClick={handleClose}
-                            />
-                        </LogoContainer>
-                    </Row>
-
-                    <Row gutter={32} type="flex" justify="space-around" align="start">
-                        <Col span={12}>
-                            <Carousel
-                                autoPlay={false}
-                                interval={200000}
-                                arrows={true}
-                                draggable={false}
-                                swipeable
-                                transitionDuration={700}
-                                responsive={getCarouselBreakpoints([1, 1, 1, 1, 1])}
-                            >
-                                <GalleryImage>
-                                    <img src={"/images/" + post.cover.url} />
-                                </GalleryImage>
-                                {Object.values(post.images).map((image, index) => (
-                                    <GalleryImage>
-                                        <img key={index} src={"/images/" + image.url} />
-                                    </GalleryImage>
-                                ))}
-                            </Carousel>
-                        </Col>
-                        <Col span={12}>
-                            <InfoSection
-                                title="Data"
-                                description={post.date}
-                            />
-                            <InfoSection
-                                title="Categoria"
-                                description={post.category.name}
-                            />
-                            <InfoSection
-                                title="Artigo"
-                                description={post.item}
-                            />
-                        </Col>
-
-                    </Row>
-
-
-
-
-                </Fragment>
+        <Container hasControls={imagery.length > 1}>
+            {imagery.length && (
+                <Lightbox
+                    images={imagery}
+                    onClose={handleClose}
+                    allowRotate={false}
+                    allowZoom={false}
+                    keyboardInteraction={imagery.length > 1}
+                />
             )}
-        </div>
+        </Container>
     );
 };
 

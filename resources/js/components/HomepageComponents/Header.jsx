@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from "styled-components";
 import { maxWidth } from '../../helper';
-import { customColors } from '../../variables';
+import { customColors, dimensions } from '../../variables';
 import AnimationContainer from '../common/AnimationContainer';
 
 const Container = styled.div`
@@ -47,6 +47,17 @@ const Content = styled.div`
         font-weight: 200;
         color: inherit;
     }
+
+    @media (max-width: ${dimensions.sm}) {
+        h1 {
+            font-size: 70px;
+        }
+
+        h2 {
+            font-size: 20px;
+            letter-spacing: .7em;
+        }
+    }
 `;
 
 
@@ -59,6 +70,15 @@ const Image = styled.div`
         margin: auto;
         position: relative;
         z-index: 2;
+    }
+
+    @media (max-width: ${dimensions.sm}) {
+
+        img {
+            width: 200%;
+            left: 20%;
+        }
+            
     }
     
 `;
@@ -77,10 +97,17 @@ function Header() {
 
         <Container>
             <Content>
-                <h1><AnimationContainer animation="fadeInUp" delay={800}>Marco Abreu.</AnimationContainer></h1>
-                <h2><AnimationContainer animation="fadeInUp" delay={800}>estofador</AnimationContainer></h2>
+                <h1><AnimationContainer animation="fadeInUp" delay={300}>Marco Abreu.</AnimationContainer></h1>
+                <h2><AnimationContainer animation="fadeInUp" delay={500}>estofador</AnimationContainer></h2>
+
                 <Image>
-                    <img src="/images/header.webp" alt="sofá" />
+                    <picture>
+                        <source srcSet="/images/header.png" />
+
+                        <img src="/images/header.webp" alt="sofá" />
+                    </picture>
+
+
                     <Background />
                 </Image>
 

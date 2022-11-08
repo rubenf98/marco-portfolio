@@ -555,9 +555,9 @@
 
 <script>
     var script = document.createElement('script');
-    script.src = "{{mix('js/app.js')}}";
+    script.src = "{{mix('js/app08112022.js')}}";
     setTimeout(() => {
         document.getElementById('index').append(script);
-    }, 100);
+    }, 3800);
     // 3800
 </script>

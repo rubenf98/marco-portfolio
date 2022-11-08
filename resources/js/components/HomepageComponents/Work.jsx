@@ -6,11 +6,17 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { Link, Redirect } from "react-router-dom";
 import AnimationContainer from '../common/AnimationContainer';
+import { Subtitle } from '../../styled';
 
 const Container = styled.div`
     margin: 100px 0px 200px 0px;
     box-sizing: border-box;
     position: relative;
+
+    @media (max-width: ${maxWidth}) {
+        padding: 0px 10px;
+        box-sizing: border-box;
+    }
 
     .button-control {
             position: absolute;
@@ -39,20 +45,6 @@ const Container = styled.div`
     
 `;
 
-const Title = styled.h2`
-    font-size: 60px;
-    line-height: 70px;
-    letter-spacing: -.02em;
-    font-family: ${fonts.subtitle};
-    max-width: ${maxWidth};
-    margin: 50px auto;
-
-    @media (max-width: ${dimensions.md}) {
-        font-size: 82px;
-        text-align: center;
-        margin-bottom: 40px;
-    }
-`;
 
 const CarouselContainer = styled(Carousel)`
     width: 100%;
@@ -62,6 +54,8 @@ const CarouselContainer = styled(Carousel)`
 
     .image-item {
         padding-right: 50px;
+
+        
 
         @media (max-width: ${dimensions.sm}) {
             padding: 0px;
@@ -79,6 +73,10 @@ const Item = styled(Link)`
         width: 90%;
         overflow: hidden;
         display: inline-block;
+
+        @media (max-width: 800px) {
+            width: 100%;
+        }
 
         img {
             height: 100%;
@@ -99,6 +97,10 @@ const Item = styled(Link)`
         color: black;
         padding-right: 50px;
         box-sizing: border-box;
+
+        @media (max-width: ${dimensions.sm}) {
+            font-size: 20px;
+        }
     }
 
     &:hover {
@@ -126,7 +128,7 @@ function Work({ text }) {
         <Container id="Portfolio">
 
 
-            <Title>Explore por categorias</Title>
+            <Subtitle>Explore por categorias</Subtitle>
 
             <CarouselContainer
                 autoPlay={false}
@@ -142,7 +144,7 @@ function Work({ text }) {
                 {items.map((item, index) => (
 
 
-                    <Item to={"portfolio?categoria=" + item.image}>
+                    <Item key={index} to={"portfolio?categoria=" + item.image}>
                         <div className='img-wrapper'>
                             <img src={"/images/homepage/" + item.image + ".jpg"} />
                         </div>

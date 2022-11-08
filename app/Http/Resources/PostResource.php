@@ -19,7 +19,7 @@ class PostResource extends JsonResource
             'id' => $this->id,
             'date' => Carbon::parse($this->date)->format('Y'),
             'cover' => $this->images->where('cover', true)->first(),
-            'images' => $this->images->where('cover', false),
+            'images' => $this->images,
             'client' => $this->client,
             'category' => [
                 'id' => $this->category->id,

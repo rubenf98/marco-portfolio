@@ -53,6 +53,7 @@ const Button = styled.button`
     cursor: ${props => props.loading ? "wait" : "pointer"};
     font-size: 1.2em;
     float: right;
+    transition: all .3s ease;
 
     &:hover {
         background: ${customColors.hRed};

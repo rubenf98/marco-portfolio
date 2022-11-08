@@ -1,15 +1,31 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { Row, TitleSection } from "../../styled";
+import { maxWidth } from "../../helper";
+import { Row, Subtitle, TitleSection } from "../../styled";
 import { customColors, dimensions } from "../../variables";
 import AnimationContainer from "../common/AnimationContainer";
 import ContactForm from "./ContactForm";
 
+const Container = styled.section`
+    margin: 100px 0px 200px 0px;
+    box-sizing: border-box;
+    position: relative;
+
+    @media (max-width: ${maxWidth}) {
+        padding: 0px 10px;
+        box-sizing: border-box;
+    }
+`;
+
 const StyledRow = styled(Row)`
     width: 60%;
+
+    @media (max-width: ${dimensions.lg}) {
+        width: 80%;
+    }
     
     @media (max-width: ${dimensions.md}) {
-        width: 90%;
+        width: 100%;
     }
 `;
 
@@ -22,9 +38,7 @@ const ContactContainer = styled.div`
     }
 
     @media (max-width: ${dimensions.md}) {
-        width: 96%;
-        display: block;
-        margin: auto;
+        width: 100%;
     }
 `;
 
@@ -38,7 +52,7 @@ const InfoContainer = styled.div`
     @media (max-width: ${dimensions.md}) {
         width: 100%;
         display: flex;
-        justify-content: space-around;
+        justify-content: space-between;
         align-items: center;
         flex-wrap: wrap;
     }
@@ -87,10 +101,9 @@ const InfoSection = ({ title, description }) => {
 class Contact extends Component {
     render() {
         return (
-            <div>
-                <TitleSection
-                    title="Pode contatar-me directamente por telefone, através de e-mail ou preencha o formulário abaixo"
-                />
+            <Container>
+                <Subtitle>Pode contatar-me directamente por telefone, através de e-mail ou preencha o formulário abaixo</Subtitle>
+
 
                 <AnimationContainer animation="fadeInUp">
                     <StyledRow type="flex" justify="space-between" width="60%">
@@ -123,7 +136,7 @@ class Contact extends Component {
                     </StyledRow>
                 </AnimationContainer>
 
-            </div>
+            </Container>
         );
     }
 }

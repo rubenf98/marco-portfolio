@@ -14,7 +14,7 @@ const GalleryImage = styled.picture`
     }
 
     @media (max-width: ${dimensions.md}) {
-        width: 95%;
+        width: 100%;
         margin: 20px auto;
     }
 `;
@@ -34,16 +34,24 @@ const Container = styled.div`
     width: 100%;
     margin: auto;
     display: block;
+
+    @media (max-width: ${maxWidth}) {
+        padding: 0px 10px;
+        box-sizing: border-box;
+    }
+
 `;
 
 const Service = styled.div`
     width: 33%;
     text-align: center;
-    padding: 20px;
+    padding: 0px;
+    box-sizing: border-box;
     margin: 20px auto;
 
     @media (max-width: ${dimensions.md}) {
         width: 50%;
+        text-align: left;
     }
 
     @media (max-width: ${dimensions.sm}) {
@@ -54,12 +62,19 @@ const Service = styled.div`
         font-weight: normal;
         text-transform: uppercase;
         font-size: 24px;
-        color: ${customColors.black};
+
+        @media (max-width: ${dimensions.md}) {
+            font-size: 20px;
+        }
     }
 
     p {
         font-size: 18px;
-        color: ${customColors.gray};
+        opacity: .9;
+
+        @media (max-width: ${dimensions.md}) {
+            font-size: 16px;
+        }
     }
 `;
 
@@ -94,17 +109,20 @@ const ProfileImages = styled.div`
 
 const ProfileInfo = styled.div`
     padding-left: 55px;
-
-    h4 {
-        font-weight: bold;
-        margin-bottom: 22px;
-        font-size: 2.8em;
-        line-height: 1.2em;
-    }
+    box-sizing: border-box;
 
     p {
-        color: #616161;
-        font-size: 1.2em;
+        opacity: .9;
+        font-size: 18px;
+    }
+
+    @media (max-width: ${dimensions.md}) {
+        padding: 0px;
+        
+        p {
+            font-size: 16px;
+            
+        }
     }
 `;
 
@@ -112,6 +130,10 @@ const ProfileContainer = styled(Row)`
     margin: 100px auto;
     width: 100%;
     max-width: ${maxWidth};
+
+    @media (max-width: ${dimensions.md}) {
+        margin: 50px auto;
+    }
 `;
 
 const ServiceSection = ({ title, description }) => {
